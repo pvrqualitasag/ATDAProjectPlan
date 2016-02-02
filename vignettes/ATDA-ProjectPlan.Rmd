@@ -1,0 +1,535 @@
+---
+title:
+author:
+date:
+output: pdf_document
+---
+
+```{r GenerateDiagrams,echo=FALSE,results='hide'}
+sOdgDirWin <- 'odg'
+sOdgDir <- "odg"
+sFigDirOut <- "."
+sConvCmdStem <- ifelse(.Platform$OS.type == "windows", 
+                       '"C:/Program Files (x86)/LibreOffice 5/program/soffice" --headless --convert-to pdf',
+                       "soffice --headless --convert-to pdf")
+
+convertOdgToPdf <- function(psOdgFile){
+  sFigFile <- ifelse(.Platform$OS.type == "windows",
+                     paste(sOdgDirWin, psOdgFile, sep = "\\"),
+                     file.path(sOdgDir, psOdgFile))
+  sConvCommand <- paste(sConvCmdStem, sFigFile)
+  system(command = sConvCommand)
+  sPdfFile <- gsub("odg$", "pdf", psOdgFile)
+  sFigOutFile <- file.path(sFigDirOut, sPdfFile)
+  file.rename(from = sPdfFile, sFigOutFile)
+}
+
+# LibreOffice draw files
+vOdgFiles <- list.files(path = sOdgDir, pattern = ".odg$")
+sapply(vOdgFiles, convertOdgToPdf)
+# LibreOffice calc files
+vOdsFiles <- list.files(path = sOdgDir, pattern = ".ods$")
+sapply(vOdsFiles, convertOdgToPdf)
+```
+
+```{r SectionNumber, echo=FALSE,results='hide'}
+#' reference Class for section counting
+sectionCount <- setRefClass(Class   = "SectionCount",
+                            fields  = list(nSectionCount       = "numeric",
+                                           nSubSectionCount    = "numeric", 
+                                           nSubSubsectionCount = "numeric",
+                                           sHash               = "character",
+                                           sCountSep           = "character"),
+                            methods = list(
+                              init = function(){
+                                nSectionCount       <<- 0
+                                nSubSectionCount    <<- 0
+                                nSubSubsectionCount <<- 0
+                                sCountSep           <<- "."
+                              },
+                              setHash = function(psHash){
+                                sHash <<- psHash
+                              },
+                              incrSectionCounts = function(){
+                                nNrHash <- nchar(sHash)
+                                if (nNrHash == 3){
+                                  nSubSubsectionCount <<- nSubSubsectionCount + 1
+                                } else if(nNrHash == 2){
+                                  nSubSectionCount <<- nSubSectionCount + 1
+                                  nSubSubsectionCount <<- 0
+                                } else if(nNrHash == 1){
+                                  nSectionCount <<- nSectionCount + 1
+                                  nSubSubsectionCount <<- 0
+                                  nSubSectionCount <<- 0
+                                }
+                              },
+                              sGetSectionNumber = function(){
+                                sSectionNumberResult <- NULL
+                                if (nSectionCount > 0) 
+                                  sSectionNumberResult <- as.character(nSectionCount)
+                                if (nSubSectionCount > 0)
+                                  sSectionNumberResult <- paste(sSectionNumberResult,
+                                                                as.character(nSubSectionCount),
+                                                                sep = sCountSep)
+                                if (nSubSubsectionCount > 0)
+                                  sSectionNumberResult <- paste(sSectionNumberResult,
+                                                                as.character(nSubSubsectionCount),
+                                                                sep = sCountSep)
+                                return(sSectionNumberResult)
+                              }
+                            ))
+
+
+#' Reference class for automatically enumerating section titles
+SectionEnumerator <- setRefClass(Class   = "SectionEnumerator",
+                                 fields  = list(sUnNumSection     = "character",
+                                                rcSectionCount    = "SectionCount",
+                                                sHash             = "character",
+                                                sRemCaption       = "character",
+                                                sNumCaptionResult = "character",
+                                                sSectionSplit     = "character",
+                                                nNrHash           = "numeric"
+                                                ),
+                                 methods = list(
+                                   initSectionEnumerator = function(){
+                                     sUnNumSection     <<- ""
+                                     sHash             <<- ""
+                                     sRemCaption       <<- ""
+                                     sNumCaptionResult <<- ""
+                                     sSectionSplit     <<- " "
+                                     rcSectionCount$init()
+                                   },
+                                   setUnNumSection = function(psUnNumSection){
+                                     sUnNumSection <<- psUnNumSection
+                                   },
+                                   parseUnNumSection = function(){
+                                     vecUnNumCaption <- unlist(strsplit(sUnNumSection,sSectionSplit))
+                                     sHash <<- vecUnNumCaption[1]
+                                     nNrHash <<- nchar(sHash)
+                                     sRemCaption <<- paste0(vecUnNumCaption[2:length(vecUnNumCaption)], 
+                                                            collapse = " ")
+                                     rcSectionCount$setHash(psHash = sHash)
+                                     rcSectionCount$incrSectionCounts()
+                                     sNumCaptionResult <<- paste(sHash,
+                                                                 rcSectionCount$sGetSectionNumber(),
+                                                                 sRemCaption)
+                                                                 
+                                   },
+                                   displayNumSection = function(){
+                                     cat(sNumCaptionResult, "\n")  
+                                   }
+                                 ))
+# construct SectionEnumerator obj
+objSecEnum <- SectionEnumerator$new()
+objSecEnum$initSectionEnumerator()
+```
+
+![Qualitas-Logo](png/QualitasLogo.png)
+
+\fcolorbox{black}{white}{
+	\parbox[t]{1.0\linewidth}{
+		\centering \fontsize{12pt}{20pt}\selectfont % The first argument for fontsize is the font size of the text and the second is the line spacing - you may need to play with these for your particular title
+		\vspace*{0.5cm} % Space between the start of the title and the top of the grey box
+		
+		\hfill Projektplan - Entwurf    % put this text right adjusted
+		
+		\vspace*{0.5cm} % Space between the end of the title and the bottom of the grey box
+	}
+}
+
+\vspace*{0.5cm}
+
+\fcolorbox{black}{white}{
+	\parbox[t]{1.0\linewidth}{
+		\centering \fontsize{25pt}{40pt}\selectfont % 
+		\vspace*{0.7cm} 
+    ATDA-ASR                           \\
+    Automatisierter Tierdatenaustausch \\
+    zwischen Melksystemen und ARGUS    \\
+		
+		\vspace*{0.7cm} % Space between the end of the title and the bottom of the grey box
+	}
+}
+
+\vspace*{1cm}
+
+\begin{center}
+\includegraphics[width=0.5\textwidth]{png/Pedigree.png}
+\end{center}
+
+\vspace{5ex}
+{\centering \small
+\hfill
+\begin{tabular}{ll}
+Sarah Görlich                        &  Peter von Rohr\\
+AG ZDL, ASR                          &  FB EDV, Qualitas AG\\
+\verb+http://www.asr-ch.ch+          &  \verb+http://www.qualitasag.ch+\\
+\verb+sarah.goerlich@qualitasag.ch+  &  \verb+peter.vonrohr@qualitasag.ch+
+\end{tabular}
+}
+
+\pagebreak
+
+# Dokumentenstatus
+
++-------------+------------------+-------+-----------------------------------------------+
+|  Version    |  Datum           |  Wer  |  Änderung                                     |
++=============+==================+=======+===============================================+
+|  0.0.0.900  |  11.01.2016      |  PvR  |  Erstellung                                   |
++-------------+------------------+-------+-----------------------------------------------+
+|  0.0.0.901  |  13.01.2016      |  PvR  |  Aktuelle Situation und Projektziele          |
++-------------+------------------+-------+-----------------------------------------------+
+|  0.0.0.902  |  18.01.2016      |  PvR  |  Projektziele undAblauf des Datentransfers    |
++-------------+------------------+-------+-----------------------------------------------+
+|  0.0.0.903  |  19.01.2016      |  PvR  |  Projektauftraggeber von BvchShb zu ASR       |
+|             |                  |       |  gewechselt. Beschreibung der                 |
+|             |                  |       |  Projektkomponenten und des Projektablaufs    |
++-------------+------------------+-------+-----------------------------------------------+
+|  0.0.0.904  |  20.01.2016      |  PvR  |  Varianten der Datenübertragung               |
+|             |                  |       |  Plan des Projektablaufs                      |
++-------------+------------------+-------+-----------------------------------------------+
+|  0.0.0.905  |  21.01.2016      |  PvR  |  Ergänzung des Abschnitts Erklärung           |
+|             |                  |       |  Plan des Projektablaufs                      |
++-------------+------------------+-------+-----------------------------------------------+
+|  0.0.0.906  |  25.01.2016      |  PvR  |  Ergänzung des Projektablaufplans             |
++-------------+------------------+-------+-----------------------------------------------+
+|  0.0.0.907  |  27.01.2016      |  PvR  |  Feedback nach AG ZT DL Sitzung.              |
+|             |                  |       |  Dokumenttyp "Spezifikation" zu "Projektplan" |
+|             |                  |       |  geändert. Abschnitt zu Cloud-Lösung          |
+|             |                  |       |  hinzugefügt.                                 | 
++-------------+------------------+-------+-----------------------------------------------+
+|  0.0.0.908  |  01.02.2016      |  PvR  |  Cloud-Anbieter Microsoft und Apple           |
+|             |                  |       |  hinzugefügt.                                 | 
++-------------+------------------+-------+-----------------------------------------------+
+|  0.0.0.909  |  02.02.2016      |  PvR  |  Berücksichtigung Projektplan_ATDA_20151209   |
+|             |                  |       |  im Projektplan                               |
++-------------+------------------+-------+-----------------------------------------------+
+
+
+# Abkürzungen
+
++-------------+-------------------------------------------------------------------------+
+|  Abkürzung  |  Bedeutung                                                              |
++=============+=========================================================================+
+| AG ZT DL    |  Arbeitsgruppe zuchttechnische Dienstleistungen                         |
++-------------+-------------------------------------------------------------------------+
+| ASR         |  Arbeitsgemeinschaft Schweizer Rinderzüchter                            |
++-------------+-------------------------------------------------------------------------+
+| FB EDV      |  Fachbereich elektronische Datenverarbeitung                            |
++-------------+-------------------------------------------------------------------------+
+| ATDA        |  Automatisierter Tierdatenaustausch                                     |
++-------------+-------------------------------------------------------------------------+
+| BVCH        |  Braunvieh Schweiz                                                      |
++-------------+-------------------------------------------------------------------------+
+| SHB         |  Swissherdbook                                                          |
++-------------+-------------------------------------------------------------------------+
+| ICAR        |  International Committee for Animal Recording                           |
++-------------+-------------------------------------------------------------------------+
+| ADE         |  "Animal Data Exchange", Austausch von Tierdaten                        |
++-------------+-------------------------------------------------------------------------+
+| ICAR-ADE    |  Projekt für den Austausch von Tierdaten von ICAR                       |
++-------------+-------------------------------------------------------------------------+
+| ARGUS       |  Informationssystem für brunaNet, redonline+, etc                       |
++-------------+-------------------------------------------------------------------------+
+| ISM         |  Informationssystem der Melkanlage                                      |
++-------------+-------------------------------------------------------------------------+
+| W3C         |  World Wide Web Consortium                                              |
++-------------+-------------------------------------------------------------------------+
+| UNCEFACT    |  United Nations Center for Trade Fascilitation and Electronic Business  |
++-------------+-------------------------------------------------------------------------+
+| ISO         |  International Organization for Standardization                         |
++-------------+-------------------------------------------------------------------------+
+| ZO          |  Zuchtorganisation                                                      |
++-------------+-------------------------------------------------------------------------+
+| SSAD        |  Software-System für den automatisierten Datenaustausch                 |
++-------------+-------------------------------------------------------------------------+
+| API         |  Application Programming Interface                                      |
++-------------+-------------------------------------------------------------------------+
+
+
+
+# Erklärung
+Dieses Dokument enthält einen Planungsentwurf für das Projekt zum automatisierten Tierdatenaustausch (ATDA), welches von der Arbeitsgruppe zuchttechnische Dienstleistungen der Arbeitsgemeinschaft Schweizer Rinderzüchter (ASR) in Auftrag gegeben wurde.
+
+Die Umsetzung dieses Projektes hängt sehr stark von den technischen Gegebenheiten der Anbieter von Melkanlagen ab. Deshalb ist dier Projektplan in gewissen Abschnitten noch nicht sehr konkret gefasst. Dies ist eine bewusste Entscheidung, welche die Offenheit und die Flexibilität von unserer Seite her demonstrieren soll. Das erste Informationstreffen mit den Anbietern von Melkanlagen ist auf den 18. März 2016 angesetzt. Vor diesem Treffen fehlen uns die Informationen, welche für eine konkretere Ausformulierung einer Spezifikation und eine seriöse Planung des Projektes für den Zeitraum nach dem 18.3.2016, nötig wären. 
+
+
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"# Ausgangslage")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Aktuelle Situation betreffend Datenaustausch")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Die Standardprozedur für den Transfer von Milchleistungsdaten von Betrieben, welche sich bei der Milchleistungsprüfung der Zuchtverbände (BVCH und SHB) beteiligen, sieht so aus, dass ein Milchkontrolleur monatlich Milchproben und gemessene Milchmengen von einem Betrieb abholt. Die Milchmengen werden während der Kontrolle auf dem Betrieb manuell auf vorgedruckte Formulare eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS) von Qualitas eingelesen. Das nachfolgende Diagramm versucht den Datenfluss anlässlich einer Milchkontrolle auf einem Betrieb schematisch darzustellen. Der Datenfluss verläuft gemäss der Reihenfolge der Nummern. Die Bedeutung der einzelnen Nummern wird später noch erklärt werden.
+
+![Diagramm Milchdatenfluss](Diagramm_Milchdatenfluss.pdf)
+
+Betriebe mit Robotermelkanlagen oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden, unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen werden. Die Milchmengendaten werden vom Kontrolleur manuell vom Informationssystem der Melkanlage auf das Formular übertragen. Dieses Formular wird bei der Zuchtorganisation eingescannt. Die manuelle Übertragung der Daten auf das Formular ist zeitaufwändig, fehleranfällig und unnötig. Ein Ziel dieses Projektes ist, die manuelle Datenübertragung durch eine direkte elektronische Übertragung der Milchmengendaten zwischen dem Informationssystem der Melkanlage und dem Informationssystem bei Qualitas (ARGUS) zu ersetzen. 
+
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Terminologie und Gültigkeitsbereich")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### Melkanlage")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Als zwingende Voraussetzung damit ein Betrieb in diesem Projekt berücksichtigt werden kann, ist eine Melkanalage, welche mindestens die Menge jedes Gemelks misst und diese Messung in einem Informationssystem dauerhaft abspeichert. Diese Vorausstetzung dürfte von Robotermelkanlagen und von gewissen Melkständen erfüllt sein. Als Konvention werden von nun an Robotermelkanlagen und Melkstände, welche die Voraussetzung der Erfassung und Speicherung der Milchmengendaten erfüllen einfach als __Melkanlagen__ bezeichnet. 
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### Informationssystem der Melkanlage (ISM)")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Die erfassten Milchmengendaten werden in einem Informationssystem gespeichert. Ein solches Informationssystem kann als zentrale Komponente eine Datenbank oder eine spezialisierte Struktur von verschiedenen Dateien enthalten. Die Datenbank oder die Dateistruktur wird durch Softwareprogramme ergänzt, welche das Datenmanagement und den Unterhalt für die Benutzer erleichtern. Das Informationssystem zur Speicherung der Milchmengendaten wird von nun an als __Informationssystem der Melkanlage__ (ISM) bezeichnet.  
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### Automatisierter Tierdatenaustausch (ATDA)")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Das in diesem Dokument beschriebene Projekt befasst sich mit dem automatisierten Tierdatenaustausch zwischen Informationssystemen einer Melkanlage (ISM) und dem Informationssystem von Qualitas (ARGUS). Dieses Projekt wurde von der ASR initiiert und wird in Zusammenarbeit mit Qualitas umgesetzt. Von nun an wird das in diesem Dokument beschriebene  Projekt mit __ATDA-ASR__ bezeichnet.
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### Software-System für den automatisierten Tierdatenaustausch (SSATDA-ASR)")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Das Endprodukt des Projektes (`ATDA-ASR`) ist ein Software-System bestehend aus verschiedenen Programmen. Diese Programme entsprechen der umgesetzen Lösung des Projektes `ATDA-ASR`. Von nun an wird dieses Software-System mit __SSATDA-ASR__ bezeichnet.
+
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Andere Datenaustauschprojekte")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Bei ICAR läuft das Projekt "ICAR-ADE" mit dem Ziel eine Grundlage für den automatisierten Austausch von Tierdaten zu erstellen. Im Projekt "ICAR-ADE" wird eine eigenständige Lösung für den automatischen Austausch von Tierdaten angestrebt. Das heisst es werden neue Datentypen und Schnittstellen aufgrund von existierenden Standards von W3C, UNCEFACT oder ISO definiert. Diese Definitionen dienen dann als Grundlage für eine unabhängige Umsetzung des Datenaustauschs. Der Vorteil dieser Lösung ist die Unabhängigkeit von bestehenden Lösungen und all ihren Einschränkungen. Ein offensichtlicher Nachteil ist die Redundanz mit anderen schon bestehenden Datenaustauschlösungen. Dieser Nachteil führt dazu, dass eine  Umsetzung des Projekts sehr zeitaufwändig ist. Da das Projekt "ICAR-ADE" immer noch in der technischen Planungsphase steckt, wird die Umsetzung einer konkreten Lösung noch eine Weile auf sich warten lassen.
+
+Das Projekt "ICAR-ADE" steckt noch in der Anfangsphase. Da der automatisierte Datenaustausch über das Projekt "ICAR_ADE" mittelfristig noch nicht zur Verfügung steht, hat sich die ASR entschieden, selber ein nationales Projekt mit dem Ziel des automatisierten Tierdatenaustauschs (`ATDA-ASR`) zu starten. Im folgenden Text wird das Projekt `ATDA-ASR` genauer beschrieben werden.
+
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"# Ziele")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Primäre Zielsetzung")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Das primäre Ziel dieses Projekts ist, die manuelle Übertragung von Milchmengendaten durch Milchkontrolleure auf Betrieben mit entsprechenden Melksystemen zu ersetzen mit einer direkten elektronischen Übertragung der Milchleistungsdaten vom Informationssystem der Melkanlage zum Informationssystem von Qualitas (ARGUS). 
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Funktionale Zielsetzung")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Der Datentransfers zwischen Melksystem und ARGUS muss im Normalbetrieb ohne manuelle Intervention einer Person funktionieren. Manuelle Interventionen einer Person sollen nur im Fall eines Fehlers erforderlich sein. 
+
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Erweiterte Zielsetzungen")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Der automatisierte Datentransfer zwischen Melksystemen und ARGUS soll in beiden Richtungen, also nicht nur vom Melksystem zu ARGUS sondern auch von ARGUS zum Melksystem funktionieren. Somit können bei einer Neuinstallation einer Melkanalage die Daten von ARGUS ins Informationssystem der Melkanlage übertragen werden.
+
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"# Automatisierter Tierdatentransfer (ATDA)")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Komponenten des ATDA")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Der ATDA Prozess, welcher aus diesem Projekt `ATDA-ASR` resultieren soll kann in drei Komponenten aufgeteilt werden.
+
+1. __Export__ der Milchmengendaten aus dem ISM in eine oder mehrere Datei/en
+2. __Transfer__ der exportierten Milchmengendaten vom ISM zu ARGUS
+3. __Import__ der transerierten Daten in ARGUS
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### Export der Milchmengendaten")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Der Export der Milchmengendaten aus dem Informationssystem der Melkanlage (ISM) in eine oder in mehrere Datei/en, muss als Funktionalität des ISM umgesetzt werden. Die Milchmengendaten müssen aufgrund einer vorgegebenen Formatdefinition exportiert werden. Diese Formatdefinition bestimmt, wie die verschiedenen Informationen im Export zusammengestellt werden. 
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### Transfer der exportierten Milchmengendaten vom ISM zu ARGUS")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Der Datentransfer beinhaltet die Übertragung der exportierten Daten vom ISM zu ARGUS. Für die Übertragung von Daten zwischen zwei Informationssystemem gibt es schon existierenden Lösungen. Zum aktuellen Zeitpunkt sind für dieses Projekt `ATDA-ASR` grundsätzlich zwei verschiedene Arten der Datenübertragung denkbar. Diese beiden Arten werden in einem späteren Abschnitt (siehe Abschnitt 4) noch genauer beschrieben.
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### Import der transferierten Daten in ARGUS")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Der Import der transferierten Daten in ARGUS ist ein Problem, welches aufgrund der Formatdefinition der transferierten Daten in ARGUS auf der Datenbank realisiert werden kann. Die aktuelle Version von ARGUS hat schon existierende Funktionalitäten, welche für den Import von anderen Daten verwendet werden.
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Geplanter Ablauf des ATDA")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Das folgende Schema gibt einen Überblick über den geplanten Ablauf des ATDA. Der Datenfluss läuft gemäss der Reihenfolge der Nummern im Schema ab. Vor der Milchkontrolle erhält der Kontrolleur das Material für die Kontrolle (Schritt 1). Im Schritt 2 führt der Kontrolleur die Milchkontrolle zu einem bestimmten Datum (entspricht dem Stichdatum für die Datenübertragung der Milchmengendaten) auf einem Betrieb durch. Bei der Milchkontrolle werden durch den Milchkontrolleur keine Milchmengendaten mehr erhoben. Stattdessen werden auf den vorgedruckten Formularen für den kontrollierten Betrieb die Mutationen (Zugänge und Abgänge) von Kühen sowie die Änderungen der Laktationsstati (trocken gestellt oder gekalbt) von Kühen erfasst. Das ausgefüllte Formular wird der ZO zugestellt und die Milchproben werden an das Milchlabor gesendet (Schritt 3). Im Schritt 4 liefert das Milchlabor die Analyseergebnisse an Qualitas.
+
+![Ablauf Datentransfer](Diagramm_Milchdatenfluss_ATDA.pdf)
+
+Das Eintreffen der Milchanalyseergebnisse bei Qualitas für den kontrollierten Betrieb ist der Auslöser für den ATDA zwischen ARGUS und dem ISM des kontrollierten Betriebs (Schritt 5). Das Datum der Milchkontrolle wird als Stichdatum für den ATDA verwendet. 
+
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"# Arten des Datentransfers in ATDA-ASR")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Für dieses Projekt `ATDA-ASR` sind zwei Arten des Datentransfers vorstellbar. 
+
+1. Eigenständiger Webservice
+2. Datentransfer Funktionalität von Fernwartungsprogrammen
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Eigenständiger Webservice")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Diese Version entspricht im wesentlichen der Umsetzung der im Projekt `ICAR-ADE` definierten Datentypen und Schnittstellen in einem eigenständigen Webservice. Dieser Webservice wird von Qualitas zur Verfügung gestellt und läuft auf einem Server von Qualitas. Die Datenübertragung wird von einem Client-Programm auf dem ISM gestartet. Dieses Programm kontaktiert den Webservice, welcher als Antwort die Definition der zu übertragenden Datenrecords zurückgibt. Aufgrund der Definition der Datenrecords werden die entsprechenden Daten an Qualitas gesendet. Da die Datenübertragung vom Client-Programm des ISM initiiert wird, muss auf dem ISM das entsprechende Client-Programm, welches den Datenaustausch mit dem Webservice bei Qualitas initiiert, installiert sein. 
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Fernwartungssoftware")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Die Techniker der Anbieterfirmen der Melkanlagen verfügen über einen Zugang von einem Remote-Standort auf das ISM. Dieser Zugang von extern auf das ISM wird mittels sogenannter Fernwartungssoftware ermöglicht. In der Regel erlauben diese Fernwartungsprogramme auch den Austausch von Dateien zwischen den beiden Systemen, welche miteinander in Verbindung stehen. 
+
+Damit der Datentransfer mithilfe einer Ferwartungssoftware ohne manuelle Intervention umgesetzt werden kann, muss die Steuerung der Fernwartungssoftware von einem Programm aus möglich sein. Dies wird über ein von den Anbietern der Fernwartungssoftware zur Verfügung gestellte Schnittstelle - dem sogenannten API - realisiert. Das API besteht aus einer Spezifikation der Funktionalitäten der Fernwartungssoftware, welche von einem externen Programm verwendet werden können. 
+Die Umsetzung dieser Lösung für den Datentransfer wäre sehr viel einfacher, wenn alle Hersteller die gleiche Fernwartungssoftware verwenden würden. Eine Abklärung diesbezüglich hat allerdings ergeben, dass verschiedene Fernwartungssoftwareprodukte zum Einsatz kommen. Die folgende Tabelle gibt eine Übersicht über die verwendeten Fernwartungsprogramme
+
++-----------+-----------------------------------+--------------------------------------+
+| Anbieter  |  Verwendete Fernwartungssoftware  |  Bemerkung                           |
++===========+===================================+======================================+
+| DeLaval   |  Teamviewer                       |  für existierende Installationen     |
++-----------+-----------------------------------+--------------------------------------+
+|           |  LogMeIn                          |  für Neuinstallationen               |
++-----------+-----------------------------------+--------------------------------------+
+| Lelly     |  NA                               |                                      |
++-----------+-----------------------------------+--------------------------------------+
+| GEA       |  FarmView                         |  Verschlüsselungsrouter beim Kunden  |
++-----------+-----------------------------------+--------------------------------------+
+|           |  AnyDesk                          |  Testeinsatz                         |
++-----------+-----------------------------------+--------------------------------------+
+| Fullwood  |  NA                               |                                      |
++-----------+-----------------------------------+--------------------------------------+
+
+Die Anzahl an verschiedenen Fernwartungsprogrammen erschwert uns die Verwendung dieser Programme für den Datenaustausch. Zusätzlich zur Anzahl der eingesetzten Fernwartungslösungen kommt noch hinzu, dass allfällige Wechsel der eingesetzten Programme oder Updates von bestehenden Programmen für uns zu einem grossen Arbeitsaufwand führen und potentielle Fehlerquellen dadurch nur schwer zu kontrollieren sind.
+
+Die einzige Möglichkeit, wie diese Art des Datentransfers für uns noch praktikabel wäre, ist, dass uns die Anbieter erlauben würden, eine einheitliche Ferwartungslösung neben den bestehenden Programmen zu installieren.  
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Cloud-basierte Datenübertragung")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Im Zeitalter von "big data" wird häufig von Daten in der Wolke (oder Cloud) gesprochen. Damit ist gemeint, dass sich die Daten physikalisch nicht mehr auf einer für den Benutzer spezifischen Maschine befinden, sondern in einem bestimmten Netzwerk eines Anbieters abgelegt werden. Bekannte öffentliche Anbieter für Cloud-basierte Speicherlösungen sind "Dropbox", "Google Drive", "Microsoft Azure/Onedrive" oder "Apple iCloud". Gemäss ersten Abklärungen mit den Herstellern von Melkanlagen bestehen Pläne bei den Herstellern interne Cloud-Speicherlösungen aufzubauen. 
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### Datenaustausch über Cloud-Speicher der Melkanlagenhersteller")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Für die Verwendung einer Cloud-Speicherlösungen eines Melkanlagenherstellers sind wir darauf angewiesen, dass wir einen Zugang zum Speicher erhalten und dass wir eine Schnittstelle für das Übertragen der Daten verwenden können. 
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### Datenaustausch über öffentliche Anbieter von Cloud-Speicher")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Bezüglich des Datenaustauschs besteht zwischen den Anbietern von Speicherlösungen keinen Unterschied. In allen Fällen muss jeder in diesem Projekt (ATDA-ASR) beteiligte Betrieb ein Benutzerkonto beim verwendeten Anbieter des Cloud-Speichers anlegen. Danach wird ein Programm (Client) auf dem Rechner des ISM installiert und mit dem erstellten Benutzerkonto verbunden. Auf dem Rechner des ISM wird ein neues Unterverzeichnis erstellt, dessen Inhalt wird automatisch mit dem Speicher im Netzwerk des Anbieters  synchronisiert. Die auszutauschenden Daten müssen im neu erstellten Unterverzeichnis abgelegt werden. In den Einstellungen der Clientprogramme der Cloud-Speicher müssten die Daten für ein spezifischen Benutzerkonto von Qualitas freigegeben werden. Durch diese Freigabe können die Daten vom ISM zu Qualitas übertragen werden.
+
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"# Plan des Projektablaufs")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Das folgende Diagramm zeigt einen ungefähren Plan, wie sich die bis zu aktuellen Zeitpunkt bekannten Themen auf das erste Halbjahr 2016 aufteilen lassen. __Wichtig__ ist die Tatsache, dass dieser Projektpan nicht abschliessend ist und somit das Projekt nicht Mitte 2016 abgeschlossen sein wird. Der Plan erstreckt sich nur über die erste Hälfte vom Jahr 2016, weil wir aufgrund des aktuellen Informationsstandes den weiteren Projektverlauf für das zweite Halbjahr 2016 aktuell noch nicht planen können. 
+
+Ein wichtiger Termin in der Projektplanung von ATDA-ASR (siehe gelber markierte Kolonne im Diagramm) stellt der 18.3.2016 dar. An diesem Datum findet ein Treffen am runden Tisch mit allen Anbietern der Melkrobotern statt. Dieses Treffen dient dazu, technische Fragen zu klären, welche die Umsetzung des Datentransfers wesentlich beeinflussen werden. Vor diesem Treffen ist somit eine konkrete Planung des gesamten Projektes unmöglich. 
+
+In der verbleibenden Zeit vor dem Treffen vom 18.3.2016, konzentrieren wir uns auf erste Abklärungen mit den Melkroboteranbieter, auf die Zusammenstellung möglicher Planungsvarianten diese Projektes (ATDA-ASR) und auf das Erstellen einer Testumgebung für die Datenübertragung mit einer ausgewählten Fernwartungslösung. Die Planung der Umsetzung der weiteren Projektthemen ist zu diesem Zeitpunkt noch sehr spekulativ, da die konkrete Umsetzung der Datenübertragung von den Ergebnissen des Treffens am 18.3.2016 abhängt. Aus diesem Grund werden im folgenden Plan auch die gelb markierten Themen als Alternativen parallel geführt.
+
+Abgesehen von der Datenübertragung gibt es auch noch offene Fragen betreffen des Exports von Daten vom ISM in eine oder mehrere Dateien, welche dann zu ARGUS übertragen werden können. Je nach Grösse der Datenmenge bestehen auch gewisse Abhängigkeiten zwischen dem Datenexport auf der Seite des ISM und der Art der Datenübertragung. Die aufgezeigten Möglichkeiten der Datenübertragung haben nicht alle die gleichen Kapazitäten betreffend der zu übertragenen Datenmengen. Ein Ziel der geplanten Testsysteme für die Datenübertragung ist die Abklärung solcher Kapazitätsfragen.
+
+![Projektplan](Projektablaufplan.pdf)
+
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"# Datenkonsistenz")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Die Erfassung der Mutationen und der Änderungen des Laktationsstatus von Kühen auf den jeweiligen Betrieben durch den Milchkontrolleur dient als Kontrolle für das System SSATDA-ASR. Die von SSATDA-ASR abgeholten Daten nach einer Milchkontrolle müssen mit den vom Milchkontrolleur erfassten Mutationen und Änderungen des Laktationsstatus von Kühen konsistent sein.
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"# Abgrenzung")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+In diesem Projekt beschränken wir uns auf den Austausch von Milchleistungsdaten zwischen Melkanlagen und dem Datenbanksystem ARGUS von Qualitas. Der Austausch von weiteren Daten wird in anderen Projekten umgesetzt werden. 
