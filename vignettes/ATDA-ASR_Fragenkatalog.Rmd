@@ -1,0 +1,251 @@
+---
+output: pdf_document
+---
+
+```{r SectionNumber, echo=FALSE,results='hide'}
+#' reference Class for section counting
+sectionCount <- setRefClass(Class   = "SectionCount",
+                            fields  = list(nSectionCount       = "numeric",
+                                           nSubSectionCount    = "numeric", 
+                                           nSubSubsectionCount = "numeric",
+                                           sHash               = "character",
+                                           sCountSep           = "character"),
+                            methods = list(
+                              init = function(){
+                                nSectionCount       <<- 0
+                                nSubSectionCount    <<- 0
+                                nSubSubsectionCount <<- 0
+                                sCountSep           <<- "."
+                              },
+                              setHash = function(psHash){
+                                sHash <<- psHash
+                              },
+                              incrSectionCounts = function(){
+                                nNrHash <- nchar(sHash)
+                                if (nNrHash == 3){
+                                  nSubSubsectionCount <<- nSubSubsectionCount + 1
+                                } else if(nNrHash == 2){
+                                  nSubSectionCount <<- nSubSectionCount + 1
+                                  nSubSubsectionCount <<- 0
+                                } else if(nNrHash == 1){
+                                  nSectionCount <<- nSectionCount + 1
+                                  nSubSubsectionCount <<- 0
+                                  nSubSectionCount <<- 0
+                                }
+                              },
+                              sGetSectionNumber = function(){
+                                sSectionNumberResult <- NULL
+                                if (nSectionCount > 0) 
+                                  sSectionNumberResult <- as.character(nSectionCount)
+                                if (nSubSectionCount > 0)
+                                  sSectionNumberResult <- paste(sSectionNumberResult,
+                                                                as.character(nSubSectionCount),
+                                                                sep = sCountSep)
+                                if (nSubSubsectionCount > 0)
+                                  sSectionNumberResult <- paste(sSectionNumberResult,
+                                                                as.character(nSubSubsectionCount),
+                                                                sep = sCountSep)
+                                return(sSectionNumberResult)
+                              }
+                            ))
+
+
+#' Reference class for automatically enumerating section titles
+SectionEnumerator <- setRefClass(Class   = "SectionEnumerator",
+                                 fields  = list(sUnNumSection     = "character",
+                                                rcSectionCount    = "SectionCount",
+                                                sHash             = "character",
+                                                sRemCaption       = "character",
+                                                sNumCaptionResult = "character",
+                                                sSectionSplit     = "character",
+                                                nNrHash           = "numeric"
+                                                ),
+                                 methods = list(
+                                   initSectionEnumerator = function(){
+                                     sUnNumSection     <<- ""
+                                     sHash             <<- ""
+                                     sRemCaption       <<- ""
+                                     sNumCaptionResult <<- ""
+                                     sSectionSplit     <<- " "
+                                     rcSectionCount$init()
+                                   },
+                                   setUnNumSection = function(psUnNumSection){
+                                     sUnNumSection <<- psUnNumSection
+                                   },
+                                   parseUnNumSection = function(){
+                                     vecUnNumCaption <- unlist(strsplit(sUnNumSection,sSectionSplit))
+                                     sHash <<- vecUnNumCaption[1]
+                                     nNrHash <<- nchar(sHash)
+                                     sRemCaption <<- paste0(vecUnNumCaption[2:length(vecUnNumCaption)], 
+                                                            collapse = " ")
+                                     rcSectionCount$setHash(psHash = sHash)
+                                     rcSectionCount$incrSectionCounts()
+                                     sNumCaptionResult <<- paste(sHash,
+                                                                 rcSectionCount$sGetSectionNumber(),
+                                                                 sRemCaption)
+                                                                 
+                                   },
+                                   displayNumSection = function(){
+                                     cat(sNumCaptionResult, "\n")  
+                                   }
+                                 ))
+# construct SectionEnumerator obj
+objSecEnum <- SectionEnumerator$new()
+objSecEnum$initSectionEnumerator()
+```
+
+![Qualitas-Logo](png/QualitasLogo.png)
+
+\fcolorbox{black}{white}{
+	\parbox[t]{1.0\linewidth}{
+		\centering \fontsize{12pt}{20pt}\selectfont % The first argument for fontsize is the font size of the text and the second is the line spacing - you may need to play with these for your particular title
+		\vspace*{0.5cm} % Space between the start of the title and the top of the grey box
+		
+		\hfill Fragenkatalog    % put this text right adjusted
+		
+		\vspace*{0.5cm} % Space between the end of the title and the bottom of the grey box
+	}
+}
+
+\vspace*{0.5cm}
+
+\fcolorbox{black}{white}{
+	\parbox[t]{1.0\linewidth}{
+		\centering \fontsize{25pt}{40pt}\selectfont % 
+		\vspace*{0.7cm} 
+    ATDA-ASR                           \\
+    Automatisierter Tierdatenaustausch \\
+    zwischen Melksystemen und ARGUS    \\
+		
+		\vspace*{0.7cm} % Space between the end of the title and the bottom of the grey box
+	}
+}
+
+\vspace*{1cm}
+
+\begin{center}
+\includegraphics[width=0.5\textwidth]{png/Pedigree.png}
+\end{center}
+
+\vspace{5ex}
+{\centering \small
+\hfill
+\begin{tabular}{ll}
+Sarah Görlich                        &  Peter von Rohr\\
+AG ZDL, ASR                          &  FB EDV, Qualitas AG\\
+\verb+http://www.asr-ch.ch+          &  \verb+http://www.qualitasag.ch+\\
+\verb+sarah.goerlich@qualitasag.ch+  &  \verb+peter.vonrohr@qualitasag.ch+
+\end{tabular}
+}
+
+\pagebreak
+
+# Dokumentenstatus
+
++-------------+------------------+-------+-----------------------------------------------+
+|  Version    |  Datum           |  Wer  |  Änderung                                     |
++=============+==================+=======+===============================================+
+|  0.0.0.900  |  01.02.2016      |  PvR  |  Erstellung                                   |
++-------------+------------------+-------+-----------------------------------------------+
+
+
+# Abkürzungen
+
++-------------+-------------------------------------------------------------------------+
+|  Abkürzung  |  Bedeutung                                                              |
++=============+=========================================================================+
+|  ATDA       |  Automatisierter Tierdatenaustausch                                     |
++-------------+-------------------------------------------------------------------------+
+|  ASR        |  Arbeitsgemeinschaft Schweizer Rinderzüchter                            |
++-------------+-------------------------------------------------------------------------+
+|  ZO         |  Zuchtorganisation (wie z. Bsp. Braunvieh Schweiz oder swissherdbook)   |
++-------------+-------------------------------------------------------------------------+
+
+
+# Erklärung
+Dieses Dokument beinhaltet alle Fragen im Zusammenhang mit dem Projekt `ATDA-ASR` von Seiten ASR/Qualitas an die Hersteller von Melksystem. Das Projekt `ATDA-ASR` befasst sich mit dem automatisierten Tierdatenaustausch zwischen Melkanlagen und dem Informationssystem der Zuchtorganisationen bei Qualitas AG. 
+
+## Ablauf des Datenaustauschs
+Der Ablauf des Datenaustauschs kann in drei Abschnitte geglieder werden.
+
+1. Datenbereitstellung und Datenexport auf dem Informationssystem der Melkanlage
+2. Datenübertragung vom Informationssystem der Melkanlage zum Informationssystem der ZO
+3. Import der übertragenen Daten ins Informationssystem der ZO
+
+Im letzten Abschnitt geht es vorallem darum die übertragenen Daten zu importieren. Dies ist eine Aufgabe, welche auf dem Imformationssystem der ZO umgesetzt wird. Dieser Abschnitt kann somit vom diesem Fragenkatalog an die Anbieter von Melkanlagen ausgenommen werden.
+
+Bei den ersten beiden Abschnitten des Datenaustauschs sind wir auf die Informationen der Anbieter der Melkanlagen angewiesen. Hier sind einige Fragen, welche aktuell noch nicht beantwortet sind.
+
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"# Datenbereitstellung")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Für die Umsetzung von ATDA bestehen minimale Anforderungen an das Informationssystem der Melkanlage. Diese bestehen darin, dass die zu übertragenden Daten in einer oder mehreren Dateien abgelegt werden können. Daraus ergeben sich folgende Fragen zur Datenbereitstellung. 
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Architektur des Informationssystems der Melkanlage")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Wie sieht die Architektur des Informationssystems der Melkanlage aus. Ist das Informationssystem in Dateien organisiert, oder sind die Daten in einer Datenbank abgelegt? Falls, die Daten in einer Datenbank abgelegt sind, um welche Art von Datenbank handelt es sich (relational, objekt oder andere) und von welchem Anbieter stammt die eingesetzte Datenbank? 
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Exportfunktionalität")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Welche Arten der Exportfunktionalität von Milchmengendaten vom Informationssystem in eine oder mehrere Dateien bestehen? Gibt es eine Möglichkeit von einer definierten Anzahl von Kühen die Milchleistung über einen bestimmten Zeitraum automatisiert in eine Datei schreiben zu lassen?
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Backup")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Falls Exportfunktionalitäten von Milchmengendaten in Dateien als solche nicht bestehen, gäbe es eine Möglichkeit, Daten aus Backups zu extrahieren? In welchem Umfang und in welcher Häufigkeit werden Backups der Daten aus dem Informationssystem erstellt? Welches Backup-System wird verwendet?
+
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"# Datenübertragung")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Für die Übertragung der bereitgestellten Daten braucht es zwischen dem Informationssystem der Melkanlage und dem Informationssystem der ZO eine Verbindung. Damit eine solche Verbindung aufgebaut werden kann, müssen beide Informationssysteme über eine Verbindung ins Internet verfügen. Je nach Art und gewählter Technologie zur Datenübertragung, wird die Verbindung vom Informationssystem der Melkanlage oder vom Informationssystem der ZO initiiert. Falls die Initiierung vom Informationssystem der Melkanlage ausgeht, dann muss dort eine Programm installiert sein, welches diese Verbingunsaufbau macht. Auch bei den anderen Übertragungsarten, bei welchen die Verbindung vom Informationssystem der ZO ausgeht, müssen auf dem Informationssystem der Melkanlage gewisse Programme installiert werden können.
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Basis des Informationssystems der Melkanalage")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Wie sieht die Basis (Betriebssystem und vorhandene Programme) des Informationssystems der Melkanalage aus?
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Verwendung von installierten Programmen")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Besteht die Möglichkeit die auf dem Informationssystem der Melkanlage installierten Programme zu verwenden?
+
+\vspace{1ex}
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Installation von Software")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Welche Möglichkeiten bestehen auf dem Informationssystem der Melkanlage, externe Programme zu installieren? 
