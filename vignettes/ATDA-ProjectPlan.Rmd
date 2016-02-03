@@ -6,8 +6,8 @@ output: pdf_document
 ---
 
 ```{r GenerateDiagrams,echo=FALSE,results='hide'}
-sOdgDirWin <- 'odg'
-sOdgDir <- "odg"
+sOdgDirWin <- 'odg\\ATDA-ProjectPlan'
+sOdgDir <- "odg/ATDA-ProjectPlan"
 sFigDirOut <- "."
 sConvCmdStem <- ifelse(.Platform$OS.type == "windows", 
                        '"C:/Program Files (x86)/LibreOffice 5/program/soffice" --headless --convert-to pdf',
@@ -204,6 +204,9 @@ AG ZDL, ASR                          &  FB EDV, Qualitas AG\\
 |  0.0.0.909  |  02.02.2016      |  PvR  |  Berücksichtigung Projektplan_ATDA_20151209   |
 |             |                  |       |  im Projektplan                               |
 +-------------+------------------+-------+-----------------------------------------------+
+|  0.0.0.910  |  03.02.2016      |  PvR  |  Erfgänzung der Begründung der Projektziele.  |
+|             |                  |       |  Abkürzungstabelle ergänzt                    |
++-------------+------------------+-------+-----------------------------------------------+
 
 
 # Abkürzungen
@@ -218,6 +221,11 @@ AG ZDL, ASR                          &  FB EDV, Qualitas AG\\
 | FB EDV      |  Fachbereich elektronische Datenverarbeitung                            |
 +-------------+-------------------------------------------------------------------------+
 | ATDA        |  Automatisierter Tierdatenaustausch                                     |
++-------------+-------------------------------------------------------------------------+
+| ATDA-ASR    |  Projekt von ASR zur Automatisierung des Tierdatenaustauschs            |
+|             |  (das in diesem Dokument beschriebene Projekt)                          |
++-------------+-------------------------------------------------------------------------+
+| SSATDA-ASR  |  Software-System, welches im Projekt ATDA-ASR entwickelt wird           |
 +-------------+-------------------------------------------------------------------------+
 | BVCH        |  Braunvieh Schweiz                                                      |
 +-------------+-------------------------------------------------------------------------+
@@ -246,6 +254,7 @@ AG ZDL, ASR                          &  FB EDV, Qualitas AG\\
 | API         |  Application Programming Interface                                      |
 +-------------+-------------------------------------------------------------------------+
 
+\pagebreak
 
 
 # Erklärung
@@ -272,7 +281,7 @@ Die Standardprozedur für den Transfer von Milchleistungsdaten von Betrieben, we
 
 ![Diagramm Milchdatenfluss](Diagramm_Milchdatenfluss.pdf)
 
-Betriebe mit Robotermelkanlagen oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden, unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen werden. Die Milchmengendaten werden vom Kontrolleur manuell vom Informationssystem der Melkanlage auf das Formular übertragen. Dieses Formular wird bei der Zuchtorganisation eingescannt. Die manuelle Übertragung der Daten auf das Formular ist zeitaufwändig, fehleranfällig und unnötig. Ein Ziel dieses Projektes ist, die manuelle Datenübertragung durch eine direkte elektronische Übertragung der Milchmengendaten zwischen dem Informationssystem der Melkanlage und dem Informationssystem bei Qualitas (ARGUS) zu ersetzen. 
+Betriebe mit Robotermelkanlagen oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden, unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen werden. Die Milchmengendaten werden vom Kontrolleur manuell vom Informationssystem der Melkanlage auf das Formular übertragen. Dieses Formular wird bei der Zuchtorganisation eingescannt. Die manuelle Übertragung der Daten auf das Formular ist zeitaufwändig, fehleranfällig, vom technischen Standpunkt her gesehen unnötig und verursacht einen substantiellen administrativen Mehraufwand. Ein __Ziel dieses Projektes__ ist, die manuelle Datenübertragung durch eine direkte elektronische Übertragung der Milchmengendaten zwischen dem Informationssystem der Melkanlage auf den Betrieben und dem Informationssystem von Qualitas (ARGUS) zu ersetzen. 
 
 
 ```{r echo=FALSE,results='asis'}
@@ -322,7 +331,7 @@ objSecEnum$displayNumSection()
 ```
 Bei ICAR läuft das Projekt "ICAR-ADE" mit dem Ziel eine Grundlage für den automatisierten Austausch von Tierdaten zu erstellen. Im Projekt "ICAR-ADE" wird eine eigenständige Lösung für den automatischen Austausch von Tierdaten angestrebt. Das heisst es werden neue Datentypen und Schnittstellen aufgrund von existierenden Standards von W3C, UNCEFACT oder ISO definiert. Diese Definitionen dienen dann als Grundlage für eine unabhängige Umsetzung des Datenaustauschs. Der Vorteil dieser Lösung ist die Unabhängigkeit von bestehenden Lösungen und all ihren Einschränkungen. Ein offensichtlicher Nachteil ist die Redundanz mit anderen schon bestehenden Datenaustauschlösungen. Dieser Nachteil führt dazu, dass eine  Umsetzung des Projekts sehr zeitaufwändig ist. Da das Projekt "ICAR-ADE" immer noch in der technischen Planungsphase steckt, wird die Umsetzung einer konkreten Lösung noch eine Weile auf sich warten lassen.
 
-Das Projekt "ICAR-ADE" steckt noch in der Anfangsphase. Da der automatisierte Datenaustausch über das Projekt "ICAR_ADE" mittelfristig noch nicht zur Verfügung steht, hat sich die ASR entschieden, selber ein nationales Projekt mit dem Ziel des automatisierten Tierdatenaustauschs (`ATDA-ASR`) zu starten. Im folgenden Text wird das Projekt `ATDA-ASR` genauer beschrieben werden.
+Das Projekt "ICAR-ADE" steckt noch in der Anfangsphase. Da der automatisierte Datenaustausch über das Projekt "ICAR-ADE" mittelfristig noch nicht zur Verfügung steht, hat sich die ASR entschieden, selber ein nationales Projekt mit dem Ziel des automatisierten Tierdatenaustauschs (`ATDA-ASR`) zu starten. Im folgenden Text wird das Projekt `ATDA-ASR` genauer beschrieben werden.
 
 
 \vspace{1ex}
@@ -480,7 +489,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Im Zeitalter von "big data" wird häufig von Daten in der Wolke (oder Cloud) gesprochen. Damit ist gemeint, dass sich die Daten physikalisch nicht mehr auf einer für den Benutzer spezifischen Maschine befinden, sondern in einem bestimmten Netzwerk eines Anbieters abgelegt werden. Bekannte öffentliche Anbieter für Cloud-basierte Speicherlösungen sind "Dropbox", "Google Drive", "Microsoft Azure/Onedrive" oder "Apple iCloud". Gemäss ersten Abklärungen mit den Herstellern von Melkanlagen bestehen Pläne bei den Herstellern interne Cloud-Speicherlösungen aufzubauen. 
+Im Zeitalter von "big data" wird häufig von Daten in der Wolke (oder Cloud) gesprochen. Damit ist gemeint, dass sich die Daten physikalisch nicht mehr auf einer für den Benutzer spezifischen Rechner befinden, sondern in einem bestimmten Netzwerk eines Anbieters abgelegt werden. Bekannte öffentliche Anbieter für Cloud-basierte Speicherlösungen sind "Dropbox", "Google Drive", "Microsoft Azure/Onedrive" oder "Apple iCloud". Gemäss ersten Abklärungen mit den Herstellern von Melkanlagen bestehen Pläne bei den Herstellern interne Cloud-Speicherlösungen aufzubauen. 
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
