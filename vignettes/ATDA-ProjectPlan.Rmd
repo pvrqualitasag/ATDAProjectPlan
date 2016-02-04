@@ -1,11 +1,9 @@
 ---
-title:
-author:
-date:
-output: 
+output:
   pdf_document:
     includes:
       in_header: ATDA-ProjectPlanHeader.tex
+  word_document: default
 ---
 
 ```{r GenerateDiagrams,echo=FALSE,results='hide'}
@@ -405,7 +403,7 @@ objSecEnum$displayNumSection()
 ```
 Der ATDA Prozess, welcher aus diesem Projekt `ATDA-ASR` resultieren soll, kann in drei Komponenten aufgeteilt werden.
 
-1. __Export__ der Milchmengendaten aus dem ISM in eine oder mehrere Datei/en
+1. __Export__ der Milchmengendaten aus dem ISM
 2. __Transfer__ der exportierten Milchmengendaten vom ISM zu ARGUS
 3. __Import__ der transerierten Daten in ARGUS
 
