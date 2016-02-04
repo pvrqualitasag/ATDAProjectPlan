@@ -280,7 +280,7 @@ FB EDV, Qualitas AG                 &  AG ZDL, ASR  \\
 # Erklärung
 Dieses Dokument enthält einen Planungsentwurf für das Projekt zum automatisierten Tierdatenaustausch (ATDA), welches von der Arbeitsgruppe zuchttechnische Dienstleistungen der Arbeitsgemeinschaft Schweizerischer Rinderzüchter (ASR) in Auftrag gegeben wurde.
 
-Die Umsetzung dieses Projektes hängt sehr stark von den technischen Gegebenheiten der Anbieter von Melkanlagen ab. Deshalb ist der Projektplan in gewissen Abschnitten noch nicht sehr konkret gefasst. Dies ist eine bewusste Entscheidung, welche die Offenheit und die Flexibilität unsererseits demonstrieren soll. Das erste Informationstreffen mit den Anbietern von Melkanlagen ist auf den 18. März 2016 angesetzt. Vor diesem Treffen fehlen uns die Informationen, welche für eine konkretere Ausformulierung eines Pflichtenhefts sowie einer Spezifikation und eine seriöse Planung des Projektes für den Zeitraum nach dem 18.3.2016, nötig wären. 
+Die Umsetzung dieses Projektes hängt sehr stark von den technischen Gegebenheiten der Anbieter von Melkanlagen ab. Deshalb ist der Projektplan in gewissen Abschnitten noch nicht sehr konkret gefasst. Dies ist eine bewusste Entscheidung, welche die Offenheit und die Flexibilität unsererseits demonstrieren soll. Das erste Informationstreffen mit den Anbietern von Melkanlagen ist auf den 18. März 2016 angesetzt. Vor diesem Treffen fehlen uns die Informationen, welche für eine konkretere Ausformulierung eines Pflichtenhefts sowie einer Spezifikation und für eine seriöse Planung des Projektes für den Zeitraum nach dem 18.3.2016, nötig wären. 
 
 
 
@@ -301,7 +301,7 @@ Die Standardprozedur für den Transfer von Milchleistungsdaten von Betrieben, we
 
 ![Diagramm Milchdatenfluss](Diagramm_Milchdatenfluss.pdf)
 
-Betriebe mit Robotermelkanlagen oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden (AMS), unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen werden. Die Milchmengendaten werden vom Kontrolleur manuell vom Informationssystem der Melkanlage auf das Formular übertragen. Dieses Formular wird bei der Zuchtorganisation eingescannt. Die manuelle Übertragung der Daten auf das Formular ist zeitaufwändig, fehleranfällig, vom technischen Standpunkt her gesehen unnötig und verursacht einen substantiellen administrativen Mehraufwand. Ein __Ziel dieses Projektes__ ist, die manuelle Datenübertragung durch eine direkte elektronische Übertragung der Milchmengendaten zwischen dem Informationssystem des AMS und dem Informationssystem von Qualitas (ARGUS) zu ersetzen. 
+Betriebe mit Robotermelkanlagen (AMS) oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden, unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen werden. Die Milchmengendaten werden vom Kontrolleur manuell vom Informationssystem der Melkanlage auf das Formular übertragen. Dieses Formular wird bei der Zuchtorganisation eingescannt. Die manuelle Übertragung der Daten auf das Formular ist zeitaufwändig, fehleranfällig, vom technischen Standpunkt her gesehen unnötig und verursacht einen substantiellen administrativen Mehraufwand. Ein __Ziel dieses Projektes__ ist, die manuelle Datenübertragung durch eine direkte elektronische Übertragung der Milchmengendaten zwischen dem Informationssystem der Melkanlage und dem Informationssystem von Qualitas (ARGUS) zu ersetzen. 
 
 
 ```{r echo=FALSE,results='asis'}
@@ -316,7 +316,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Als zwingende Voraussetzung damit ein Betrieb in diesem Projekt berücksichtigt werden kann, ist eine Melkanalage, welche mindestens die Menge jedes Gemelks misst und diese Messung in einem Informationssystem dauerhaft abspeichert. Diese Voraussetzung dürfte von Robotermelkanlagen und von gewissen Melkständen erfüllt sein. Als Konvention werden von nun an Robotermelkanlagen und Melkstände, welche die Voraussetzung der Erfassung und Speicherung der Milchmengendaten erfüllen,  als __Melkanlagen__ bezeichnet. 
+Als zwingende Voraussetzung damit ein Betrieb in diesem Projekt berücksichtigt werden kann, ist eine Melkanalage, welche mindestens die Menge jedes Gemelks misst und diese Messung in einem Informationssystem dauerhaft abspeichert. Diese Voraussetzung dürfte von Robotermelkanlagen (AMS) und von gewissen Melkständen erfüllt sein. Als Konvention werden von nun an Robotermelkanlagen und Melkstände, welche die Voraussetzung der Erfassung und Speicherung der Milchmengendaten erfüllen,  als __Melkanlagen__ bezeichnet. 
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
@@ -367,7 +367,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Das primäre Ziel dieses Projekts ist es, die manuelle Übertragung von Milchmengendaten durch Milchkontrolleure auf Betrieben mit entsprechenden Melksystemen zu ersetzen mit einer direkten elektronischen Übertragung der Milchleistungsdaten vom Informationssystem der Melkanlage zum Informationssystem von Qualitas (ARGUS). 
+Das primäre Ziel dieses Projekts ist es, die manuelle Übertragung von Milchmengendaten durch Milchkontrolleure auf Betrieben mit entsprechenden Melkanlagen zu ersetzen mit einer direkten elektronischen Übertragung der Milchleistungsdaten vom Informationssystem der Melkanlage zum Informationssystem von Qualitas (ARGUS). 
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
@@ -414,7 +414,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Der Export der Milchmengendaten aus dem Informationssystem der Melkanlage (ISM) in eine oder in mehrere Datei/en, muss als Funktionalität des ISM umgesetzt werden. Die Milchmengendaten müssen aufgrund einer vorgegebenen Formatdefinition exportiert werden. Diese Formatdefinition bestimmt, wie die verschiedenen Informationen im Export zusammengestellt werden. 
+Die für dieses Projekt (`ATDA-ASR`) interessanten Milchmengendaten sind im ISM abgelegt. Damit diese Daten zum Informationssystem der ZO bei Qualitas übertragen werden können, müssen sie zuerst aus dem ISM exportiert werden. Das Resultat dieses Datenexports muss je nach verwendeter Übertragungsmethode (siehe Abschnitte 3.1.2 und 4) anders aussehen. Die speziellen Anforderungen der exportierten Daten je nach Übertragungsmethode werden in Abschnitt 4 noch genauer beschrieben. 
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
@@ -432,7 +432,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Der Import der transferierten Daten in ARGUS ist eine Aufgabe, welche aufgrund der Formatdefinition der transferierten Daten in ARGUS auf der Datenbank realisiert werden kann. Die aktuelle Version von ARGUS hat schon existierende Funktionalitäten, welche für den Import von anderen Daten verwendet werden. Beispiele dafür sind der Import von Daten ab der TVD von Identitas oder die automatisierte Übertragung von Besamungsdaten von KB-Organisationen.
+Der Import der transferierten Daten in ARGUS ist eine Aufgabe, welche aufgrund der Formatdefinition der transferierten Daten in ARGUS auf der Datenbank realisiert werden kann. Die aktuelle Version von ARGUS hat schon existierende Funktionalitäten, welche für den Import von anderen Daten verwendet werden. Beispiele dafür sind der Import von Daten ab der TVD von Identitas oder die automatisierte Übertragung von Besamungsdaten zwischen KB-Organisationen und Qualitas.
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
@@ -441,7 +441,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Das folgende Schema gibt einen Überblick über den geplanten Ablauf des ATDA. Der Datenfluss läuft gemäss der Reihenfolge der Nummern im Schema ab. Vor der Milchkontrolle erhält der Kontrolleur das Material für die Kontrolle (Schritt 1). Im Schritt 2 führt der Kontrolleur die Milchkontrolle zu einem bestimmten Datum (entspricht dem Stichdatum für die Datenübertragung der Milchmengendaten) auf einem Betrieb durch. Bei der Milchkontrolle werden durch den Milchkontrolleur keine Milchmengendaten mehr erhoben. Stattdessen werden auf den vorgedruckten Formularen für den kontrollierten Betrieb die Mutationen (Zugänge und Abgänge) von Kühen sowie die Änderungen der Laktationsstati (trocken gestellt oder gekalbt) von Kühen erfasst. Das ausgefüllte Formular wird der ZO zugestellt und die Milchproben werden an das Milchlabor gesendet (Schritt 3). Im Schritt 4 liefert das Milchlabor die Analyseergebnisse an Qualitas. Diese Ergebnisse der Milchanalysen werden an den Betrieb zurückgemeldet (Schritt 5), entweder schriftlich per Post, oder via online Zugang zum Informationssystem der ZO (ARGUS).
+Das folgende Schema gibt einen Überblick über den geplanten Ablauf des ATDA. Der Datenfluss läuft gemäss der Reihenfolge der Nummern im Schema ab. Vor der Milchkontrolle erhält der Kontrolleur das Material für die Kontrolle (Schritt 1). Im Schritt 2 führt der Kontrolleur die Milchkontrolle zu einem bestimmten Datum (entspricht dem Stichdatum für die Datenübertragung der Milchmengendaten) auf einem Betrieb durch. Bei der Milchkontrolle werden durch den Milchkontrolleur keine Milchmengendaten mehr erhoben. Stattdessen werden auf den vorgedruckten Formularen für den kontrollierten Betrieb die Mutationen (Zugänge und Abgänge) von Kühen sowie die Änderungen der Laktationsstati (trocken gestellt oder gekalbt) von Kühen erfasst. Das ausgefüllte Formular wird der ZO zugestellt, wo sie zur Überprüfung der Datenkonsistenz mit den übertragenen Milchmengendaten verarbeitet werden. Die Milchproben werden an das Milchlabor gesendet (Schritt 3). Im Schritt 4 liefert das Milchlabor die Analyseergebnisse an Qualitas von wo sie dann dem Betrieb zurückgemeldet werden (Schritt 5), entweder schriftlich per Post, oder via online Zugang zum Informationssystem der ZO (ARGUS).
 
 ![Ablauf Datentransfer](Diagramm_Milchdatenfluss_ATDA.pdf)
 
@@ -468,7 +468,8 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Diese Version entspricht im Wesentlichen der Umsetzung der im Projekt `ICAR-ADE` definierten Datentypen und Schnittstellen in einem eigenständigen Webservice. Dieser Webservice wird von Qualitas zur Verfügung gestellt und läuft auf einem Server von Qualitas. Die Datenübertragung wird von einem Client-Programm auf dem ISM gestartet. Dieses Programm kontaktiert den Webservice, welcher als Antwort die Definition der zu übertragenden Datenrecords zurückgibt. Aufgrund der Definition der Datenrecords werden die entsprechenden Daten an Qualitas gesendet. Da die Datenübertragung vom Client-Programm des ISM initiiert wird, muss auf dem ISM das entsprechende Client-Programm, welches den Datenaustausch mit dem Webservice bei Qualitas initiiert, installiert sein. 
+Diese Version entspricht im Wesentlichen der Umsetzung der im Projekt `ICAR-ADE` definierten Datentypen und Schnittstellen in einem eigenständigen Webservice. Dieser Webservice wird von Qualitas zur Verfügung gestellt und läuft auf einem Server von Qualitas. Die Datenübertragung wird von einem Client-Programm auf dem ISM gestartet. Dieses Programm kontaktiert den Webservice, welcher als Antwort die Definition der zu übertragenden Datenrecords zurückgibt. Aufgrund der Definition der Datenrecords werden die entsprechenden Daten als sogenannter Datenstrom mit einem definierten Format an Qualitas gesendet. Da die Datenübertragung vom Client-Programm des ISM initiiert wird, muss auf dem ISM das entsprechende Client-Programm, welches den Datenaustausch mit dem Webservice bei Qualitas initiiert, installiert sein. 
+
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
@@ -535,11 +536,11 @@ objSecEnum$displayNumSection()
 ```
 Das Diagramm am Ende dieses Dokuments zeigt einen ungefähren Plan, wie sich die bis zu aktuellen Zeitpunkt bekannten Themen auf das erste Halbjahr 2016 aufteilen lassen. __Wichtig__ ist die Tatsache, dass dieser Projektpan nicht abschliessend ist und somit das Projekt nicht Mitte 2016 abgeschlossen sein wird. Der Plan erstreckt sich nur über die erste Hälfte vom Jahr 2016, weil wir aufgrund des aktuellen Informationsstandes den weiteren Projektverlauf für das zweite Halbjahr 2016 aktuell noch nicht planen können. 
 
-Ein wichtiger Termin in der Projektplanung von ATDA-ASR (siehe gelb markierte Kolonne im Diagramm) stellt der 18.3.2016 dar. An diesem Datum findet ein Treffen am runden Tisch mit allen Anbietern der Melkroboter statt. Dieses Treffen dient dazu, technische Fragen zu klären, welche die Umsetzung des Datentransfers wesentlich beeinflussen werden. Vor diesem Treffen ist somit eine konkrete Planung des gesamten Projektes nicht sinnvoll und möglich. 
+Ein wichtiger Termin in der Projektplanung von `ATDA-ASR` (siehe gelb markierte Kolonne im Diagramm) stellt der 18.3.2016 dar. An diesem Datum findet ein Treffen am runden Tisch mit allen Anbietern der Melkroboter statt. Dieses Treffen dient dazu, technische Fragen zu klären, welche die Umsetzung des Datentransfers wesentlich beeinflussen werden. Vor diesem Treffen ist somit eine konkrete Planung des gesamten Projektes nicht sinnvoll und möglich. 
 
-In der verbleibenden Zeit vor dem Treffen vom 18.3.2016, konzentrieren wir uns auf erste Abklärungen mit den Melkroboteranbieter, auf die Zusammenstellung möglicher Planungsvarianten diese Projektes (ATDA-ASR) und auf das Erstellen einer Testumgebung für die Datenübertragung mit einer ausgewählten Fernwartungslösung. Die Planung der Umsetzung der weiteren Projektthemen ist zu diesem Zeitpunkt noch sehr spekulativ, da die konkrete Umsetzung der Datenübertragung von den Ergebnissen des Treffens am 18.3.2016 abhängt. Aus diesem Grund werden im folgenden Plan auch die gelb markierten Themen als Alternativen parallel geführt.
+In der verbleibenden Zeit vor dem Treffen vom 18.3.2016, konzentrieren wir uns auf erste Abklärungen mit den Melkroboteranbieter, auf die Zusammenstellung möglicher Planungsvarianten diese Projektes (`ATDA-ASR`) und auf das Erstellen einer Testumgebung für die Datenübertragung mit einer ausgewählten Fernwartungslösung. Die Planung der Umsetzung der weiteren Projektthemen ist zu diesem Zeitpunkt noch sehr spekulativ, da die konkrete Umsetzung der Datenübertragung von den Ergebnissen des Treffens am 18.3.2016 abhängt. Aus diesem Grund werden im folgenden Plan auch die gelb markierten Themen als Alternativen parallel geführt.
 
-Abgesehen von der Datenübertragung gibt es auch noch offene Fragen betreffend des Exports von Daten vom ISM in eine oder mehrere Dateien, welche dann zu ARGUS übertragen werden können. Je nach Grösse der Datenmenge bestehen auch gewisse Abhängigkeiten zwischen dem Datenexport auf der Seite des ISM und der Art der Datenübertragung. Die aufgezeigten Möglichkeiten der Datenübertragung haben nicht alle die gleichen Kapazitäten betreffend der zu übertragenen Datenmengen. Ein Ziel der geplanten Testsysteme für die Datenübertragung ist die Abklärung solcher Kapazitätsfragen.
+Abgesehen von der Datenübertragung gibt es auch noch offene Fragen betreffend des Exports von Daten vom ISM, welche dann zu ARGUS übertragen werden können. Je nach Grösse der Datenmenge bestehen auch gewisse Abhängigkeiten zwischen dem Datenexport auf der Seite des ISM und der Art der Datenübertragung. Die aufgezeigten Möglichkeiten der Datenübertragung haben nicht alle die gleichen Kapazitäten betreffend der zu übertragenen Datenmengen. Ein Ziel der geplanten Testsysteme für die Datenübertragung ist die Abklärung solcher Kapazitätsfragen.
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
@@ -548,7 +549,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die Erfassung der Mutationen und der Änderungen des Laktationsstatus' von Kühen auf den jeweiligen Betrieben durch den Milchkontrolleur dient als Kontrolle für das System SSATDA-ASR. Die von SSATDA-ASR abgeholten Daten nach einer Milchkontrolle müssen mit den vom Milchkontrolleur erfassten Mutationen und Änderungen des Laktationsstatus von Kühen konsistent sein.
+Die Erfassung der Mutationen und der Änderungen des Laktationsstatus' von Kühen auf den jeweiligen Betrieben durch den Milchkontrolleur dient als Kontrolle für das System SSATDA-ASR. Die von `SSATDA-ASR` abgeholten Daten nach einer Milchkontrolle müssen mit den vom Milchkontrolleur erfassten Mutationen und Änderungen des Laktationsstatus von Kühen konsistent sein.
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
