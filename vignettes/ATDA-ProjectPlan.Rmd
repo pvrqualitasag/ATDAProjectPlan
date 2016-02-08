@@ -216,6 +216,9 @@ FB EDV, Qualitas AG                 &  AG ZDL, ASR  \\
 |  0.0.0.912  |  04.02.2016      |  PvR  |  Formatierung des Projektplans, Präzisierung  |
 |             |                  |       |  der Datenübertragung per Webservice          |
 +-------------+------------------+-------+-----------------------------------------------+
+|  0.0.0.913  |  08.02.2016      |  SG   |  Schaubilder für drei Arten der               |
+|             |                  |       |  Datenübertragung                             |
++-------------+------------------+-------+-----------------------------------------------+
 
 
 \pagebreak
@@ -297,11 +300,18 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die Standardprozedur für den Transfer von Milchleistungsdaten von Betrieben, welche sich bei der Milchleistungsprüfung (MLP) der Zuchtverbände (BVCH und SHB) beteiligen, sieht so aus, dass ein Milchkontrolleur alle 31 bis 37 Tage Milchproben zieht und Milchwägungen vornimmt. Die Milchmengen werden während der Kontrolle auf dem Betrieb manuell auf vorgedruckte Formulare (Begleitscheine) eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS) von Qualitas eingelesen. Das nachfolgende Diagramm stellt den Datenfluss anlässlich einer Milchkontrolle auf einem Betrieb schematisch dar. Der Datenfluss verläuft gemäss der Reihenfolge der Nummern. Die Bedeutung der einzelnen Nummern wird später noch erklärt werden.
+Die Standardprozedur für den Transfer von Milchleistungsdaten von Betrieben, welche sich bei der Milchleistungsprüfung (MLP) der Zuchtverbände (BVCH und SHB) beteiligen, sieht so aus, dass ein Milchkontrolleur alle 31 bis 37 Tage Milchproben zieht und Milchwägungen vornimmt. Die Milchmengen werden während der Kontrolle auf dem Betrieb manuell auf vorgedruckte Formulare (Begleitscheine) eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS) von Qualitas eingelesen. Das nachfolgende Schaubild stellt den Datenfluss anlässlich einer Milchkontrolle auf einem Betrieb schematisch dar. Der Datenfluss verläuft gemäss der Reihenfolge der Nummern. Die Bedeutung der einzelnen Nummern wird später noch erklärt werden.
 
 ![Diagramm Milchdatenfluss](Diagramm_Milchdatenfluss.pdf)
 
-Betriebe mit Robotermelkanlagen (AMS) oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden, unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen werden. Die Milchmengendaten werden vom Kontrolleur manuell vom Informationssystem der Melkanlage auf das Formular übertragen. Dieses Formular wird bei der Zuchtorganisation eingescannt. Die manuelle Übertragung der Daten auf das Formular ist zeitaufwändig, fehleranfällig, vom technischen Standpunkt her gesehen unnötig und verursacht einen substantiellen administrativen Mehraufwand. Ein __Ziel dieses Projektes__ ist, die manuelle Datenübertragung durch eine direkte elektronische Übertragung der Milchmengendaten zwischen dem Informationssystem der Melkanlage und dem Informationssystem von Qualitas (ARGUS) zu ersetzen. 
+Betriebe mit Robotermelkanlagen (AMS) oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden, unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen werden. Die Milchmengendaten werden vom Kontrolleur manuell vom Informationssystem der Melkanlage auf das Formular übertragen. Dieses Formular wird bei der Zuchtorganisation eingescannt. Die manuelle Übertragung der Daten auf das Formular ist 
+
+- zeitaufwändig, 
+- fehleranfällig, 
+- vom technischen Standpunkt her gesehen unnötig und 
+- verursacht einen substantiellen administrativen Mehraufwand. 
+
+Ein __Ziel dieses Projektes__ ist, die manuelle Datenübertragung durch eine direkte elektronische Übertragung der Milchmengendaten zwischen dem Informationssystem der Melkanlage und dem Informationssystem von Qualitas (ARGUS) zu ersetzen. 
 
 
 ```{r echo=FALSE,results='asis'}
@@ -367,7 +377,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Das primäre Ziel dieses Projekts ist es, die manuelle Übertragung von Milchmengendaten durch Milchkontrolleure auf Betrieben mit entsprechenden Melkanlagen zu ersetzen mit einer direkten elektronischen Übertragung der Milchleistungsdaten vom Informationssystem der Melkanlage zum Informationssystem von Qualitas (ARGUS). 
+Das primäre Ziel dieses Projekts ist es, die manuelle Übertragung von Milchmengendaten durch Milchkontrolleure auf Betrieben mit entsprechenden Melkanlagen zu ersetzen mit einer direkten elektronischen Übertragung der Milchmengendaten vom Informationssystem der Melkanlage zum Informationssystem von Qualitas (ARGUS). 
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
@@ -384,7 +394,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Vom technischen Standpunkt her gesehen, kann der automatisierte Datentransfer zwischen Melksystemen und ARGUS in beiden Richtungen, also nicht nur vom Melksystem zu ARGUS sondern auch von ARGUS zum Melksystem funktionieren. Damit ergeben sich zahlreiche Anwendungen, zum Beispiel können bei einer Neuinstallation einer Melkanalage die Daten von ARGUS ins Informationssystem der Melkanlage übertragen werden.
+Vom technischen Standpunkt her gesehen, kann der automatisierte Datentransfer zwischen den Informationssystemen der Melkanlagen und ARGUS in beiden Richtungen, also nicht nur vom ISM zu ARGUS sondern auch von ARGUS zum ISM funktionieren. Damit ergeben sich zahlreiche Anwendungen, zum Beispiel können bei einer Neuinstallation einer Melkanalage die Daten von ARGUS ins Informationssystem der Melkanlage übertragen werden.
 
 
 \vspace{1ex}
@@ -455,7 +465,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Für dieses Projekt `ATDA-ASR` sind vorerst drei Arten des Datentransfers vorstellbar. 
+Für dieses Projekt `ATDA-ASR` sind vorerst drei Arten des Datentransfers vorstellbar. Nach dem Treffen mit den Herstellern der Melkanlagen am 18.3.2016 werden wir uns für eine der drei folgenden oder eine hier noch nicht beschriebene Variante entscheiden. Die eine Variante der Wahl wird im Projekt `ATDA-ASR` umgesetzt werden.
 
 1. Eigenständiger Webservice
 2. Fernwartungssoftware
@@ -468,8 +478,9 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Diese Version entspricht im Wesentlichen der Umsetzung der im Projekt `ICAR-ADE` definierten Datentypen und Schnittstellen in einem eigenständigen Webservice. Dieser Webservice wird von Qualitas zur Verfügung gestellt und läuft auf einem Server von Qualitas. Die Datenübertragung wird von einem Client-Programm auf dem ISM gestartet. Dieses Programm kontaktiert den Webservice, welcher als Antwort die Definition der zu übertragenden Datenrecords zurückgibt. Aufgrund der Definition der Datenrecords werden die entsprechenden Daten als sogenannter Datenstrom mit einem definierten Format an Qualitas gesendet. Da die Datenübertragung vom Client-Programm des ISM initiiert wird, muss auf dem ISM das entsprechende Client-Programm, welches den Datenaustausch mit dem Webservice bei Qualitas initiiert, installiert sein. 
+Diese Version entspricht im Wesentlichen der Umsetzung der im Projekt `ICAR-ADE` definierten Datentypen und Schnittstellen in einem eigenständigen Webservice. Dieser Webservice wird von Qualitas zur Verfügung gestellt und läuft auf einem Server von Qualitas. Die Datenübertragung wird von einem Client-Programm auf dem ISM gestartet. Dieses Programm kontaktiert den Webservice, welcher als Antwort die Definition der zu übertragenden Datenrecords zurückgibt. Aufgrund der Definition der Datenrecords werden die entsprechenden Daten als sogenannter Datenstrom mit einem definierten Format an Qualitas gesendet. Da die Datenübertragung vom Client-Programm des ISM initiiert wird, muss auf dem ISM das entsprechende Client-Programm, welches den Datenaustausch mit dem Webservice bei Qualitas initiiert, installiert sein. Das folgende Schaubild stellt den Datenaustausch per Webservice schematisch dar.
 
+![ATDA Webservice](Schaubild_ATDA_Webservice.pdf)
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
@@ -496,10 +507,17 @@ Die Umsetzung dieser Lösung für den Datentransfer wäre sehr viel einfacher, w
 +-----------+-----------------------------------+--------------------------------------+
 |           |  AnyDesk                          |  Testeinsatz                         |
 +-----------+-----------------------------------+--------------------------------------+
+| Fullwood  |  TeamViewer                       |                                      |
++-----------+-----------------------------------+--------------------------------------+
+
 
 Die Anzahl an verschiedenen Fernwartungsprogrammen erschwert uns die Verwendung dieser Programme für den Datenaustausch. Zusätzlich zur Anzahl der eingesetzten Fernwartungslösungen kommt noch hinzu, dass allfällige Wechsel der eingesetzten Programme oder Updates von bestehenden Programmen für uns zu einem grossen Arbeitsaufwand führen und potentielle Fehlerquellen dadurch nur schwer zu kontrollieren sind.
 
-Die einzige Möglichkeit, wie diese Art des Datentransfers für uns noch praktikabel wäre, ist, dass uns die Anbieter erlauben würden, eine einheitliche Ferwartungslösung neben den bestehenden Programmen zu installieren.  
+Die einzige Möglichkeit, wie diese Art des Datentransfers für uns noch praktikabel wäre, ist, dass uns die Anbieter erlauben würden, eine einheitliche Ferwartungslösung neben den bestehenden Programmen zu installieren. Das folgende Schaubild gibt einen Überblick über die Datenaustausch per Fernwartungssoftware. 
+
+\begin{center}
+\includegraphics[width=0.9\textwidth]{Schaubild_ATDA_Fernwartung}
+\end{center}
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
@@ -524,7 +542,12 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Bezüglich des Datenaustauschs besteht zwischen den Anbietern von Speicherlösungen kein Unterschied. In allen Fällen muss jeder in diesem Projekt (`ATDA-ASR`) beteiligte Betrieb ein Benutzerkonto beim verwendeten Anbieter des Cloud-Speichers anlegen. Danach wird ein Programm (Client) auf dem Rechner des ISM installiert und mit dem erstellten Benutzerkonto verbunden. Auf dem Rechner des ISM wird ein neues Unterverzeichnis erstellt, dessen Inhalt automatisch mit dem Speicher im Netzwerk des Anbieters  synchronisiert wird. Die auszutauschenden Daten müssen im neu erstellten Unterverzeichnis abgelegt werden. In den Einstellungen der Clientprogramme der Cloud-Speicher müssten die Daten für ein spezifischen Benutzerkonto von Qualitas freigegeben werden. Durch diese Freigabe können die Daten vom ISM zu Qualitas übertragen werden.
+Bezüglich des Datenaustauschs besteht zwischen den Anbietern von Speicherlösungen kein Unterschied. In allen Fällen muss jeder in diesem Projekt (`ATDA-ASR`) beteiligte Betrieb ein Benutzerkonto beim verwendeten Anbieter des Cloud-Speichers anlegen. Danach wird ein Programm (Client) auf dem Rechner des ISM installiert und mit dem erstellten Benutzerkonto verbunden. Auf dem Rechner des ISM wird ein neues Unterverzeichnis erstellt, dessen Inhalt automatisch mit dem Speicher im Netzwerk des Anbieters  synchronisiert wird. Die auszutauschenden Daten müssen im neu erstellten Unterverzeichnis abgelegt werden. In den Einstellungen der Clientprogramme der Cloud-Speicher müssten die Daten für ein spezifischen Benutzerkonto von Qualitas freigegeben werden. Durch diese Freigabe können die Daten vom ISM zu Qualitas übertragen werden. Der Datentransfer per Cloud-Speicher ist im folgenden Schaubild dargestellt.
+
+\begin{center}
+\includegraphics[width=0.8\textwidth]{Schaubild_ATDA_Cloud}
+\end{center}
+
 
 
 \vspace{1ex}
@@ -534,7 +557,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Das Diagramm am Ende dieses Dokuments zeigt einen ungefähren Plan, wie sich die bis zu aktuellen Zeitpunkt bekannten Themen auf das erste Halbjahr 2016 aufteilen lassen. __Wichtig__ ist die Tatsache, dass dieser Projektpan nicht abschliessend ist und somit das Projekt nicht Mitte 2016 abgeschlossen sein wird. Der Plan erstreckt sich nur über die erste Hälfte vom Jahr 2016, weil wir aufgrund des aktuellen Informationsstandes den weiteren Projektverlauf für das zweite Halbjahr 2016 aktuell noch nicht planen können. 
+Die Tabelle am Ende dieses Dokuments zeigt einen ungefähren Plan, wie sich die bis zu aktuellen Zeitpunkt bekannten Themen auf das erste Halbjahr 2016 aufteilen lassen. __Wichtig__ ist die Tatsache, dass dieser Projektpan nicht abschliessend ist und somit das Projekt nicht Mitte 2016 abgeschlossen sein wird. Der Plan erstreckt sich nur über die erste Hälfte vom Jahr 2016, weil wir aufgrund des aktuellen Informationsstandes den weiteren Projektverlauf für das zweite Halbjahr 2016 aktuell noch nicht planen können. 
 
 Ein wichtiger Termin in der Projektplanung von `ATDA-ASR` (siehe gelb markierte Kolonne im Diagramm) stellt der 18.3.2016 dar. An diesem Datum findet ein Treffen am runden Tisch mit allen Anbietern der Melkroboter statt. Dieses Treffen dient dazu, technische Fragen zu klären, welche die Umsetzung des Datentransfers wesentlich beeinflussen werden. Vor diesem Treffen ist somit eine konkrete Planung des gesamten Projektes nicht sinnvoll und möglich. 
 
