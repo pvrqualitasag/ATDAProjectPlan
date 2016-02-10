@@ -183,7 +183,7 @@ FB EDV, Qualitas AG                 &  AG ZDL, ASR  \\
 +-------------+------------------+-------+-----------------------------------------------+
 |  0.0.0.901  |  13.01.2016      |  PvR  |  Aktuelle Situation und Projektziele          |
 +-------------+------------------+-------+-----------------------------------------------+
-|  0.0.0.902  |  18.01.2016      |  PvR  |  Projektziele undAblauf des Datentransfers    |
+|  0.0.0.902  |  18.01.2016      |  PvR  |  Projektziele und Ablauf des Datentransfers   |
 +-------------+------------------+-------+-----------------------------------------------+
 |  0.0.0.903  |  19.01.2016      |  PvR  |  Projektauftraggeber von BvchShb zu ASR       |
 |             |                  |       |  gewechselt. Beschreibung der                 |
@@ -218,6 +218,8 @@ FB EDV, Qualitas AG                 &  AG ZDL, ASR  \\
 +-------------+------------------+-------+-----------------------------------------------+
 |  0.0.0.913  |  08.02.2016      |  SG   |  Schaubilder für drei Arten der               |
 |             |                  |       |  Datenübertragung                             |
++-------------+------------------+-------+-----------------------------------------------+
+|  0.0.0.914  |  10.02.2016      |  PvR  |  Titel von Schaubilder entfernt               |
 +-------------+------------------+-------+-----------------------------------------------+
 
 
@@ -326,7 +328,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Als zwingende Voraussetzung damit ein Betrieb in diesem Projekt berücksichtigt werden kann, ist eine Melkanalage, welche mindestens die Menge jedes Gemelks misst und diese Messung in einem Informationssystem dauerhaft abspeichert. Diese Voraussetzung dürfte von Robotermelkanlagen (AMS) und von gewissen Melkständen erfüllt sein. Als Konvention werden von nun an Robotermelkanlagen und Melkstände, welche die Voraussetzung der Erfassung und Speicherung der Milchmengendaten erfüllen,  als __Melkanlagen__ bezeichnet. 
+Als zwingende Voraussetzung damit ein Betrieb in diesem Projekt berücksichtigt werden kann, ist eine Melkanlage, welche mindestens die Menge jedes Gemelks misst und diese Messung in einem Informationssystem dauerhaft abspeichert. Diese Voraussetzung dürfte von Robotermelkanlagen (AMS) und von gewissen Melkständen erfüllt sein. Als Konvention werden von nun an Robotermelkanlagen und Melkstände, welche die Voraussetzung der Erfassung und Speicherung der Milchmengendaten erfüllen,  als __Melkanlagen__ bezeichnet. 
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
@@ -394,7 +396,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Vom technischen Standpunkt her gesehen, kann der automatisierte Datentransfer zwischen den Informationssystemen der Melkanlagen und ARGUS in beiden Richtungen, also nicht nur vom ISM zu ARGUS sondern auch von ARGUS zum ISM funktionieren. Damit ergeben sich zahlreiche Anwendungen, zum Beispiel können bei einer Neuinstallation einer Melkanalage die Daten von ARGUS ins Informationssystem der Melkanlage übertragen werden.
+Vom technischen Standpunkt her gesehen, kann der automatisierte Datentransfer zwischen den Informationssystemen der Melkanlagen und ARGUS in beiden Richtungen, also nicht nur vom ISM zu ARGUS sondern auch von ARGUS zum ISM funktionieren. Damit ergeben sich zahlreiche Anwendungen, zum Beispiel können bei einer Neuinstallation einer Melkanlage die Daten von ARGUS ins Informationssystem der Melkanlage übertragen werden.
 
 
 \vspace{1ex}
@@ -415,7 +417,7 @@ Der ATDA Prozess, welcher aus diesem Projekt `ATDA-ASR` resultieren soll, kann i
 
 1. __Export__ der Milchmengendaten aus dem ISM
 2. __Transfer__ der exportierten Milchmengendaten vom ISM zu ARGUS
-3. __Import__ der transerierten Daten in ARGUS
+3. __Import__ der transferierten Daten in ARGUS
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
@@ -433,7 +435,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Der Datentransfer beinhaltet die Übertragung der exportierten Daten vom ISM zu ARGUS. Für die Übertragung von Daten zwischen zwei Informationssystemem gibt es schon existierenden Lösungen. Zum aktuellen Zeitpunkt sind für dieses Projekt `ATDA-ASR` grundsätzlich drei verschiedene Arten der Datenübertragung denkbar. Diese werden in einem späteren Abschnitt (siehe Abschnitt 4) noch genauer beschrieben.
+Der Datentransfer beinhaltet die Übertragung der exportierten Daten vom ISM zu ARGUS. Für die Übertragung von Daten zwischen zwei Informationssystemen gibt es schon existierenden Lösungen. Zum aktuellen Zeitpunkt sind für dieses Projekt `ATDA-ASR` grundsätzlich drei verschiedene Arten der Datenübertragung denkbar. Diese werden in einem späteren Abschnitt (siehe Abschnitt 4) noch genauer beschrieben.
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
@@ -557,7 +559,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die Tabelle am Ende dieses Dokuments zeigt einen ungefähren Plan, wie sich die bis zu aktuellen Zeitpunkt bekannten Themen auf das erste Halbjahr 2016 aufteilen lassen. __Wichtig__ ist die Tatsache, dass dieser Projektpan nicht abschliessend ist und somit das Projekt nicht Mitte 2016 abgeschlossen sein wird. Der Plan erstreckt sich nur über die erste Hälfte vom Jahr 2016, weil wir aufgrund des aktuellen Informationsstandes den weiteren Projektverlauf für das zweite Halbjahr 2016 aktuell noch nicht planen können. 
+Die Tabelle am Ende dieses Dokuments zeigt einen ungefähren Plan, wie sich die bis zu aktuellen Zeitpunkt bekannten Themen auf das erste Halbjahr 2016 aufteilen lassen. __Wichtig__ ist die Tatsache, dass dieser Projektplan nicht abschliessend ist und somit das Projekt nicht Mitte 2016 abgeschlossen sein wird. Der Plan erstreckt sich nur über die erste Hälfte vom Jahr 2016, weil wir aufgrund des aktuellen Informationsstandes den weiteren Projektverlauf für das zweite Halbjahr 2016 aktuell noch nicht planen können. 
 
 Ein wichtiger Termin in der Projektplanung von `ATDA-ASR` (siehe gelb markierte Kolonne im Diagramm) stellt der 18.3.2016 dar. An diesem Datum findet ein Treffen am runden Tisch mit allen Anbietern der Melkroboter statt. Dieses Treffen dient dazu, technische Fragen zu klären, welche die Umsetzung des Datentransfers wesentlich beeinflussen werden. Vor diesem Treffen ist somit eine konkrete Planung des gesamten Projektes nicht sinnvoll und möglich. 
 
