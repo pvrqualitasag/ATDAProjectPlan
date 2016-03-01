@@ -2,7 +2,7 @@
 output:
   pdf_document:
     includes:
-      in_header: ATDA-ProjectPlanHeader.tex
+      in_header: tex/ATDA-ProjectPlanHeader.tex
   word_document: default
 ---
 
