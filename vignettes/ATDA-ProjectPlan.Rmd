@@ -221,6 +221,9 @@ FB EDV, Qualitas AG                 &  AG ZDL, ASR  \\
 +-------------+------------------+-------+-----------------------------------------------+
 |  0.0.0.914  |  10.02.2016      |  PvR  |  Titel von Schaubilder entfernt               |
 +-------------+------------------+-------+-----------------------------------------------+
+|  0.0.1.000  |  13.04.2016      |  PvR  |  Anpassungen nach Meeting mit Melkmaschinen   |
+|             |                  |       |  Hersteller                                   |
++-------------+------------------+-------+-----------------------------------------------+
 
 
 \pagebreak
@@ -277,6 +280,8 @@ FB EDV, Qualitas AG                 &  AG ZDL, ASR  \\
 +-------------+-------------------------------------------------------------------------+
 | TVD         |  Tierverkehrsdatenbank                                                  |
 +-------------+-------------------------------------------------------------------------+
+| CRV         |  Cooperative Cattle Improvement                                         |
++-------------+-------------------------------------------------------------------------+
 
 
 \pagebreak
@@ -285,7 +290,7 @@ FB EDV, Qualitas AG                 &  AG ZDL, ASR  \\
 # Erklärung
 Dieses Dokument enthält einen Planungsentwurf für das Projekt zum automatisierten Tierdatenaustausch (ATDA), welches von der Arbeitsgruppe zuchttechnische Dienstleistungen der Arbeitsgemeinschaft Schweizerischer Rinderzüchter (ASR) in Auftrag gegeben wurde.
 
-Die Umsetzung dieses Projektes hängt sehr stark von den technischen Gegebenheiten der Anbieter von Melkanlagen ab. Deshalb ist der Projektplan in gewissen Abschnitten noch nicht sehr konkret gefasst. Dies ist eine bewusste Entscheidung, welche die Offenheit und die Flexibilität unsererseits demonstrieren soll. Das erste Informationstreffen mit den Anbietern von Melkanlagen ist auf den 18. März 2016 angesetzt. Vor diesem Treffen fehlen uns die Informationen, welche für eine konkretere Ausformulierung eines Pflichtenhefts sowie einer Spezifikation und für eine seriöse Planung des Projektes für den Zeitraum nach dem 18.3.2016, nötig wären. 
+Die Umsetzung dieses Projektes hängt sehr stark von den technischen Gegebenheiten der Anbieter von Melkanlagen ab. Deshalb ist der Projektplan in gewissen Abschnitten noch nicht sehr konkret gefasst. Dies ist eine bewusste Entscheidung, welche die Offenheit und die Flexibilität unsererseits demonstrieren soll. Das erste Informationstreffen mit den Anbietern von Melkanlagen fand am 18. März 2016 statt. Diese Treffen hat uns erste Informationen zum möglichen Rahmen dieses Projekts aus Sicht der Melkanlagenanbieter geliefert. 
 
 
 
@@ -426,7 +431,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die für dieses Projekt (`ATDA-ASR`) interessanten Milchmengendaten sind im ISM abgelegt. Damit diese Daten zum Informationssystem der ZO bei Qualitas übertragen werden können, müssen sie zuerst aus dem ISM exportiert werden. Das Resultat dieses Datenexports muss je nach verwendeter Übertragungsmethode (siehe Abschnitte 3.1.2 und 4) anders aussehen. Die speziellen Anforderungen der exportierten Daten je nach Übertragungsmethode werden in Abschnitt 4 noch genauer beschrieben. 
+Die für dieses Projekt (`ATDA-ASR`) interessanten Milchmengendaten sind im ISM abgelegt. Damit diese Daten zum Informationssystem der ZO bei Qualitas übertragen werden können, müssen sie zuerst aus dem ISM exportiert werden. Das Resultat dieses Datenexports muss je nach verwendeter Übertragungsmethode (siehe Abschnitte 3.1.2 und 4) anders aussehen. Die speziellen Anforderungen der exportierten Daten je nach Übertragungsmethode werden in Abschnitt 4 noch genauer beschrieben. Gemäss den Vorstellungen der Melkanlagenanbieter bezüglich des Ablaufs des Datenaustauschs (mehr dazu in Abschnitt 4) liegt dieser Teil des Projekts `ATDA-ASR` voll in der Verantwortung der Melkanlagenanbieter.
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
@@ -467,7 +472,9 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Für dieses Projekt `ATDA-ASR` sind vorerst drei Arten des Datentransfers vorstellbar. Nach dem Treffen mit den Herstellern der Melkanlagen am 18.3.2016 werden wir uns für eine der drei folgenden oder eine hier noch nicht beschriebene Variante entscheiden. Die eine Variante der Wahl wird im Projekt `ATDA-ASR` umgesetzt werden.
+Für dieses Projekt `ATDA-ASR` sind vorerst drei Arten des Datentransfers vorstellbar. Nach dem Treffen mit den Herstellern der Melkanlagen ist klar, dass für die Melkanlagenanbieter nur eine Cloud-basierte Datenübertragung (Variante 3) in Frage kommt. Die Details zur Umsetzung einer solchen Datenübertragung sind noch unklar. Da offenbar in Holland die Firma CRV zusammen mit den Anbietern Lelly, DeLaval und Fullwood schon ein Service zum automatischen Tierdatenaustausch betreibt, werden wir CRV für einen Informationsaustausch kontaktieren.
+
+Der Vollständigkeit halber und zu Dokumentationszwecken werden hier trotzdem noch alle drei Varianten des Datenaustauschs beschrieben im Wissen, dass die ersten beiden Varianten höchstwahrscheinlich nicht umgesetzt werden können.
 
 1. Eigenständiger Webservice
 2. Fernwartungssoftware
@@ -484,6 +491,9 @@ Diese Version entspricht im Wesentlichen der Umsetzung der im Projekt `ICAR-ADE`
 
 ![ATDA Webservice](Schaubild_ATDA_Webservice.pdf)
 
+Gemäss den Rückmeldungen der Melkanlagenanbieter ist eine Installation eines Client-Programms auf den ISM nicht praktikabel. Diese Systeme sind nicht homogen, z. Bsp. betreffend der verwendeten Version des Betriebssystems oder betreffend installierten Softwareprogrammen. Diese Einschätzung wird auch durch die ersten Resultat der Befragung der Melkanlagenanbieter bestätigt. Des Weiteren sind die ISM-System nicht immer stabil und teilweise schlecht gewartet. 
+
+
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
@@ -494,7 +504,11 @@ objSecEnum$displayNumSection()
 Aufgrund unserer ersten bilateralen Abklärungen mit den Anbietern von Robotermelkanlagen, verfügen die Techniker der Anbieterfirmen der Melkanlagen über einen Zugang von einem Remote-Standort auf das ISM. Dieser Zugang von extern auf das ISM wird mittels sogenannter Fernwartungssoftware ermöglicht. In der Regel erlauben diese Fernwartungsprogramme auch den Austausch von Dateien zwischen den beiden Systemen, welche miteinander in Verbindung stehen. 
 
 Damit der Datentransfer mithilfe einer Ferwartungssoftware ohne manuelle Intervention umgesetzt werden kann, muss die Steuerung der Fernwartungssoftware von einem Programm aus möglich sein. Dies wird über ein von den Anbietern der Fernwartungssoftware zur Verfügung gestellte Schnittstelle - dem sogenannten API - realisiert. Das API besteht aus einer Spezifikation der Funktionalitäten der Fernwartungssoftware, welche von einem externen Programm verwendet werden können. 
-Die Umsetzung dieser Lösung für den Datentransfer wäre sehr viel einfacher, wenn alle Hersteller die gleiche Fernwartungssoftware verwenden würden. Eine Abklärung diesbezüglich hat allerdings ergeben, dass verschiedene Fernwartungssoftwareprodukte zum Einsatz kommen. Die folgende Tabelle gibt eine Übersicht über die verwendeten Fernwartungsprogramme
+Die Umsetzung dieser Lösung für den Datentransfer wäre sehr viel einfacher, wenn alle Hersteller die gleiche Fernwartungssoftware verwenden würden. Eine Abklärung diesbezüglich hat allerdings ergeben, dass verschiedene Fernwartungssoftwareprodukte zum Einsatz kommen. 
+
+\pagebreak
+
+Die folgende Tabelle gibt eine Übersicht über die verwendeten Fernwartungsprogramme
 
 +-----------+-----------------------------------+--------------------------------------+
 | Anbieter  |  Verwendete Fernwartungssoftware  |  Bemerkung                           |
@@ -521,6 +535,9 @@ Die einzige Möglichkeit, wie diese Art des Datentransfers für uns noch praktik
 \includegraphics[width=0.9\textwidth]{Schaubild_ATDA_Fernwartung}
 \end{center}
 
+Die oben beschriebene negative Einschätzung dieser Variante wurde durch die Rückmeldungen der Melkanlagenanbieter bestätigt. Abgesehen von der grossen Anzahl an eingesetzten Ferwartungslösungen, können Anbieter aufgrund von Verträgen auch das eingesetzte Fernwartungssystem wechseln, was für uns zu einem nochmals grösseren Arbeitsaufwand führen würde. 
+
+
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
@@ -528,7 +545,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Im Zeitalter von "big data" wird häufig von Daten in der Wolke (oder Cloud) gesprochen. Damit ist gemeint, dass sich die Daten physikalisch nicht mehr auf einer für den Benutzer spezifischen Rechner befinden, sondern in einem bestimmten Netzwerk eines Anbieters abgelegt werden. Bekannte öffentliche Anbieter für Cloud-basierte Speicherlösungen sind "Dropbox", "Google Drive", "Microsoft Azure/Onedrive" oder "Apple iCloud". Gemäss ersten Abklärungen mit den Herstellern von Melkanlagen bestehen Pläne bei den Herstellern interne Cloud-Speicherlösungen aufzubauen. 
+Im Zeitalter von "big data" wird häufig von Daten in der Wolke (oder Cloud) gesprochen. Damit ist gemeint, dass sich die Daten physikalisch nicht mehr auf einer für den Benutzer spezifischen Rechner befinden, sondern in einem bestimmten Server-Netzwerk eines Anbieters abgelegt werden. Bekannte öffentliche Anbieter für Cloud-basierte Speicherlösungen sind "Dropbox", "Google Drive", "Microsoft Azure/Onedrive" oder "Apple iCloud". Gemäss ersten Abklärungen mit den Herstellern von Melkanlagen bestehen Pläne bei den Herstellern interne Cloud-Speicherlösungen aufzubauen. 
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
@@ -536,7 +553,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Für die Verwendung einer Cloud-Speicherlösung eines Melkanlagenherstellers sind wir darauf angewiesen, dass wir einen Zugang zum Speicher erhalten und dass wir eine Schnittstelle für das Übertragen der Daten verwenden können. 
+Für die Verwendung einer Cloud-Speicherlösung eines Melkanlagenherstellers sind wir darauf angewiesen, dass wir einen Zugang zum Speicher erhalten und dass wir eine Schnittstelle für das Übertragen der Daten verwenden können. Laut den Aussagen der Vertreter der Melkanlagenhersteller dürften die Firmen-internen Cloud-Lösungen für dieses Projekt `ATDA-ASR` kaum zugänglich sein. 
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
@@ -546,8 +563,16 @@ objSecEnum$displayNumSection()
 ```
 Bezüglich des Datenaustauschs besteht zwischen den Anbietern von Speicherlösungen kein Unterschied. In allen Fällen muss jeder in diesem Projekt (`ATDA-ASR`) beteiligte Betrieb ein Benutzerkonto beim verwendeten Anbieter des Cloud-Speichers anlegen. Danach wird ein Programm (Client) auf dem Rechner des ISM installiert und mit dem erstellten Benutzerkonto verbunden. Auf dem Rechner des ISM wird ein neues Unterverzeichnis erstellt, dessen Inhalt automatisch mit dem Speicher im Netzwerk des Anbieters  synchronisiert wird. Die auszutauschenden Daten müssen im neu erstellten Unterverzeichnis abgelegt werden. In den Einstellungen der Clientprogramme der Cloud-Speicher müssten die Daten für ein spezifischen Benutzerkonto von Qualitas freigegeben werden. Durch diese Freigabe können die Daten vom ISM zu Qualitas übertragen werden. Der Datentransfer per Cloud-Speicher ist im folgenden Schaubild dargestellt.
 
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### Datenaustausch über einen eigenständigen Speicherservice")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Die Benutzung von öffentlichen Cloud-Anbietern ist aus Gründen des Datenschutzes nicht ganz einfach. Ab einer gewissen Datenmenge sind die meisten Cloud-Dienste kostenpflichtig. Deshalb wurde von den Melkanlagenherstellern vorgeschlagen selber eine zentrale Datenaustausch-Infrastruktur zu erstellen. Die Anforderungen an ein solches Speichersystem bestehen darin, dass dieses System für die im Projekt beteiligten Betriebe und für das Datenbanksystem von Qualitas AG zugänglich sein muss. Die zentrale Funktionaliät des Speichersystems besteht in einer Art Datendrehscheibe, wobei die Betriebe die Milchmengendaten an das Speichersystem senden können und relevante Tierdaten vom System beziehen können. Das Informationssystem von Qualitas AG soll die Milchmengendaten beim Speichersystem abholen können und die für die Betriebe relevante Tierdaten an das System senden  können.
+
 \begin{center}
-\includegraphics[width=0.8\textwidth]{Schaubild_ATDA_Cloud}
+\includegraphics[width=0.75\textwidth]{Schaubild_ATDA_Cloud}
 \end{center}
 
 
@@ -559,11 +584,11 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die Tabelle am Ende dieses Dokuments zeigt einen ungefähren Plan, wie sich die bis zu aktuellen Zeitpunkt bekannten Themen auf das erste Halbjahr 2016 aufteilen lassen. __Wichtig__ ist die Tatsache, dass dieser Projektplan nicht abschliessend ist und somit das Projekt nicht Mitte 2016 abgeschlossen sein wird. Der Plan erstreckt sich nur über die erste Hälfte vom Jahr 2016, weil wir aufgrund des aktuellen Informationsstandes den weiteren Projektverlauf für das zweite Halbjahr 2016 aktuell noch nicht planen können. 
+Die Tabelle am Ende dieses Dokuments zeigt einen ungefähren Plan, wie sich die bis zu aktuellen Zeitpunkt bekannten Themen auf die Wochen 15 bis 35 von 2016 aufteilen lassen. __Wichtig__ ist die Tatsache, dass dieser Projektplan nicht abschliessend ist und somit das Projekt in Woche 36 von 2016 nicht abgeschlossen sein wird. 
 
-Ein wichtiger Termin in der Projektplanung von `ATDA-ASR` (siehe gelb markierte Kolonne im Diagramm) stellt der 18.3.2016 dar. An diesem Datum findet ein Treffen am runden Tisch mit allen Anbietern der Melkroboter statt. Dieses Treffen dient dazu, technische Fragen zu klären, welche die Umsetzung des Datentransfers wesentlich beeinflussen werden. Vor diesem Treffen ist somit eine konkrete Planung des gesamten Projektes nicht sinnvoll und möglich. 
+Anlässlich des Treffens mit den Melkanlagenanbietern am 18.3.2016 erfuhren wir, dass CRV Holland mit den Firmen DeLaval, Lelly und Fullwood bereits ein Service eines automatischen Tierdatenaustauschs betreibt. Zur Vermeidung von Doppelspurigkeiten und zur Minimierung des Aufwandes für die Melkanlagenanbieter, werden wir möglichst bald den Kontakt zu CRV Holland aufnehmen, damit wir Informationen zu deren Projekt bekommen können. Wichtige Fragen für uns sind, die Art und die Menge der ausgetauschten Daten und den Ablauf des Datenaustauschs. Bevor wir diese Informationen von CRV Holland nicht haben, macht es keinen grossen Sinn mit der Umsetzung zu beginnen.
 
-In der verbleibenden Zeit vor dem Treffen vom 18.3.2016, konzentrieren wir uns auf erste Abklärungen mit den Melkroboteranbieter, auf die Zusammenstellung möglicher Planungsvarianten diese Projektes (`ATDA-ASR`) und auf das Erstellen einer Testumgebung für die Datenübertragung mit einer ausgewählten Fernwartungslösung. Die Planung der Umsetzung der weiteren Projektthemen ist zu diesem Zeitpunkt noch sehr spekulativ, da die konkrete Umsetzung der Datenübertragung von den Ergebnissen des Treffens am 18.3.2016 abhängt. Aus diesem Grund werden im folgenden Plan auch die gelb markierten Themen als Alternativen parallel geführt.
+In der verbleibenden Zeit vor dem Informationsaustausch mit CRV Holland, konzentrieren wir uns auf weitere Abklärungen mit den Melkroboteranbieter und auf mögliche Umsetzungen für ein cloud-basiertes Speichersystem.
 
 Abgesehen von der Datenübertragung gibt es auch noch offene Fragen betreffend des Exports von Daten vom ISM, welche dann zu ARGUS übertragen werden können. Je nach Grösse der Datenmenge bestehen auch gewisse Abhängigkeiten zwischen dem Datenexport auf der Seite des ISM und der Art der Datenübertragung. Die aufgezeigten Möglichkeiten der Datenübertragung haben nicht alle die gleichen Kapazitäten betreffend der zu übertragenen Datenmengen. Ein Ziel der geplanten Testsysteme für die Datenübertragung ist die Abklärung solcher Kapazitätsfragen.
 
