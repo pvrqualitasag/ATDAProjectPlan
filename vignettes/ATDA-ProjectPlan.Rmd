@@ -3,6 +3,7 @@ output:
   pdf_document:
     includes:
       in_header: tex/ATDA-ProjectPlanHeader.tex
+    fig_caption: false  
   word_document: default
 ---
 
@@ -224,6 +225,12 @@ FB EDV, Qualitas AG                 &  AG ZDL, ASR  \\
 |  0.0.1.000  |  13.04.2016      |  PvR  |  Anpassungen nach Meeting mit Melkmaschinen   |
 |             |                  |       |  Hersteller                                   |
 +-------------+------------------+-------+-----------------------------------------------+
+|  0.0.1.100  |  24.05.2016      |  PvR  |  Anpassungen nach Gespräch mit Bert v. Land   |
++-------------+------------------+-------+-----------------------------------------------+
+|  0.0.1.101  |  25.05.2016      |  PvR  |  Schaubild für DE Projekt von CRV NL          |
++-------------+------------------+-------+-----------------------------------------------+
+|  0.0.1.102  |  25.05.2016      |  PvR  |  Anpassungen des Projektplans                 |
++-------------+------------------+-------+-----------------------------------------------+
 
 
 \pagebreak
@@ -282,7 +289,10 @@ FB EDV, Qualitas AG                 &  AG ZDL, ASR  \\
 +-------------+-------------------------------------------------------------------------+
 | CRV         |  Cooperative Cattle Improvement                                         |
 +-------------+-------------------------------------------------------------------------+
-
+| NDX         |  Nordic Data Exchange                                                   |
++-------------+-------------------------------------------------------------------------+
+| BvL         |  Bert van't Land                                                        |
++-------------+-------------------------------------------------------------------------+
 
 \pagebreak
 
@@ -365,10 +375,35 @@ objSecEnum$setUnNumSection(psUnNumSection =
 "## Andere Datenaustauschprojekte")
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### ICAR-ADE")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
 ```
 Bei ICAR läuft das Projekt "ICAR-ADE" mit dem Ziel eine Grundlage für den automatisierten Austausch von Tierdaten zu erstellen. Im Projekt "ICAR-ADE" wird eine eigenständige Lösung für den automatischen Austausch von Tierdaten angestrebt. Das heisst, es werden neue Datentypen und Schnittstellen aufgrund von existierenden Standards von W3C, UNCEFACT oder ISO definiert. Diese Definitionen dienen dann als Grundlage für eine unabhängige Umsetzung des Datenaustauschs. Der Vorteil dieser Lösung ist die Unabhängigkeit von bestehenden Lösungen und all ihren Einschränkungen. Ein offensichtlicher Nachteil ist die Redundanz mit anderen schon bestehenden Datenaustauschlösungen. Dieser Nachteil führt dazu, dass eine  Umsetzung des Projekts sehr zeitaufwändig ist. Da das Projekt "ICAR-ADE" immer noch in der technischen Planungsphase steckt, wird die Umsetzung einer konkreten Lösung noch eine Weile auf sich warten lassen.
 
-Das Projekt "ICAR-ADE" steckt noch in der Anfangsphase. Da der automatisierte Datenaustausch über das Projekt "ICAR-ADE" mittelfristig noch nicht zur Verfügung steht, hat sich die ASR dazu entschieden, ein eigenes Projekt auf nationaler Ebene, mit dem Ziel des automatisierten Tierdatenaustauschs (`ATDA-ASR`) zu realisieren. Im folgenden Text wird das Projekt `ATDA-ASR` genauer beschrieben werden.
+Das Projekt "ICAR-ADE" steckt noch in der Anfangsphase. Da der automatisierte Datenaustausch über das Projekt "ICAR-ADE" mittelfristig noch nicht zur Verfügung steht, hat sich die ASR dazu entschieden, ein eigenes Projekt auf nationaler Ebene, mit dem Ziel des automatisierten Tierdatenaustauschs (`ATDA-ASR`) zu realisieren. Ab Abschnitt 2 des vorliegenden Textes wird das Projekt `ATDA-ASR` genauer beschrieben werden.
+
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### CRV Holland")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Gemäss Informationen (Telefonkonferenz vom 19.05.2016) von Bert van't Land (CRV Holland) betreibt CRV ein nationales Datenaustauschprojekt mit allen Roboterbetrieben in Holland. In diesem Projekt sind rund 3000 Betriebe beteiligt. Diese Betriebe weisen eine durchschnittliche Bestandesgrösse von 100 Kühen auf und jede Kuh sucht die Melkanlage pro Tag im Mittel 2.5 mal auf. Somit werden in diesem Projekt rund 1 Mio Records pro Tag von allen Betrieben auf die Datenbank bei CSM übermittelt (siehe nachfolgendes Schaubild). Jeder Record enthält das Datum und die Zeit des Melkvorganges, die Milchmenge und eine Identifikation (ID) der Kuh. Die reine Menge an übermittelten Daten ohne Metadaten beträgt rund 30 MB pro Tag. Mit Metadaten wird die total Datenmenge sehr wahrscheinlich immer noch kleiner sein, als 100 MB pro Tag.
+
+Die technische Umsetzung des Datenaustauschs in Holland wurde von CRV an ein Informatikunternehmen names CSM ausgelagert. Dieses Unternehmen betreibt die Datenbank (siehe Schaubild) und hat auch PlugIns für die ISM der verschiedenen Melkanlagenanbietern geschrieben. Diese PlugIns werden auf den Betrieben installiert und übermitteln die Daten auf die zentrale Datenbank. CRV Holland hat Zugriff auf die Milchmengendaten in der zentralen Datenbank bei CSM.
+
+![Schaubild DE CRV NL](Schaubild_DE_CRV_NL.pdf)
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"### NDX Skandinavien")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+`NDX` steht für Nordic Data Exchange. Dies soll ein Projekt sein, welches den Datenaustausch in den skandinavischen Ländern automatisiert. Von Seiten der Hersteller sind Lely und DeLaval beteiligt. 
 
 
 \vspace{1ex}
@@ -472,7 +507,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Für dieses Projekt `ATDA-ASR` sind vorerst drei Arten des Datentransfers vorstellbar. Nach dem Treffen mit den Herstellern der Melkanlagen ist klar, dass für die Melkanlagenanbieter nur eine Cloud-basierte Datenübertragung (Variante 3) in Frage kommt. Die Details zur Umsetzung einer solchen Datenübertragung sind noch unklar. Da offenbar in Holland die Firma CRV zusammen mit den Anbietern Lelly, DeLaval und Fullwood schon ein Service zum automatischen Tierdatenaustausch betreibt, werden wir CRV für einen Informationsaustausch kontaktieren.
+Für dieses Projekt `ATDA-ASR` sind vorerst drei Arten des Datentransfers vorstellbar. Nach dem Treffen mit den Herstellern der Melkanlagen ist klar, dass für die Melkanlagenanbieter nur eine Cloud-basierte Datenübertragung (Variante 3) in Frage kommt. Die Details zur Umsetzung einer solchen Datenübertragung sind noch unklar. Da  CRV-Holland zusammen mit den Anbietern Lelly, DeLaval und Fullwood schon ein Service zum automatischen Tierdatenaustausch betreibt, haben wir mit Bert van't Land von CRV Kontakt aufgenommen. Die Informationen zu diesem Projekt sind in den Abschnitten 1.3.2 und 5beschrieben. 
 
 Der Vollständigkeit halber und zu Dokumentationszwecken werden hier trotzdem noch alle drei Varianten des Datenaustauschs beschrieben im Wissen, dass die ersten beiden Varianten höchstwahrscheinlich nicht umgesetzt werden können.
 
@@ -584,11 +619,14 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die Tabelle am Ende dieses Dokuments zeigt einen ungefähren Plan, wie sich die bis zu aktuellen Zeitpunkt bekannten Themen auf die Wochen 15 bis 35 von 2016 aufteilen lassen. __Wichtig__ ist die Tatsache, dass dieser Projektplan nicht abschliessend ist und somit das Projekt in Woche 36 von 2016 nicht abgeschlossen sein wird. 
+Die Tabelle am Ende dieses Dokuments zeigt einen ungefähren Plan, wie sich die bis zu aktuellen Zeitpunkt bekannten Themen auf die Wochen 20 bis 40 von 2016 aufteilen lassen. __Wichtig__ ist die Tatsache, dass dieser Projektplan nicht abschliessend ist und somit das Projekt in Woche 40 von 2016 nicht abgeschlossen sein wird. 
 
-Anlässlich des Treffens mit den Melkanlagenanbietern am 18.3.2016 erfuhren wir, dass CRV Holland mit den Firmen DeLaval, Lelly und Fullwood bereits ein Service eines automatischen Tierdatenaustauschs betreibt. Zur Vermeidung von Doppelspurigkeiten und zur Minimierung des Aufwandes für die Melkanlagenanbieter, werden wir möglichst bald den Kontakt zu CRV Holland aufnehmen, damit wir Informationen zu deren Projekt bekommen können. Wichtige Fragen für uns sind, die Art und die Menge der ausgetauschten Daten und den Ablauf des Datenaustauschs. Bevor wir diese Informationen von CRV Holland nicht haben, macht es keinen grossen Sinn mit der Umsetzung zu beginnen.
+Anlässlich des Treffens mit den Melkanlagenanbietern am 18.3.2016 erfuhren wir, dass CRV Holland mit den Firmen DeLaval, Lelly und Fullwood bereits ein Service eines automatischen Tierdatenaustauschs betreibt. Zur Vermeidung von Doppelspurigkeiten und zur Minimierung des Aufwandes für die Melkanlagenanbieter, haben wir Kontakt zu Bert van 't Land (BvL) von CRV Holland aufgenommen (Telefonkonferenz am 19.05.2016, siehe dazu Abschnitt 1.3.2). Zusammenfassend werden im Datenaustauschprojekt in Holland von den rund 3000 Betrieben mit Robotermelkanlagen täglich rund 1 Mio Milchmengenrecords von den Betrieben auf die zentrale Datenbank übertragen. Dies entspricht in etwas einer Datenmenge von 100MB pro Tag. Das Betreiben der zentralen Datenbank sowie die Programmierung von ISM-spezifischen PlugIns wurde von CRV zu CSM - einer externen Informatikfirma - ausgelagert. Die PlugIns werden auf den ISM jedes Betriebs installiert. Dort steuern sie die Übertragung der Daten von den Betrieben zur zentralen Datenbank. 
 
-In der verbleibenden Zeit vor dem Informationsaustausch mit CRV Holland, konzentrieren wir uns auf weitere Abklärungen mit den Melkroboteranbieter und auf mögliche Umsetzungen für ein cloud-basiertes Speichersystem.
+Bei der Beschreibung des Datenexports in diesem Dokument (Abschnitt 3.1.1) liegt die Verantwortung des Datenexports bei den Melkanlagenanbietern. Im Gegensatz dazu, wird im Datenübertragungs-Projekt von CRV-Holland der Datenexport und die Übertragung von einem durch CSM geschriebenes PlugIn übernommen. Das PlugIn, welches die Datenübertragung steuert, muss spezifisch für den Anbieter des ISM sein. Das heisst es braucht für jeden ISM-Anbieter ein anderes PlugIn. Diese Anforderung der spezifischen PlugIns würde sich auch für unser Projekt `ATDA-ASR` ergeben, da die in der Schweiz eingesetzten ISMs unterschiedliche Technologien verwenden. Die Tatsache, dass unterschiedliche ISM-Anbieter unterschiedliche Technologien einsetzen, wird durch die Ergebnisse unserer Befragung der Melkanlagenanbieter bestätigt. 
+BvL hat sich bereit erklärt, die Ansprechsperson für Fragen betreffend des holländischen Datenaustauschprojekts zu sein. Er klärt CRV-intern ab, ob und in welchem Umfang eine Zusammenarbeit zwischen diesem Projekt `ATDA-ASR` und CRV-Holland möglich ist.
+
+Weiterhin konzentrieren wir uns auf weitere Abklärungen mit den Melkroboteranbieter und auf mögliche Umsetzungen für ein cloud-basiertes Speichersystem.
 
 Abgesehen von der Datenübertragung gibt es auch noch offene Fragen betreffend des Exports von Daten vom ISM, welche dann zu ARGUS übertragen werden können. Je nach Grösse der Datenmenge bestehen auch gewisse Abhängigkeiten zwischen dem Datenexport auf der Seite des ISM und der Art der Datenübertragung. Die aufgezeigten Möglichkeiten der Datenübertragung haben nicht alle die gleichen Kapazitäten betreffend der zu übertragenen Datenmengen. Ein Ziel der geplanten Testsysteme für die Datenübertragung ist die Abklärung solcher Kapazitätsfragen.
 
