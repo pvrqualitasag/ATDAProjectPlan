@@ -1,0 +1,105 @@
+---
+output:
+  pdf_document:
+    includes:
+      in_header: tex/header.tex
+    fig_caption: false
+  word_document: default
+---
+
+```{r DocumentSetup, echo=FALSE, results='hide', include=FALSE}
+### # specify knitr options
+knitr::opts_chunk$set(echo = FALSE, results = 'asis')
+
+### # initialize section counter
+robjSecEnum <- rqudocuhelper::SectionEnumerator$new()
+```
+
+![Qualitas Logo](png/QualitasLogo.png)
+
+\fcolorbox{black}{white}{
+	\parbox[t]{1.0\linewidth}{
+		\centering \fontsize{12pt}{20pt}\selectfont % 
+		\vspace*{0.5cm} % 
+
+		\hfill Zusammenfassung/Übersicht
+
+		\vspace*{0.5cm} 
+	}
+}
+
+\vspace*{0.5cm}
+
+\fcolorbox{black}{white}{
+	\parbox[t]{1.0\linewidth}{
+		\centering \fontsize{25pt}{40pt}\selectfont %
+		\vspace*{0.7cm}
+    Übersicht zu Daten    \\
+    von DeLaval    \\
+    ATDA-ASR    \\
+
+		\vspace*{0.7cm} % Space between the end of the title and the bottom of the grey box
+	}
+}
+
+\vspace*{1cm}
+
+\begin{center}
+\includegraphics[width=0.5\textwidth]{png/Pedigree.png}
+\end{center}
+
+\vspace{5ex}
+{\centering \small
+\hfill
+\begin{tabular}{l}
+Peter von Rohr                      \\
+FB EDV, Qualitas AG                 \\
+Chamerstrasse 56, CH-6300 Zug       \\
+\verb+http://www.qualitasag.ch+     \\
+\verb+peter.vonrohr@qualitasag.ch+  
+\end{tabular}
+}
+
+\pagebreak
+
+\tableofcontents
+
+\pagebreak
+
+```{r Setup, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE, results = 'asis')
+```
+
+
+```{r DocuStatusTable}
+r6objDocStat <- rqudocuhelper::R6ClassDocuStatus$new()
+r6objDocStat$setProject(psProject = "ATDA-ASR")
+r6objDocStat$setVersion(psVersion = "0.0.901")
+r6objDocStat$setStatus(psStatus = "Erstellung")
+
+r6objDocStat$include_doc_stat()
+```
+
+\pagebreak
+
+# Abkürzungen
+
+```{r AbrTable}
+robjAbrTable <- rqudocuhelper::refObjTable$new()
+pvecTableHeader <- c("Abkürzung",
+                     "Bedeutung")
+robjAbrTable$setTableHeader(psTableHeader = pvecTableHeader)
+robjAbrTable$addRow(plTableRow = list(Abr = "Abk",
+                                      What = "Abkürzung"))
+#robjAbrTable$addRow(plTableRow = list(Abr = "",
+#                                      What = ""))
+robjAbrTable$to_pander_pandoc(psStyle = "grid",
+                              psJustify = rep("left", length(pvecTableHeader)),
+                              pnSplitCells = c(20,60))
+```
+
+\pagebreak
+
+
+# Erklärung
+Dieses Dokument gibt eine Übersicht zu den Daten, welche in den Unterlagen von DeLaval beschrieben wurden.
