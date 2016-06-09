@@ -34,7 +34,7 @@ robjSecEnum <- rqudocuhelper::SectionEnumerator$new()
 	\parbox[t]{1.0\linewidth}{
 		\centering \fontsize{25pt}{40pt}\selectfont %
 		\vspace*{0.7cm}
-    Übersicht zu Daten    \\
+    Übersicht der Daten    \\
     von DeLaval    \\
     ATDA-ASR    \\
 
@@ -74,8 +74,16 @@ knitr::opts_chunk$set(echo = FALSE, results = 'asis')
 ```{r DocuStatusTable}
 r6objDocStat <- rqudocuhelper::R6ClassDocuStatus$new()
 r6objDocStat$setProject(psProject = "ATDA-ASR")
-r6objDocStat$setVersion(psVersion = "0.0.901")
-r6objDocStat$setStatus(psStatus = "Erstellung")
+# r6objDocStat$setVersion(psVersion = "0.0.901")
+# r6objDocStat$setStatus(psStatus = "Erstellung")
+# r6objDocStat$setVersion(psVersion = "0.0.902")
+# r6objDocStat$setStatus(psStatus = "Terminologie")
+# r6objDocStat$setVersion(psVersion = "0.0.903")
+# r6objDocStat$setStatus(psStatus = "DeLaval DataDictionary")
+# r6objDocStat$setVersion(psVersion = "0.0.904")
+# r6objDocStat$setStatus(psStatus = "Übertragungshäufigkeiten der Daten")
+r6objDocStat$setVersion(psVersion = "0.0.905")
+r6objDocStat$setStatus(psStatus = "Anhang mit einem UML-Diagramm für einen Event")
 
 r6objDocStat$include_doc_stat()
 ```
@@ -89,8 +97,24 @@ robjAbrTable <- rqudocuhelper::refObjTable$new()
 pvecTableHeader <- c("Abkürzung",
                      "Bedeutung")
 robjAbrTable$setTableHeader(psTableHeader = pvecTableHeader)
-robjAbrTable$addRow(plTableRow = list(Abr = "Abk",
-                                      What = "Abkürzung"))
+robjAbrTable$addRow(plTableRow = list(Abr  = "AIL",
+                                      What = "AlproIso Link"))
+robjAbrTable$addRow(plTableRow = list(Abr  = "ATDA-ASR",
+                                      What = "ASR Projekt zum Automatisierten Tierdatenaustausch"))
+robjAbrTable$addRow(plTableRow = list(Abr = "ISM",
+                                      What = "Informationssystem der Melkanlage"))
+robjAbrTable$addRow(plTableRow = list(Abr  = "DD",
+                                      What = "DataDictionary"))
+robjAbrTable$addRow(plTableRow = list(Abr = "ADIS",
+                                     What = "Agricultural Data Interchange Syntax"))
+robjAbrTable$addRow(plTableRow = list(Abr = "ADED",
+                                     What = "Agricultural Data Elements Dictionary"))
+robjAbrTable$addRow(plTableRow = list(Abr = "ISO",
+                                     What = "International Organization for Standardization"))
+robjAbrTable$addRow(plTableRow = list(Abr = "dat",
+                                      What = "daily transfer (tägliche Übertragung)"))
+robjAbrTable$addRow(plTableRow = list(Abr = "ooc",
+                                      What = "on occurence (Übertragung beim Auftreten)"))
 #robjAbrTable$addRow(plTableRow = list(Abr = "",
 #                                      What = ""))
 robjAbrTable$to_pander_pandoc(psStyle = "grid",
@@ -102,4 +126,194 @@ robjAbrTable$to_pander_pandoc(psStyle = "grid",
 
 
 # Erklärung
-Dieses Dokument gibt eine Übersicht zu den Daten, welche in den Unterlagen von DeLaval beschrieben wurden.
+Dieses Dokument gibt eine Zusammenfassung über das Material, welches von DeLaval zur Verfügung gestellt wurde. Die Datenquellen sind im Text erwähnt. Zusätzliche Kommentare sind in geschweiften Klammern {}. Das Material besteht im Wesentlichen aus zwei Bestandteilen:
+
+1. dem DeLaval DataDictionary für Alpro Version 6.80 (Alpro6_DD.xls) und 
+2. dem AlproIso Link User Guide (Alpro66_info.doc) 
+
+Im folgenden werden die Inhalte dieser Dokumente zusammengefasst.
+
+
+# Alpro66_info
+Im Dokument `Alpro66_info.doc` beschreibt DeLaval des Systems AlproIso link (AIL). Dieses System wird im ursprünglichen Dokument als `Link` bezeichnet, was wahrscheinlich mit einer Implementation eines Interfaces gleichgesetzt werden kann.
+
+## Einführung
+Der Datenaustausch in AIL basiert auf dem ISO 11787 Standard. Die Dokumentation von AIL soll externen Entwicklern helfen, wie sie ihre Software mit ALPRO verbinden können unter der Verwendung von AIL. 
+
+
+## Terminologie
+- __Alpro System__: Ausrüstung, Hard- und Software für die Kontrolle der Herdenereignisse (Melken, Füttern, etc). Die Verwendung von AIL setzt mindestens das APW Programmpaket voraus.
+
+- __ALPRO__: Prozessor der Anlage, wird als "black box" betrachtet
+
+- __APW__: Programmpaket des DeLaval's Management Programm. Besteht aus mehreren Progammen und operiert auf zwei Datenbanken, einer Kopie der ALPRO Datenbank und der erweiterten Datenbank. Die Installation von APW ist erforderlich die Verwendung von AIL.
+
+- __AlproWindow.exe__: ist eines der in APW integrierten Programme und ist das Herdenmanagement Programm von DeLaval. Es enthält einen Browser für die Datenbank.
+
+- __AlproIso link__: verwendet für den Datenaustausch zwischen APW und einem externen Programm. Der Link ist ein Teil des Moduls AlproSync.exe und dies ist die einzige Möglichkeit auf die Datenbank zuzugreifen.
+
+- __AlproSync.exe__: ist Teil von APW und ist verantwortlich für die Kommunikation zwischen dem Prozessor und der Datenbank.
+
+- __ISO32.exe__: ist Teil von APW und ist das Interface-Programm zwischen 3-party PC-Programmen und AIL. Alle 3-party Programme haben Zugriff auf die Datenbank durch den Aufruf dieses Programms.
+
+- __ISOSync.exe__: ist Teil von APW und ein Teil des Interface-Programms
+
+- __3-party Programm__: jedes Programm, welches nicht von DeLaval kommt und AIL für den Datenaustausch mit ALPRO verwendet.
+
+- __ISO 11787__: ISO Standard (ADIS) auf welchem der Datenaustausch basiert
+
+- __ISO 11788__: ISO Standard Data Dictionary (ADED), welcher den ISO Data Dictionary beschreibt
+
+- __ADIS__: Agricultural Data Interchange Syntax
+
+- __ADED__: Agricultural Data Elements Dictionary beschreibt die verschiedenen Datenelemente, welche mit ADIS (ISO 11787) ausgetauscht werden. DeLaval hat eine eigene ADED Dictionary Version
+
+- __Alpro6_dd__: DeLaval Data Dictionary basierend auf dem ADED Standard
+
+- __DD-nummer__: Data Dictionary Nummer, welche jedes Datenelement aus dem ADED identifiziert
+
+
+{ Die hier beschriebenen und oben aufgelisteten Programme werden verwendet, wenn die Daten mit einem externen Programm exportiert werden sollen. Das Ziel im Projekt `ATDA-ASR` ist immer noch, dass der Export von den Herstellern selber übernommen wird und dass wir die exportierten Daten erhalten. }
+
+
+# Alpro6_DD
+Das Excel Workbook `Alpro6_DD.xls` enthält den von DeLaval erstellten und verwendeten DD. Dieser DD basiert auf dem ADED, welcher in ISO 11788 spezifiziert wurde. Die Elemente in `Alpro6_DD` werden in 16 sogenannte Events unterteilt. Die Events und ihre Bedeutung sind in der folgenden Tabelle dargestellt.
+
+```{r EventTable}
+dfEventTable <- data.frame(Nummer    = c(390001,
+                                         390002,
+                                         390006,
+                                         390010,
+                                         390011,
+                                         390012,
+                                         390013,
+                                         390020,
+                                         390025,
+                                         390030,
+                                         390035,
+                                         390036,
+                                         390040,
+                                         390045,
+                                         390050,
+                                         390055),
+                           Event     = c("New cow",
+                                         "General cow",
+                                         "Breeding items",
+                                         "Milking data",
+                                         "Stall place Milking",
+                                         "Status code Milking",
+                                         "Milking performance",
+                                         "Feeding data",
+                                         "Group data",
+                                         "Activity data",
+                                         "Ailment code",
+                                         "Ailment name",
+                                         "Parlour Items",
+                                         "Sort Gate Items",
+                                         "System Items",
+                                         "AlproSync"),
+                           Bedeutung = c("Kuh, welche Status ändert oder neu in Herde kommt",
+                                         "Allgemeine Informationen zu einer Kuh",
+                                         "Status einer Kuh",
+                                         "Milchleistungsdaten",
+                                         "Gerät oder Platz wo Kuh gemolken wurde",
+                                         "Codes  für Melkvorgang",
+                                         "Merkmale der Melkbarkeit",
+                                         "Fütterungsdaten",
+                                         "Fütterungs- und Melkgruppen",
+                                         "Verhaltens- und Aktivitätsdaten",
+                                         "Krankheits-Code",
+                                         "Krankheits-Name",
+                                         "Daten zum Melkstand",
+                                         "Daten zu Gruppenzugehörigkeit oder Sortierung von Kühen",
+                                         "System-Daten",
+                                         "Update-Zeitpunkt der AlproWindows Datenbank"),
+                           Datentransfer = c("x",
+                                             "x",
+                                             "x",
+                                             "x",
+                                             "x",
+                                             "x",
+                                             "x",
+                                             "x",
+                                             "",
+                                             "x",
+                                             "x",
+                                             "x",
+                                             "",
+                                             "",
+                                             "x",
+                                             "x"))
+knitr::kable(dfEventTable)
+```
+
+
+# Datenübertragung
+In der Kolonne mit der Überschrift `Datentransfer` sind provisorisch alle Zeilen mit `x` gekennzeichnet, welche vom Datentransfer in `ATDA-ASR` berücksichtigt werden. Es sind alle Daten, ausser jene, welche nur Informationen zum Melkstand oder zur Gruppeneinteilung aufweisen. In den System-Daten ist die Identifiaktion des Betriebs drin, welche für uns wichtig ist. 
+
+\pagebreak
+
+# Häufigkeit der Datenübertragung
+Die Häufigkeit mit welcher die oben für den Datentransfer markierten Daten übertragen werden ist nicht für alle Datentypen (Events) gleich. Grundsätzlich müssen Daten nur übertragen werden, falls diese neu auftreten und aufgezeichnet werden oder falls sich die Daten ändern. 
+
+Die maximale Übertragungshäufigkeit wird auf einmal pro Tag festgelegt. Für die Kühe in Laktation werden Milchleistungs-, Melkbarkeits-, Fütterungs- und Verhaltensdaten laufend erhoben und somit täglich vom ISM zur zentralen Datenbank übertragen. Für nichtlaktierende Kühe werden diese Daten wahrscheinlich nicht erhoben und deshalb werden für diese Kühe auch keine Daten übertragen. Alle Daten, welche nicht täglich erhoben werden,  werden beim Auftreten des entsprechenden Ereignisses z. Bsp. einer Krankheit oder der Verabreichung eines Medikaments mit der täglichen Datenübertragung mitgeschickt. Das Ändern von Daten wird nur unter Einhaltung von Konsistenzbedingungen erlaubt.
+
+Die folgende Tabelle gibt eine grobe Übersicht über die Übertragungshäufigkeit der verschiedenen Daten-Events.
+
+```{r TransferFreqDataEvent}
+dfTransFreq <- data.frame(Nummer = c(390001,                  
+                                     390002, 
+                                     390006, 
+                                     390010, 
+                                     390011, 
+                                     390012, 
+                                     390013, 
+                                     390020, 
+                                     390030, 
+                                     390035, 
+                                     390036, 
+                                     390050, 
+                                     390055),
+                          Event  = c("New cow", 
+                                     "General cow", 
+                                     "Breeding items", 
+                                     "Milking data",
+                                     "Stall place Milking",
+                                     "Status code Milking",
+                                     "Milking performance",
+                                     "Feeding data",
+                                     "Activity data",
+                                     "Ailment code",
+                                     "Ailment name",
+                                     "System Items",
+                                     "AlproSync"),
+                          TrfFreq = c("ooc",
+                                      "ooc",
+                                      "ooc",
+                                      "dat",
+                                      "dat",
+                                      "ooc",
+                                      "dat",
+                                      "dat",
+                                      "dat",
+                                      "ooc",
+                                      "ooc",
+                                      "ooc",
+                                      "ooc"))
+names(dfTransFreq) <- c("Nummer", "Event", "Häufigkeit")
+knitr::kable(dfTransFreq)
+```
+
+In der Kolonne "Häufigkeit" steht "dat" für tägliche Übertragung und "ooc" für die Übertragung beim Auftreten des Datenereignisses.
+
+\pagebreak
+
+# Anhang
+## UML Diagramme der Events und Tabellen
+Das folgende UML-Diagramm zeigt die abhängigen Tabellen vom Event `390001 New Cow`
+
+```{r EventNewCowUML}
+DiagrammeR::grViz(diagram = "dot/Event_390001_New_Cow.dot", width = 200, height = 400)
+```
+
+
