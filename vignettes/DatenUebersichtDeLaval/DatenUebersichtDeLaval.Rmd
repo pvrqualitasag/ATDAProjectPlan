@@ -1,9 +1,9 @@
 ---
 output:
   pdf_document:
+    fig_caption: no
     includes:
       in_header: tex/header.tex
-    fig_caption: false
   word_document: default
 ---
 
@@ -82,9 +82,12 @@ r6objDocStat$setProject(psProject = "ATDA-ASR")
 # r6objDocStat$setStatus(psStatus = "DeLaval DataDictionary")
 # r6objDocStat$setVersion(psVersion = "0.0.904")
 # r6objDocStat$setStatus(psStatus = "Übertragungshäufigkeiten der Daten")
-r6objDocStat$setVersion(psVersion = "0.0.905")
-r6objDocStat$setStatus(psStatus = "Anhang mit einem UML-Diagramm für einen Event")
-
+# r6objDocStat$setVersion(psVersion = "0.0.905")
+# r6objDocStat$setStatus(psStatus = "Anhang mit einem UML-Diagramm für einen Event")
+# r6objDocStat$setVersion(psVersion = "0.0.906")
+# r6objDocStat$setStatus(psStatus = "UML-Diagramm für Event Milking data")
+r6objDocStat$setVersion(psVersion = "0.0.907")
+r6objDocStat$setStatus(psStatus = "Entwurf JSON Format für Milking Data")
 r6objDocStat$include_doc_stat()
 ```
 
@@ -115,6 +118,10 @@ robjAbrTable$addRow(plTableRow = list(Abr = "dat",
                                       What = "daily transfer (tägliche Übertragung)"))
 robjAbrTable$addRow(plTableRow = list(Abr = "ooc",
                                       What = "on occurence (Übertragung beim Auftreten)"))
+robjAbrTable$addRow(plTableRow = list(Abr = "JSON",
+                                      What = "JavaScript Object Notation"))
+robjAbrTable$addRow(plTableRow = list(Abr = "WADL",
+                                      What = "Web Application Description Language"))
 #robjAbrTable$addRow(plTableRow = list(Abr = "",
 #                                      What = ""))
 robjAbrTable$to_pander_pandoc(psStyle = "grid",
@@ -232,8 +239,8 @@ dfEventTable <- data.frame(Nummer    = c(390001,
                                              "x",
                                              "x",
                                              "x",
-                                             "x",
-                                             "x",
+                                             "",
+                                             "",
                                              "x",
                                              "x",
                                              "",
@@ -306,14 +313,28 @@ knitr::kable(dfTransFreq)
 
 In der Kolonne "Häufigkeit" steht "dat" für tägliche Übertragung und "ooc" für die Übertragung beim Auftreten des Datenereignisses.
 
+
+# Datenformat für Übertragung
+Bei der Übertragung der Daten vom ISM zur zentralen Datenbank spielen die Formate eine wichtige Rolle. Gemäss unserer Befragung der Anbieter von Melkanlage setzen diese sehr verschiedene Datenformate ein. Diese müssen auf dem Web zur zentralen Datenbank in ein gemeinsames Format konvertiert werden. Als gemeinsames Format soll JSON verwendet werden. In JSON werden die Daten in assoziative Schlüssel/Werte-Paare oder in geordneten Records analog zu Arrays organisiert. Das Format erlaubt einen rekursiven Aufbau, d.h. Werte können wieder assoziative Schlüssel/Werte-Paare oder geordnete Records sein. Somit können recht komplexe Datenkonstrukte aufgebaut werden. Die JSON Records werden von JAX-RS Resourcen erzeugt. Die Definition dieser Resourcen wird in der sogenannten `Web Application Description Language` (WADL) spezifiziert.
+
+Im folgenden Abschnitt sollen Resourcen für die Daten im `Event 390010 Milking Data` aus `Alpro6_DD` in der WADL dargestellt werden. Die Beschreibung einer WADL für eine bestimmte Resource wird am einfachsten mithilfe des Jersey-Frameworks erzeugt. Für eine Resource mit `context root` `http://localhost:9998`, dann bekommen wir die entsprechende Beschreibung in WADL über `http://localhost:9998/application.wadl`. Optional kann der Parameter `detail=true` angefügt werden, damit alle verfügbaren Resourcen in der WADL Beschreibung angezeigt werden.
+
+
 \pagebreak
 
 # Anhang
 ## UML Diagramme der Events und Tabellen
-Das folgende UML-Diagramm zeigt die abhängigen Tabellen vom Event `390001 New Cow`
+### Event `390001 New Cow`
 
 ```{r EventNewCowUML}
-DiagrammeR::grViz(diagram = "dot/Event_390001_New_Cow.dot", width = 200, height = 400)
+DiagrammeR::grViz(diagram = "dot/Event_390001_New_Cow.dot", width = 600, height = 600)
 ```
 
+\pagebreak
+
+### Event `390010 Milking Data`
+
+```{r EventMilkingDataUML}
+DiagrammeR::grViz(diagram = "dot/Event_390010_Milking_Data.dot", width = 2000, height = 2000)
+```
 

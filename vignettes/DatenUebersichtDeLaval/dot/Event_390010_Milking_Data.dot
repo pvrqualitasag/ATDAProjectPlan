@@ -1,0 +1,241 @@
+digraph G {
+        fontname = "Bitstream Vera Sans"
+        fontsize = 8
+
+        node [
+                fontname = "Bitstream Vera Sans"
+                fontsize = 8
+                shape = "record"
+                style = filled
+        ]
+
+        edge [
+                fontname = "Bitstream Vera Sans"
+                fontsize = 8
+        ]
+
+        Milk [
+                label = "{Milk|
+                          303918 ACTUAL305 : Num\l
+                          304169 DAYS_IN_MILK : Num\l
+                          300065 DONT_MILK_DELAY : Num\l
+                          300066 DONT_MILK_DURATION : Num\l
+                          300056 DONT_MILK_STS_1 : Flag\l
+                          300057 DONT_MILK_STS_2 : Flag\l
+                          300058 DONT_MILK_STS_3 : Flag\l
+                          300059 DONT_MILK_STS_4 : Flag\l
+                          300077 DUMP_MILK_DELAY : Num\l
+                          300078 DUMP_MILK_DURATION : Num\l
+                          300068 DUMP_MILK_STS_1 : Flag\l
+                          300069 DUMP_MILK_STS_2 : Flag\l
+                          300070 DUMP_MILK_STS_3 : Flag\l
+                          300071 DUMP_MILK_STS_4 : Flag\l
+                          300119 DURATION_TODAY_1 : Num\l
+                          300120 DURATION_TODAY_2 : Num\l
+                          300121 DURATION_TODAY_3 : Num\l
+                          300122 DURATION_TODAY_4 : Num\l
+                          300123 DURATION_YESTERD_1 : Num\l
+                          300124 DURATION_YESTERD_2 : Num\l
+                          300125 DURATION_YESTERD_3 : Num\l
+                          300126 DURATION_YESTERD_4 : Num\l
+                          300182 FAT : Num\l
+                          303928 FAT_DATE : Date\l
+                          350604 FAT_RECHOUR : Num\l
+                          300036 LACTATIONS : Num\l
+                          303936 LACTOSE : Num\l
+                          303937 LACTOSE_DATE : Date\l
+                          303919 LATEST_MILK_MPC_ADD : Num\l
+                          304045 LATEST_MILKING : Num\l
+                          304000 LATEST_YIELD : Num\l
+                          300127 MILK_AVER_7D : Num\l
+                          300181 MILK_LAST_LACTATION : Num\l
+                          300169 MILK_MONTHLY_1 : Num\l
+                          300178 MILK_MONTHLY_10 : Num\l
+                          300179 MILK_MONTHLY_11 : Num\l
+                          300180 MILK_MONTHLY_12 : Num\l
+                          300170 MILK_MONTHLY_2 : Num\l
+                          300171 MILK_MONTHLY_3 : Num\l
+                          300172 MILK_MONTHLY_4 : Num\l
+                          300173 MILK_MONTHLY_5 : Num\l
+                          300174 MILK_MONTHLY_6 : Num\l
+                          300175 MILK_MONTHLY_7 : Num\l
+                          300176 MILK_MONTHLY_8 : Num\l
+                          300177 MILK_MONTHLY_9 : Num\l
+                          300358 MILK_MPC_ADD_TODAY1 : Num\l
+                          300359 MILK_MPC_ADD_TODAY2 : Num\l
+                          300360 MILK_MPC_ADD_TODAY3 : Num\l
+                          300361 MILK_MPC_ADD_TODAY4 : Num\l
+                          300362 MILK_MPC_ADD_YEST1 : Num\l
+                          300363 MILK_MPC_ADD_YEST2 : Num\l
+                          300364 MILK_MPC_ADD_YEST3 : Num\l
+                          300365 MILK_MPC_ADD_YEST4 : Num\l
+                          300278 MILK_THIS_LACTATION : Num\l
+                          300154 MILK_THIS_WEEK_1 : Num\l
+                          300157 MILK_THIS_WEEK_2 : Num\l
+                          300160 MILK_THIS_WEEK_3 : Num\l
+                          300163 MILK_THIS_WEEK_4 : Num\l
+                          300166 MILK_THIS_WEEK_5 : Num\l
+                          300130 MILK_TODAY_1 : Num\l
+                          300133 MILK_TODAY_2 : Num\l
+                          300136 MILK_TODAY_3 : Num\l
+                          300139 MILK_TODAY_4 : Num\l
+                          300366 MILK_TODAY_TIME1 : Num\l
+                          300367 MILK_TODAY_TIME2 : Num\l
+                          300368 MILK_TODAY_TIME3 : Num\l
+                          300369 MILK_TODAY_TIME4 : Num\l
+                          300370 MILK_YESTERD_TIME1 : Num\l
+                          300371 MILK_YESTERD_TIME2 : Num\l
+                          300372 MILK_YESTERD_TIME3 : Num\l
+                          300373 MILK_YESTERD_TIME4 : Num\l
+                          300142 MILK_YESTERDAY_1 : Num\l
+                          300145 MILK_YESTERDAY_2 : Num\l
+                          300148 MILK_YESTERDAY_3 : Num\l
+                          300151 MILK_YESTERDAY_4 : Num\l
+                          300103 PEAKFLOW_TODAY_1 : Num\l
+                          300104 PEAKFLOW_TODAY_2 : Num\l
+                          300105 PEAKFLOW_TODAY_3 : Num\l
+                          300106 PEAKFLOW_TODAY_4 : Num\l
+                          300183 PROTEIN : Num\l
+                          303929 PROTEIN_DATE : Date\l
+                          350704 PROTEIN_RECHOUR : Num\l
+                          300047 REMIND_CODE_1 : Flag\l
+                          300048 REMIND_CODE_2 : Flag\l
+                          300049 REMIND_CODE_3 : Flag\l
+                          300050 REMIND_CODE_4 : Flag\l
+                          303920 SCC_DATE : Date\l
+                          350505 SCC_RECHOUR : Num\l
+                          303913 SCC_VALUE : Num\l
+                          300101 SEPARATE_DELAY : Num\l
+                          300102 SEPARATE_DURATION : Num\l
+                          300096 SEPARATE_ONCE : Flag\l
+                          300092 SEPARATE_STS_1 : Flag\l
+                          300093 SEPARATE_STS_2 : Flag\l
+                          300094 SEPARATE_STS_3 : Flag\l
+                          300095 SEPARATE_STS_4 : Flag\l
+                          303916 TESTDATE : Date\l
+                          304035 TOTAL_YIELD_TODAY : Num\l
+                          304036 TOTAL_YIELD_YESTERD : Num\l
+                          300089 TREAT_COW_DELAY : Num\l
+                          300090 TREAT_COW_DURATION : Num\l
+                          300080 TREAT_COW_STS_1 : Flag\l
+                          300081 TREAT_COW_STS_2 : Flag\l
+                          300082 TREAT_COW_STS_3 : Flag\l
+                          300083 TREAT_COW_STS_4 : Flag\l
+                          303934 UREA : Num\l
+                          303935 UREA_DATE : Date\l
+                          350879 UREA_RECHOUR : Num\l
+                          | \l}"
+        ]
+
+        Cow [   fillcolor = red
+                label = "{Cow |
+                300312 ACT_HIGH_DAY_0 : Flag\l
+                300313 ACT_HIGH_DAY_1 : Flag\l
+                300282 ACTTAG_NO : Num\l
+                304014 AGE : Num\l
+                300040 AILMENT_CODE_1 : Num\l
+                300042 AILMENT_CODE_2 : Num\l
+                300044 AILMENT_CODE_3 : Num\l
+                300041 AILMENT_DATE_1 : Date\l
+                300043 AILMENT_DATE_2 : Date\l
+                300045 AILMENT_DATE_3 : Date\l
+                300002 B_TRANSPONDER_NO : Num\l
+                303914 BODYSCORE : Num\l
+                303922 BODYSCORE_DATE : Date\l
+                303915 BODYWEIGHT : Num\l
+                303921 BODYWEIGHT_DATE : Date\l
+                303923 BREED : Num\l
+                300339 CALF_1_ID : Num\l
+                300342 CALF_1_SEX : Code\l
+                300340 CALF_2_ID : Num\l
+                300343 CALF_2_SEX : Code\l
+                351153 CARRIER : Text\l
+                312023 CHANGE_COWNO : Num\l
+                900070 COW NUMBER : Num\l
+                300348 COW_ID : Text\l
+                351150 COW_NAME : Text\l
+                300001 COWNO : Num\l
+                303924 DAM_ID : Text\l
+                312007 DELETE_COW : Num\l
+                300347 DELIVERY : Num\l
+                303925 FATHER_ID : Text\l
+                300646 GROUP_CHANGE_DATE : Date\l
+                300003 GROUP_NO : Num\l
+                303930 HDX_TRANSPONDER_NO : Num\l
+                312008 NEW_COW : Num\l
+                300645 OLD_GROUPNO : Num\l
+                303926 SEX : Code\l
+                300017 SLAUGHTER_FLAG : Flag\l
+                303916 TESTDATE : Date\l
+                303931 TRANSPONDER : Num\l
+                300097 VMS_COW : Flag\l
+                350854 WEIGHT_RECHOUR : Num\l
+                351149 WITHHOLD_MEAT : Date\l
+                | \l}"
+
+        ]
+
+
+        Event_390010_Milking_Data [ fillcolor = yellow
+                               label = "{Event 390010 Milking Data |
+                                        300001 COWNO: Num\l
+                                        300036 LACTATIONS: Num\l
+                                        300127 MILK_AVER_7D: Num\l
+                                        300130 MILK_TODAY_1: Num\l
+                                        300133 MILK_TODAY_2: Num\l
+                                        300136 MILK_TODAY_3: Num\l
+                                        300139 MILK_TODAY_4: Num\l
+                                        300142 MILK_YESTERDAY_1: Num\l
+                                        300145 MILK_YESTERDAY_2: Num\l
+                                        300148 MILK_YESTERDAY_3: Num\l
+                                        300151 MILK_YESTERDAY_4: Num\l
+                                        300154 MILK_THIS_WEEK_1: Num\l
+                                        300157 MILK_THIS_WEEK_2: Num\l
+                                        300160 MILK_THIS_WEEK_3: Num\l
+                                        300163 MILK_THIS_WEEK_4: Num\l
+                                        300166 MILK_THIS_WEEK_5: Num\l
+                                        300169 MILK_MONTHLY_1: Num\l
+                                        300170 MILK_MONTHLY_2: Num\l
+                                        300171 MILK_MONTHLY_3: Num\l
+                                        300172 MILK_MONTHLY_4: Num\l
+                                        300173 MILK_MONTHLY_5: Num\l
+                                        300174 MILK_MONTHLY_6: Num\l
+                                        300175 MILK_MONTHLY_7: Num\l
+                                        300176 MILK_MONTHLY_8: Num\l
+                                        300177 MILK_MONTHLY_9: Num\l
+                                        300178 MILK_MONTHLY_10: Num\l
+                                        300179 MILK_MONTHLY_11: Num\l
+                                        300180 MILK_MONTHLY_12: Num\l
+                                        300181 MILK_LAST_LACTATION: Num\l
+                                        300182 FAT: Num\l
+                                        300183 PROTEIN: Num\l
+                                        300278 MILK_THIS_LACTATION: Num\l
+                                        303913 SCC_VALUE: Num\l
+                                        303916 TESTDATE: Date\l
+                                        303918 ACTUAL305: Num\l
+                                        303920 SCC_DATE: Date\l
+                                        303928 FAT_DATE: Date\l
+                                        303929 PROTEIN_DATE: Date\l
+                                        303934 UREA: Num\l
+                                        303935 UREA_DATE: Date\l
+                                        303936 LACTOSE: Num\l
+                                        303937 LACTOSE_DATE: Date\l
+                                        304000 LATEST_YIELD: Num\l
+                                        304035 TOTAL_YIELD_TODAY: Num\l
+                                        304036 TOTAL_YIELD_YESTERD: Num\l
+                                        304045 LATEST_MILKING: Num\l
+                                        304169 DAYS_IN_MILK: Num\l
+                                        350505 SCC_RECHOUR: Num\l
+                                        350604 FAT_RECHOUR: Num\l
+                                        350704 PROTEIN_RECHOUR: Num\l
+                                        350879 UREA_RECHOUR: Num\l
+                                        |\l}"
+        ]
+
+        edge [
+                arrowhead = "empty"
+        ]
+
+        Milk -> Event_390010_Milking_Data
+        Cow -> Event_390010_Milking_Data
+}

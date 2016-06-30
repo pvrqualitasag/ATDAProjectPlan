@@ -7,6 +7,11 @@ output:
   word_document: default
 ---
 
+```{r Setup, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE, results = 'asis')
+```
+
+
 ```{r GenerateDiagrams,echo=FALSE,results='hide'}
 sOdgDirWin <- 'odg\\ATDA-ProjectPlan'
 sOdgDir <- "odg/ATDA-ProjectPlan"
@@ -176,65 +181,16 @@ FB EDV, Qualitas AG                 &  AG ZDL, ASR  \\
 
 \pagebreak
 
-# Dokumentenstatus
-
-+-------------+------------------+-------+-----------------------------------------------+
-|  Version    |  Datum           |  Wer  |  Änderung                                     |
-+=============+==================+=======+===============================================+
-|  0.0.0.900  |  11.01.2016      |  PvR  |  Erstellung                                   |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.0.901  |  13.01.2016      |  PvR  |  Aktuelle Situation und Projektziele          |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.0.902  |  18.01.2016      |  PvR  |  Projektziele und Ablauf des Datentransfers   |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.0.903  |  19.01.2016      |  PvR  |  Projektauftraggeber von BvchShb zu ASR       |
-|             |                  |       |  gewechselt. Beschreibung der                 |
-|             |                  |       |  Projektkomponenten und des Projektablaufs    |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.0.904  |  20.01.2016      |  PvR  |  Varianten der Datenübertragung               |
-|             |                  |       |  Plan des Projektablaufs                      |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.0.905  |  21.01.2016      |  PvR  |  Ergänzung des Abschnitts Erklärung           |
-|             |                  |       |  Plan des Projektablaufs                      |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.0.906  |  25.01.2016      |  PvR  |  Ergänzung des Projektablaufplans             |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.0.907  |  27.01.2016      |  PvR  |  Feedback nach AG ZT DL Sitzung.              |
-|             |                  |       |  Dokumenttyp "Spezifikation" zu "Projektplan" |
-|             |                  |       |  geändert. Abschnitt zu Cloud-Lösung          |
-|             |                  |       |  hinzugefügt.                                 | 
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.0.908  |  01.02.2016      |  PvR  |  Cloud-Anbieter Microsoft und Apple           |
-|             |                  |       |  hinzugefügt.                                 | 
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.0.909  |  02.02.2016      |  PvR  |  Berücksichtigung Projektplan_ATDA_20151209   |
-|             |                  |       |  im Projektplan                               |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.0.910  |  03.02.2016      |  PvR  |  Ergänzung der Begründung der Projektziele.   |
-|             |                  |       |  Abkürzungstabelle ergänzt                    |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.0.911  |  03.02.2016      |  SG   |  Korrekturen und Ergänzungen                  |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.0.912  |  04.02.2016      |  PvR  |  Formatierung des Projektplans, Präzisierung  |
-|             |                  |       |  der Datenübertragung per Webservice          |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.0.913  |  08.02.2016      |  SG   |  Schaubilder für drei Arten der               |
-|             |                  |       |  Datenübertragung                             |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.0.914  |  10.02.2016      |  PvR  |  Titel von Schaubilder entfernt               |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.1.000  |  13.04.2016      |  PvR  |  Anpassungen nach Meeting mit Melkmaschinen   |
-|             |                  |       |  Hersteller                                   |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.1.100  |  24.05.2016      |  PvR  |  Anpassungen nach Gespräch mit Bert v. Land   |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.1.101  |  25.05.2016      |  PvR  |  Schaubild für DE Projekt von CRV NL          |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.1.102  |  25.05.2016      |  PvR  |  Anpassungen des Projektplans                 |
-+-------------+------------------+-------+-----------------------------------------------+
-|  0.0.1.103  |  06.06.2016      |  PvR  |  Korrekturen von Formulierungen               |
-+-------------+------------------+-------+-----------------------------------------------+
-
+```{r DocuStatusTable, eval=TRUE}
+r6objDocStat <- rmddochelper::R6ClassDocuStatus$new()
+r6objDocStat$setStatusColnames(psStatusColnames = c("Version", "Datum", "Wer","Status", "Projekt"))
+r6objDocStat$setProject(psProject = "ATDA-ASR")
+# r6objDocStat$setVersion(psVersion = "0.1.005")
+# r6objDocStat$setStatus(psStatus = "Ergänzungen aufgrund der Antwort von BvL")
+r6objDocStat$setVersion(psVersion = "0.1.006")
+r6objDocStat$setStatus(psStatus = "Abgrenzung von `ATDA-ASR` zu möglichen Folgeprojekten")
+r6objDocStat$include_doc_stat(psTitle = "Dokumentenstatus")
+```
 
 \pagebreak
 
@@ -510,7 +466,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Für dieses Projekt `ATDA-ASR` sind vorerst drei Arten des Datentransfers vorstellbar. Nach dem Treffen mit den Herstellern der Melkanlagen ist klar, dass für die Melkanlagenanbieter nur eine Cloud-basierte Datenübertragung (Variante 3) in Frage kommt. Die Details zur Umsetzung einer solchen Datenübertragung sind noch unklar. Da  CRV-Holland zusammen mit den Anbietern Lelly, DeLaval und Fullwood schon ein Service zum automatischen Tierdatenaustausch betreibt, haben wir mit Bert van't Land von CRV Kontakt aufgenommen. Die Informationen zu diesem Projekt sind in den Abschnitten 1.3.2 und 5beschrieben. 
+Für dieses Projekt `ATDA-ASR` sind vorerst drei Arten des Datentransfers vorstellbar. Nach dem Treffen mit den Herstellern der Melkanlagen ist klar, dass für die Melkanlagenanbieter nur eine Cloud-basierte Datenübertragung (Variante 3) in Frage kommt. Die Details zur Umsetzung einer solchen Datenübertragung sind noch unklar. Da  CRV-Holland zusammen mit den Anbietern Lelly, DeLaval und Fullwood schon ein Service zum automatischen Tierdatenaustausch betreibt, haben wir mit Bert van't Land von CRV Kontakt aufgenommen. Die Informationen zu diesem Projekt sind in den Abschnitten 1.3.2 und 5 beschrieben. 
 
 Der Vollständigkeit halber und zu Dokumentationszwecken werden hier trotzdem noch alle drei Varianten des Datenaustauschs beschrieben im Wissen, dass die ersten beiden Varianten höchstwahrscheinlich nicht umgesetzt werden können.
 
@@ -629,7 +585,9 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Anlässlich des Treffens mit den Melkanlagenanbietern am 18.3.2016 erfuhren wir, dass CRV Holland mit den Firmen DeLaval, Lelly und Fullwood bereits ein Service eines automatischen Tierdatenaustauschs betreibt. Zur Vermeidung von Doppelspurigkeiten und zur Minimierung des Aufwandes in diesem Projekt für die Melkanlagenanbieter und für uns, haben wir Kontakt zu Bert van 't Land (BvL) von CRV Holland aufgenommen (Telefonkonferenz am 19.05.2016, siehe dazu Abschnitt 1.3.2). Zusammenfassend werden im Datenaustauschprojekt in Holland von rund 3000 Betrieben mit Robotermelkanlagen täglich rund 1 Mio Milchmengenrecords von den Betrieben auf die zentrale Datenbank übertragen. Unter Berücksichtigung eines Datenoverheads, entspricht dies einer Datenmenge von rund 100MB pro Tag. Das Betreiben der zentralen Datenbank sowie die Programmierung von ISM-spezifischen PlugIns wurde von CRV zu CSM - einer externen Informatikfirma - ausgelagert. Die PlugIns werden auf den ISM jedes Betriebs installiert. Dort steuern sie die Übertragung der Daten von den Betrieben zur zentralen Datenbank. 
+Anlässlich des Treffens mit den Melkanlagenanbietern am 18.3.2016 erfuhren wir, dass CRV Holland mit den Firmen DeLaval, Lelly und Fullwood bereits ein Service eines automatischen Tierdatenaustauschs betreibt. Zur Vermeidung von Doppelspurigkeiten und zur Minimierung des Aufwandes in diesem Projekt für die Melkanlagenanbieter und für uns, haben wir Kontakt zu Bert van 't Land (BvL) von CRV Holland aufgenommen (Telefonkonferenz am 19.05.2016, siehe dazu Abschnitt 1.3.2). Zusammenfassend werden im Datenaustauschprojekt in Holland von rund 3000 Betrieben mit Robotermelkanlagen täglich mehr als 1 Mio Milchmengenrecords von den Betrieben auf die zentrale Datenbank übertragen. Unter Berücksichtigung eines Datenoverheads, entspricht dies einer Datenmenge von rund 100MB pro Tag. Die Milchmengen jedes Gemelks werden in der zentralen Datenbank abgelegt. Nach der Ablage eines Milchmengenrecords wird ein Tagesdurchschnitt der Milchmengen über die vorangegangenen 24 Stunden berechnet. Die Tagesdurchschnitte werden auf eine Laktationsmilchmenge hochgerechnet.
+
+Das Betreiben der zentralen Datenbank sowie die Programmierung von ISM-spezifischen PlugIns wurde von CRV zu CSM - einer externen Informatikfirma - ausgelagert. Die PlugIns werden auf den ISM jedes Betriebs installiert. Dort steuern sie die Übertragung der Daten von den Betrieben zur zentralen Datenbank. 
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
@@ -637,10 +595,11 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Bei der Beschreibung des Datenexports in diesem Dokument (Abschnitt 3.1.1) liegt die Verantwortung des Datenexports bei den Melkanlagenanbietern. Im Gegensatz dazu, wird im Datenübertragungs-Projekt von CRV-Holland der Datenexport und die Übertragung von einem durch CSM geschriebenes PlugIn übernommen. Das PlugIn, welches die Datenübertragung steuert, muss spezifisch für den Anbieter des ISM sein. Das heisst es braucht für jeden ISM-Anbieter ein anderes PlugIn. Diese Anforderung der spezifischen PlugIns würde sich auch für unser Projekt `ATDA-ASR` ergeben, da die in der Schweiz eingesetzten ISMs unterschiedliche Technologien verwenden. Die Tatsache, dass unterschiedliche ISM-Anbieter unterschiedliche Technologien einsetzen, wird durch die Ergebnisse unserer Befragung der Melkanlagenanbieter bestätigt. 
-BvL hat sich bereit erklärt, die Ansprechsperson für Fragen betreffend des holländischen Datenaustauschprojekts zu sein. Er klärt CRV-intern ab, ob und in welchem Umfang eine Zusammenarbeit zwischen diesem Projekt `ATDA-ASR` und CRV-Holland möglich ist. Für uns ist es wichtig die Frage zu klären, ob die PlugIns der verschiedenen Anbieter, welche in Holland eingesetzt werden auch auf den Betrieben in der Schweiz eingesetzt werden können.
+Bei der Beschreibung des Datenexports in diesem Dokument (Abschnitt 3.1.1) liegt die Verantwortung des Datenexports bei den Melkanlagenanbietern. Im Gegensatz dazu, wird im Datenübertragungs-Projekt von CRV-Holland der Datenexport und die Übertragung von einem durch CSM geschriebenes On-Farm-PlugIn übernommen. Das PlugIn, welches die Datenübertragung steuert, muss spezifisch für jeden Anbieter der ISMs angepasst sein. Das heisst es braucht für jeden ISM-Anbieter ein anderes PlugIn. Diese Anforderung der spezifischen PlugIns würde sich auch für unser Projekt `ATDA-ASR` ergeben, da die in der Schweiz eingesetzten ISMs unterschiedliche Datenmanagementtechnologien verwenden. Die Tatsache, dass unterschiedliche ISM-Anbieter unterschiedliche Technologien einsetzen, wird durch die Ergebnisse unserer Befragung der Melkanlagenanbieter bestätigt. 
 
-Falls die PlugIns aus dem Projekt von CRV in Holland für uns nicht verfügbar sind, müssen wir die Funktionalität des Datenexports aus dem ISL selber umgesetzen. Für eine eigene Umsetzung zuerst die von den verschiedenen Melkanlagen zur Verfügung gestellten Informationen analysiert werden. Die Beschreibung der Daten der verschiedenen Anbieter sind in separaten Dokumenten abgelegt.
+BvL hat sich bereit erklärt, die Ansprechsperson für Fragen betreffend des holländischen Datenaustauschprojekts zu sein. Er klärt bei CRV und CSM ab, ob und in welchem Umfang eine Zusammenarbeit zwischen diesem Projekt `ATDA-ASR` und CRV-Holland möglich ist. Für uns ist es wichtig die Frage zu klären, ob die OnFarm-PlugIns der verschiedenen Anbieter, welche in Holland eingesetzt werden auch auf den Betrieben in der Schweiz eingesetzt werden können. BvL ist der Meinung, dass diese nicht ohne Anpassungen in der Schweiz verwendet werden können. 
+
+Falls die PlugIns aus dem Projekt von CRV in Holland für uns nicht verfügbar sind, müssen wir die Funktionalität des Datenexports aus dem ISM selber umgesetzen. Für eine eigene Umsetzung zuerst die von den verschiedenen Melkanlagen zur Verfügung gestellten Informationen analysiert werden. Die Beschreibung der Daten der verschiedenen Anbieter sind in separaten Dokumenten abgelegt.
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
@@ -669,7 +628,34 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-In diesem Projekt beschränken wir uns auf den Austausch von Milchleistungsdaten zwischen Melkanlagen und dem Datenbanksystem ARGUS von Qualitas. Der Austausch von weiteren Daten wird in anderen Projekten umgesetzt werden. 
+In diesem Projekt beschränken wir uns auf den Austausch von Milchmengendaten zwischen Melkanlagen und dem Datenbanksystem ARGUS von Qualitas. Wie im vorangegangenen Abschnitt bereits erwähnt, besucht der Milchkontrolleur weiterhin jeden Betrieb, auch jene, welche in diesem Projekt `ATDA-ASR` beteiligt sind. Die wesentliche Änderung, welche mit dem Projekt `ATDA-ASR` eingeführt wird, ist die automatisierte Übertragung der Milchmengendaten. Diese löst die manuelle Übertragung der Milchmengendaten mittels Begleitschein ab. 
+
+Analog zu der in diesem Projekt `ATDA-ASR` geplanten Ablösung der manuellen Datenübertragung durch eine automatisierten Prozess, sind weitere Anpassungen des gesamten Milchkontrollwesens denkbar. Einige dieser möglichen Anpassungen sind in den folgenden Abschnitten kurz beschrieben. Diese sind aber klar nicht Teil dieses Projektes `ATDA-ASR`, sondern müssten als eigenständige Folgeprojekte realisiert werden.
+
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Anpassungen beim Begleitschein")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Die aktuelle Version des Begleitscheins ist auf Papier gedruckt. Die Daten werden handschriftlich auf den Begleitschein eingetragen. Die ausgefüllten Begleitscheine werden dann bei den Zuchtorganisationen eingescannt. Der Begleitschein in Papierform liesse sich durch eine elektronische Version auf einem Notebook einem Tablet oder einem Smartphone ersetzen. Die auf dem elektronischen Begleitschein erfassten Daten könnten dann direkt an die zentrale Datenbank der Zuchtorganisationen bei Qualitas übertragen werden. Damit würde sich der Druck der Begleitscheine auf Papier und das Scannen der ausgefüllten Begleitscheine erübrigen. 
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Erneuerung des Kontrollwesens")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Im Zentrum des Milchkontrollwesens steht der monatliche Besuch des Milchkontrolleurs auf jedem Betrieb. Bei diesem Besuch werden die Milchmengendaten erhoben und es werden Milchproben für die Bestimmung von Milchinhaltsstoffen im Labor gezogen. In diesem Projekt `ATDA-ASR` werden die vom Melksystem erfassten Milchmengendaten automatisiert übertragen. Moderne Melkanlagen haben teilweise schon eingebaute Analyseeinheiten, welche diverse Milchinhaltsstoffe bestimmen können. Sofern die Analysen von den zuständigen Kontrollinstanzen anerkannt werden, könnten die so bestimmten Ergebnisse auch bei der Übertragung der Milchmengendaten mitgeliefert werden. Somit wäre der Besuch des Kontrolleurs auf dem Betrieb nicht mehr erforderlich.
+
+```{r echo=FALSE,results='asis'}
+objSecEnum$setUnNumSection(psUnNumSection = 
+"## Austausch weiterer Datentypen")
+objSecEnum$parseUnNumSection()
+objSecEnum$displayNumSection()
+```
+Durch die technische Weiterentwicklung bei den Milchanlagen und anderen Stalleinrichtungen werden immer grössere Mengen an Daten gesammelt. Diese Daten beschränken sich nicht nur auf Leistungsdaten, sondern beschreiben auch das Verhalten, die Futteraufnahme und den Gesundheitsstatus der Tiere. Diese Daten können auch für die züchterische Bearbeitung interessant sein. Dies bedingt aber, dass diese Daten zentral gesammelt und verarbeitet werden. Dies erfordert eine automatisierte Übertragung von den Betrieben in eine zentrale Datenbank. Die automatisierte Übertragung von weiteren Datentypen von Betrieben in eine zentrale Datenbank wird in einem möglichen Folgeprojekt umgesetzt werden. 
 
 \newpage
 \blandscape

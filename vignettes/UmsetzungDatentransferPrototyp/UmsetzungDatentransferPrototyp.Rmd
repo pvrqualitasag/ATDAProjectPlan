@@ -1,0 +1,17 @@
+---
+title: "Umsetzung Datentransfer Prototyp"
+author: "Peter von Rohr"
+date: "15 Juni 2016"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Erklärung
+Dieses Dokument beschreibt die Umsetzung eines ersten Prototype für den Datentransfer von Milchleistungsrecords.
+
+
+# Einleitung
+In einem ersten Schritt werden Milchleistungsrecords simuliert. Diese simulierten Daten werden mit einem einfachen R package erzeugt, da dies einfacher und schneller realisiert ist als in Java. Das Ziel dieser Simulation ist eine Datei mit Milchleistungsrecords. 
