@@ -658,8 +658,9 @@ objSecEnum$displayNumSection()
 Durch die technische Weiterentwicklung bei den Milchanlagen und anderen Stalleinrichtungen werden immer grössere Mengen an Daten gesammelt. Diese Daten beschränken sich nicht nur auf Leistungsdaten, sondern beschreiben auch das Verhalten, die Futteraufnahme und den Gesundheitsstatus der Tiere. Diese Daten können auch für die züchterische Bearbeitung interessant sein. Dies bedingt aber, dass diese Daten zentral gesammelt und verarbeitet werden. Dies erfordert eine automatisierte Übertragung von den Betrieben in eine zentrale Datenbank. Die automatisierte Übertragung von weiteren Datentypen von Betrieben in eine zentrale Datenbank wird in einem möglichen Folgeprojekt umgesetzt werden. 
 
 \newpage
+
 \blandscape
-\includegraphics[width=1.5\textwidth]{Projektablaufplan.pdf}
+\includegraphics[width=1.5\textwidth]{ProjektAblaufplanQ3.pdf}
 \elandscape
 
 
