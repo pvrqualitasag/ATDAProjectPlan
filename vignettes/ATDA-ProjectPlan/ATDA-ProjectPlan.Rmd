@@ -189,6 +189,7 @@ r6objDocStat$setProject(psProject = "ATDA-ASR")
 # r6objDocStat$setStatus(psStatus = "Ergänzungen aufgrund der Antwort von BvL")
 r6objDocStat$setVersion(psVersion = "0.1.006")
 r6objDocStat$setStatus(psStatus = "Abgrenzung von `ATDA-ASR` zu möglichen Folgeprojekten")
+r6objDocStat$setDate(psDate = "2016-06-30")
 r6objDocStat$include_doc_stat(psTitle = "Dokumentenstatus")
 ```
 
