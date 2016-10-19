@@ -11,6 +11,12 @@ output:
 knitr::opts_chunk$set(echo = FALSE, results = 'asis')
 ```
 
+```{r AbrTableSetup, echo=FALSE, results='hide'}
+### # init table of abbreviation
+r6ob_abbrtable <- rmddochelper::R6ClassTableAbbrev$new()
+r6ob_abbrtable$setColHeader(pvColHeader = c("Abkürzung","Bedeutung"))
+r6ob_abbrtable$setQuote(pbQuote = FALSE)
+```
 
 ```{r GenerateDiagrams,echo=FALSE,results='hide'}
 sOdgDirWin <- 'odg\\ATDA-ProjectPlan'
@@ -32,11 +38,11 @@ convertOdgToPdf <- function(psOdgFile){
 }
 
 # LibreOffice draw files
-vOdgFiles <- list.files(path = sOdgDir, pattern = ".odg$")
-sapply(vOdgFiles, convertOdgToPdf)
+#vOdgFiles <- list.files(path = sOdgDir, pattern = ".odg$")
+#sapply(vOdgFiles, convertOdgToPdf)
 # LibreOffice calc files
-vOdsFiles <- list.files(path = sOdgDir, pattern = ".ods$")
-sapply(vOdsFiles, convertOdgToPdf)
+#vOdsFiles <- list.files(path = sOdgDir, pattern = ".ods$")
+#sapply(vOdsFiles, convertOdgToPdf)
 ```
 
 ```{r SectionNumber, echo=FALSE,results='hide'}
@@ -150,7 +156,7 @@ objSecEnum$initSectionEnumerator()
 	\parbox[t]{1.0\linewidth}{
 		\centering \fontsize{25pt}{40pt}\selectfont %
 		\vspace*{0.7cm}
-    ATDA-ASR                           \\
+    ATDA-ASR`r r6ob_abbrtable$add_abbrev(psAbbrev = "ATDA-ASR", psMeaning = "Projekt von ASR zur Automatisierung des Tierdatenaustauschs", pbOut = FALSE)` \\
     Automatisierter Tierdatenaustausch \\
     zwischen Melksystemen und ARGUS    \\
 
@@ -174,6 +180,7 @@ FB EDV, Qualitas AG                 &  AG ZDL, ASR  \\
 \verb+peter.vonrohr@qualitasag.ch+  &  \verb+sarah.goerlich@qualitasag.ch+
 \end{tabular}
 }
+`r r6ob_abbrtable$add_abbrev(psAbbrev = "FB EDV", psMeaning = "Fachbereich elektronische Datenverarbeitung", pbOut = FALSE)`
 
 \pagebreak
 
@@ -184,83 +191,26 @@ FB EDV, Qualitas AG                 &  AG ZDL, ASR  \\
 ```{r DocuStatusTable, eval=TRUE}
 r6objDocStat <- rmddochelper::R6ClassDocuStatus$new()
 r6objDocStat$setStatusColnames(psStatusColnames = c("Version", "Datum", "Wer","Status", "Projekt"))
-r6objDocStat$setProject(psProject = "ATDA-ASR")
+#r6objDocStat$setProject(psProject = "ATDA-ASR")
 # r6objDocStat$setVersion(psVersion = "0.1.005")
 # r6objDocStat$setStatus(psStatus = "Ergänzungen aufgrund der Antwort von BvL")
-r6objDocStat$setVersion(psVersion = "0.1.006")
-r6objDocStat$setStatus(psStatus = "Abgrenzung von `ATDA-ASR` zu möglichen Folgeprojekten")
-r6objDocStat$setDate(psDate = "2016-06-30")
-r6objDocStat$include_doc_stat(psTitle = "Dokumentenstatus")
+#r6objDocStat$setVersion(psVersion = "0.1.006")
+#r6objDocStat$setStatus(psStatus = "Abgrenzung von `ATDA-ASR` zu möglichen Folgeprojekten")
+#r6objDocStat$setDate(psDate = "2016-06-30")
+r6objDocStat$set_current_status(psVersion = "0.1.007",
+                                psStatus = "Ergänzung aufgrund Infos von JV",  
+                                psDate = "2016-10-18", 
+                                psProject = "ATDA-ASR")
+r6objDocStat$include_doc_stat(psTitle = "# Dokumentenstatus")
 ```
-
-\pagebreak
-
-# Abkürzungen
-
-+-------------+-------------------------------------------------------------------------+
-|  Abkürzung  |  Bedeutung                                                              |
-+=============+=========================================================================+
-| AG ZT DL    |  Arbeitsgruppe zuchttechnische Dienstleistungen                         |
-+-------------+-------------------------------------------------------------------------+
-| ASR         |  Arbeitsgemeinschaft Schweizerischer Rinderzüchter                      |
-+-------------+-------------------------------------------------------------------------+
-| FB EDV      |  Fachbereich elektronische Datenverarbeitung                            |
-+-------------+-------------------------------------------------------------------------+
-| ATDA        |  Automatisierter Tierdatenaustausch                                     |
-+-------------+-------------------------------------------------------------------------+
-| ATDA-ASR    |  Projekt von ASR zur Automatisierung des Tierdatenaustauschs            |
-|             |  (das in diesem Dokument beschriebene Projekt)                          |
-+-------------+-------------------------------------------------------------------------+
-| SSATDA-ASR  |  Software-System, welches im Projekt ATDA-ASR entwickelt wird           |
-+-------------+-------------------------------------------------------------------------+
-| BVCH        |  Braunvieh Schweiz                                                      |
-+-------------+-------------------------------------------------------------------------+
-| SHB         |  Swissherdbook                                                          |
-+-------------+-------------------------------------------------------------------------+
-| ICAR        |  International Committee for Animal Recording                           |
-+-------------+-------------------------------------------------------------------------+
-| ADE         |  "Animal Data Exchange", Austausch von Tierdaten                        |
-+-------------+-------------------------------------------------------------------------+
-| ICAR-ADE    |  Projekt für den Austausch von Tierdaten von ICAR                       |
-+-------------+-------------------------------------------------------------------------+
-| ARGUS       |  Informationssystem für brunaNet, redonline+, etc                       |
-+-------------+-------------------------------------------------------------------------+
-| ISM         |  Informationssystem der Melkanlage                                      |
-+-------------+-------------------------------------------------------------------------+
-| W3C         |  World Wide Web Consortium                                              |
-+-------------+-------------------------------------------------------------------------+
-| UNCEFACT    |  United Nations Center for Trade Fascilitation and Electronic Business  |
-+-------------+-------------------------------------------------------------------------+
-| ISO         |  International Organization for Standardization                         |
-+-------------+-------------------------------------------------------------------------+
-| ZO          |  Zuchtorganisation                                                      |
-+-------------+-------------------------------------------------------------------------+
-| SSAD        |  Software-System für den automatisierten Datenaustausch                 |
-+-------------+-------------------------------------------------------------------------+
-| API         |  Application Programming Interface                                      |
-+-------------+-------------------------------------------------------------------------+
-| MLP         |  Milchleistungsprüfung                                                  |
-+-------------+-------------------------------------------------------------------------+
-| AMS         |  Automatische Melksysteme                                               |
-+-------------+-------------------------------------------------------------------------+
-| BBB         |  Blinden- und Behindertenzentrum Bern                                   |
-+-------------+-------------------------------------------------------------------------+
-| TVD         |  Tierverkehrsdatenbank                                                  |
-+-------------+-------------------------------------------------------------------------+
-| CRV         |  Cooperative Cattle Improvement                                         |
-+-------------+-------------------------------------------------------------------------+
-| NDX         |  Nordic Data Exchange                                                   |
-+-------------+-------------------------------------------------------------------------+
-| BvL         |  Bert van't Land                                                        |
-+-------------+-------------------------------------------------------------------------+
 
 \pagebreak
 
 
 # Erklärung
-Dieses Dokument enthält einen Planungsentwurf für das Projekt zum automatisierten Tierdatenaustausch (ATDA), welches von der Arbeitsgruppe zuchttechnische Dienstleistungen der Arbeitsgemeinschaft Schweizerischer Rinderzüchter (ASR) in Auftrag gegeben wurde.
+Dieses Dokument enthält einen Planungsentwurf für das Projekt zum `r r6ob_abbrtable$add_abbrev(psAbbrev = "ATDA", psMeaning = "Automatisierter Tierdatenaustausch", pbOut = TRUE, psShowText = "automatisierten Tierdatenaustausch")`, welches von der `r r6ob_abbrtable$add_abbrev(psAbbrev = "AG ZT DL", psMeaning = "Arbeitsgruppe zuchttechnische Dienstleistungen")` der `r r6ob_abbrtable$add_abbrev(psAbbrev = "ASR", psMeaning = "Arbeitsgemeinschaft Schweizerischer Rinderzüchter")` in Auftrag gegeben wurde.
 
-Die Umsetzung dieses Projektes hängt sehr stark von den technischen Gegebenheiten der Anbieter von Melkanlagen ab. Deshalb ist der Projektplan in gewissen Abschnitten noch nicht sehr konkret gefasst. Dies ist eine bewusste Entscheidung, welche die Offenheit und die Flexibilität unsererseits demonstrieren soll. Das erste Informationstreffen mit den Anbietern von Melkanlagen fand am 18. März 2016 statt. Diese Treffen hat uns erste Informationen zum möglichen Rahmen dieses Projekts aus Sicht der Melkanlagenanbieter geliefert. 
+Die Umsetzung dieses Projektes hängt sehr stark von den technischen Gegebenheiten der Anbieter von Melkanlagen ab. Deshalb ist der Projektplan in gewissen Abschnitten noch nicht sehr konkret gefasst. Dies ist eine bewusste Entscheidung, welche die Offenheit und die Flexibilität unsererseits demonstrieren soll. Das erste Informationstreffen mit den Anbietern von Melkanlagen fand am 18. März 2016 statt. Diese Treffen hat uns erste Informationen zum möglichen Rahmen dieses Projekts aus Sicht der Melkanlagenanbieter geliefert. Am 19.05.2016 informierten wir uns bei Bert van't Land von CRV`r r6ob_abbrtable$add_abbrev(psAbbrev = "CRV", psMeaning = "Cooperative Cattle Improvement", pbOut = FALSE)` über die aktuelle Situation des automatisierten Datenaustauschs in Holland. Er verwies uns an Johan Vloet von VSM. Er beschrieb uns am 17.10.2016 die Funktionalitäten der Software von VSM, welche beim Datenaustausch in Holland und mittlerweile auch anderen Ländern zum Einsatz kommt.
 
 
 
@@ -277,11 +227,18 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die Standardprozedur für den Transfer von Milchleistungsdaten von Betrieben, welche sich bei der Milchleistungsprüfung (MLP) der Zuchtverbände (BVCH und SHB) beteiligen, sieht so aus, dass ein Milchkontrolleur alle 31 bis 37 Tage Milchproben zieht und Milchwägungen vornimmt. Die Milchmengen werden während der Kontrolle auf dem Betrieb manuell auf vorgedruckte Formulare (Begleitscheine) eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS) von Qualitas eingelesen. Das nachfolgende Schaubild stellt den Datenfluss anlässlich einer Milchkontrolle auf einem Betrieb schematisch dar. Der Datenfluss verläuft gemäss der Reihenfolge der Nummern. Die Bedeutung der einzelnen Nummern wird später noch erklärt werden.
+Die Standardprozedur für den Transfer von Milchleistungsdaten von Betrieben, welche sich bei der `r r6ob_abbrtable$add_abbrev(psAbbrev = "MLP", psMeaning = "Milchleistungsprüfung")` der Zuchtverbände (BVCH`r r6ob_abbrtable$add_abbrev(psAbbrev = "BVCH", psMeaning = "Braunvieh Schweiz", pbOut = FALSE)` und SHB`r r6ob_abbrtable$add_abbrev(psAbbrev = "SHB", psMeaning = "Swissherdbook", pbOut = FALSE)`) beteiligen, sieht so aus, dass ein Milchkontrolleur alle 31 bis 37 Tage Milchproben zieht und Milchwägungen vornimmt. Die Milchmengen werden während der Kontrolle auf dem Betrieb manuell auf vorgedruckte Formulare (Begleitscheine) eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS`r r6ob_abbrtable$add_abbrev(psAbbrev = "ARGUS", psMeaning = "Informationssystem für brunaNet, redonline+, etc ", pbOut = FALSE)`) von Qualitas eingelesen. Das nachfolgende Schaubild stellt den Datenfluss anlässlich einer Milchkontrolle auf einem Betrieb schematisch dar. Der Datenfluss verläuft gemäss der Reihenfolge der Nummern. Die Bedeutung der einzelnen Nummern wird später noch erklärt werden.
 
-![Diagramm Milchdatenfluss](Diagramm_Milchdatenfluss.pdf)
 
-Betriebe mit Robotermelkanlagen (AMS) oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden, unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen werden. Die Milchmengendaten werden vom Kontrolleur manuell vom Informationssystem der Melkanlage auf das Formular übertragen. Dieses Formular wird bei der Zuchtorganisation eingescannt. Die manuelle Übertragung der Daten auf das Formular ist 
+```{r Diagramm_Milchdatenfluss}
+rmddochelper::insertOdgAsPdf(psOdgFileStem = "Diagramm_Milchdatenfluss", psOdgDir = "odg/ATDA-ProjectPlan")
+```
+
+
+`r r6ob_abbrtable$add_abbrev(psAbbrev = "BBB", psMeaning = "Blinden- und Behindertenzentrum Bern", pbOut = FALSE)`
+
+
+Betriebe mit Robotermelkanlagen (AMS`r r6ob_abbrtable$add_abbrev(psAbbrev = "AMS", psMeaning = "Automatische Melksysteme", pbOut = FALSE)`) oder mit Melkständen, bei welchen die Milchmengen durch ein Informationssystem vollautomatisch erfasst werden, unterliegen bezüglich des Datentransfers der gleichen  Standardprozedur, mit Ausnahme, dass die Milchmengen nicht von den Kontrolleuren gemessen werden, sondern aus dem Informationssystem der Melkanlage abgerufen werden. Die Milchmengendaten werden vom Kontrolleur manuell vom Informationssystem der Melkanlage auf das Formular übertragen. Dieses Formular wird bei der Zuchtorganisation eingescannt. Die manuelle Übertragung der Daten auf das Formular ist 
 
 - zeitaufwändig, 
 - fehleranfällig, 
@@ -307,7 +264,7 @@ Als zwingende Voraussetzung damit ein Betrieb in diesem Projekt berücksichtigt 
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
-"### Informationssystem der Melkanlage (ISM)")
+paste("###", r6ob_abbrtable$add_abbrev(psAbbrev = "ISM", psMeaning = "Informationssystem der Melkanlage")))
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
@@ -323,7 +280,7 @@ Das in diesem Dokument beschriebene Projekt befasst sich mit dem automatisierten
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
-"### Software-System für den automatisierten Tierdatenaustausch (SSATDA-ASR)")
+paste("###", r6ob_abbrtable$add_abbrev(psAbbrev = "SSATDA-ASR", psMeaning = "Software-System für den automatisierten Tierdatenaustausch")))
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
@@ -340,7 +297,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Bei ICAR läuft das Projekt "ICAR-ADE" mit dem Ziel eine Grundlage für den automatisierten Austausch von Tierdaten zu erstellen. Im Projekt "ICAR-ADE" wird eine eigenständige Lösung für den automatischen Austausch von Tierdaten angestrebt. Das heisst, es werden neue Datentypen und Schnittstellen aufgrund von existierenden Standards von W3C, UNCEFACT oder ISO definiert. Diese Definitionen dienen dann als Grundlage für eine unabhängige Umsetzung des Datenaustauschs. Der Vorteil dieser Lösung ist die Unabhängigkeit von bestehenden Lösungen und all ihren Einschränkungen. Ein offensichtlicher Nachteil ist die Redundanz mit anderen schon bestehenden Datenaustauschlösungen. Dieser Nachteil führt dazu, dass eine  Umsetzung des Projekts sehr zeitaufwändig ist. Da das Projekt "ICAR-ADE" immer noch in der technischen Planungsphase steckt, wird die Umsetzung einer konkreten Lösung noch eine Weile auf sich warten lassen.
+Bei ICAR`r r6ob_abbrtable$add_abbrev(psAbbrev = "ICAR", psMeaning = "International Committee for Animal Recording", pbOut = FALSE)` läuft das Projekt "ICAR-ADE"`r r6ob_abbrtable$add_abbrev(psAbbrev = "ADE", psMeaning = "Animal Data Exchange, Austausch von Tierdaten", pbOut = FALSE)` mit dem Ziel eine Grundlage für den automatisierten Austausch von Tierdaten zu erstellen. Im Projekt "ICAR-ADE"`r r6ob_abbrtable$add_abbrev(psAbbrev = "ICAR-ADE", psMeaning = "Projekt für den Austausch von Tierdaten von ICAR", pbOut = FALSE)` wird eine eigenständige Lösung für den automatischen Austausch von Tierdaten angestrebt. Das heisst, es werden neue Datentypen und Schnittstellen aufgrund von existierenden Standards von W3C`r r6ob_abbrtable$add_abbrev(psAbbrev = "W3C", psMeaning = "World Wide Web Consortium", pbOut = FALSE)`, UNCEFACT`r r6ob_abbrtable$add_abbrev(psAbbrev = "UNCEFACT", psMeaning = "United Nations Center for Trade Fascilitation and Electronic Business", pbOut = FALSE)` oder ISO`r r6ob_abbrtable$add_abbrev(psAbbrev = "ISO", psMeaning = "International Organization for Standardization", pbOut = FALSE)` definiert. Diese Definitionen dienen dann als Grundlage für eine unabhängige Umsetzung des Datenaustauschs. Der Vorteil dieser Lösung ist die Unabhängigkeit von bestehenden Lösungen und all ihren Einschränkungen. Ein offensichtlicher Nachteil ist die Redundanz mit anderen schon bestehenden Datenaustauschlösungen. Dieser Nachteil führt dazu, dass eine  Umsetzung des Projekts sehr zeitaufwändig ist. Da das Projekt "ICAR-ADE" immer noch in der technischen Planungsphase steckt, wird die Umsetzung einer konkreten Lösung noch eine Weile auf sich warten lassen.
 
 Das Projekt "ICAR-ADE" steckt noch in der Anfangsphase. Da der automatisierte Datenaustausch über das Projekt "ICAR-ADE" mittelfristig noch nicht zur Verfügung steht, hat sich die ASR dazu entschieden, ein eigenes Projekt auf nationaler Ebene, mit dem Ziel des automatisierten Tierdatenaustauschs (`ATDA-ASR`) zu realisieren. Ab Abschnitt 2 des vorliegenden Textes wird das Projekt `ATDA-ASR` genauer beschrieben werden.
 
@@ -351,11 +308,19 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Gemäss Informationen (Telefonkonferenz vom 19.05.2016) von Bert van't Land (CRV Holland) betreibt CRV ein nationales Datenaustauschprojekt mit allen Roboterbetrieben in Holland. In diesem Projekt sind rund 3000 Betriebe beteiligt. Diese Betriebe weisen eine durchschnittliche Bestandesgrösse von 100 Kühen auf und jede Kuh sucht die Melkanlage pro Tag im Mittel 2.5 mal auf. Somit werden in diesem Projekt rund 1 Mio Records pro Tag von allen Betrieben auf die Datenbank bei CSM übermittelt (siehe nachfolgendes Schaubild). Jeder Record enthält das Datum und die Zeit des Melkvorganges, die Milchmenge und eine Identifikation (ID) der Kuh. Die reine Menge an übermittelten Daten ohne Metadaten beträgt rund 30 MB pro Tag. Mit Metadaten wird die total Datenmenge sehr wahrscheinlich immer noch kleiner sein, als 100 MB pro Tag.
+Gemäss Informationen (Telefonkonferenz vom 19.05.2016) von Bert van't Land (CRV Holland) betreibt CRV ein nationales Datenaustauschprojekt mit allen Roboterbetrieben in Holland. In diesem Projekt sind rund 3000 Betriebe beteiligt. Diese Betriebe weisen eine durchschnittliche Bestandesgrösse von 100 Kühen auf und jede Kuh sucht die Melkanlage pro Tag im Mittel 2.5 mal auf. Somit werden in diesem Projekt rund 1 Mio Records pro Tag von allen Betrieben auf die Datenbank bei VSM übermittelt (siehe nachfolgendes Schaubild). Jeder Record enthält das Datum und die Zeit des Melkvorganges, die Milchmenge und eine Identifikation (ID) der Kuh. Die reine Menge an übermittelten Daten ohne Metadaten beträgt rund 30 MB pro Tag. Mit Metadaten wird die total Datenmenge sehr wahrscheinlich immer noch kleiner sein, als 100 MB pro Tag.
 
-Die technische Umsetzung des Datenaustauschs in Holland wurde von CRV an ein Informatikunternehmen names CSM ausgelagert. Dieses Unternehmen betreibt die Datenbank (siehe Schaubild) und hat auch PlugIns für die ISM der verschiedenen Melkanlagenanbietern geschrieben. Diese PlugIns werden auf den Betrieben installiert und übermitteln die Daten auf die zentrale Datenbank. CRV Holland hat Zugriff auf die Milchmengendaten in der zentralen Datenbank bei CSM.
+Die technische Umsetzung des Datenaustauschs in Holland wurde von CRV an ein Informatikunternehmen names VSM ausgelagert. Dieses Unternehmen betreibt die Datenbank (siehe Schaubild) und hat auch PlugIns für die ISM der verschiedenen Melkanlagenanbietern geschrieben. Diese PlugIns werden auf den Betrieben installiert und übermitteln die Daten an die zentrale Datenbank. CRV Holland hat Zugriff auf die Milchmengendaten in der zentralen Datenbank bei VSM.
 
-![Schaubild DE CRV NL](Schaubild_DE_CRV_NL.pdf)
+```{r Schaubild_DE_CRV_NL}
+rmddochelper::insertOdgAsPdf(psOdgFileStem = "Schaubild_DE_CRV_NL", psOdgDir = "odg/ATDA-ProjectPlan")
+```
+
+
+VSM (Skype-Call vom 17.10.2016 mit `r r6ob_abbrtable$add_abbrev(psAbbrev = "JV", psMeaning = "Johan Vloet")` hat für den nationalen Datenaustausch in Holland ein System entwickelt, welches bereits im Jahr 2009 gestartet wurde und somit nicht auf dem ICAR-Standard basiert. Gemäss JV überträgt ihre Version mehr Informationen vom ISM zur zentralen Datenbank bei VSM im Vergleich zum ICAR-Standard. 
+
+Aufgrund der Bestrebungen zur Vereinheitlichung der Datenübertragung durch ICAR hat VSM auch den ICAR-Standard schon umgesetzt. Diese Implementation wird aber von den Melkmaschinenanbietern noch nicht produktiv verwendet. Laut JV ist nicht klar, wann und ob die Implementation aufgrund des ICAR-Standards produktiv eingesetzt werden wird.
+
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
@@ -363,7 +328,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-`NDX` steht für Nordic Data Exchange. Dies soll ein Projekt sein, welches den Datenaustausch in den skandinavischen Ländern automatisiert. Von Seiten der Hersteller sind Lely und DeLaval beteiligt. 
+`NDX` steht für Nordic Data Exchange`r r6ob_abbrtable$add_abbrev(psAbbrev = "NDX", psMeaning = "Nordic Data Exchange", pbOut = FALSE)`. Dies soll ein Projekt sein, welches den Datenaustausch in den skandinavischen Ländern automatisiert. Von Seiten der Hersteller sind Lely und DeLaval beteiligt. 
 
 
 \vspace{1ex}
@@ -426,7 +391,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die für dieses Projekt (`ATDA-ASR`) interessanten Milchmengendaten sind im ISM abgelegt. Damit diese Daten zum Informationssystem der ZO bei Qualitas übertragen werden können, müssen sie zuerst aus dem ISM exportiert werden. Das Resultat dieses Datenexports muss je nach verwendeter Übertragungsmethode (siehe Abschnitte 3.1.2 und 4) anders aussehen. Die speziellen Anforderungen der exportierten Daten je nach Übertragungsmethode werden in Abschnitt 4 noch genauer beschrieben. Gemäss den Vorstellungen der Melkanlagenanbieter bezüglich des Ablaufs des Datenaustauschs (mehr dazu in Abschnitt 4) liegt dieser Teil des Projekts `ATDA-ASR` voll in der Verantwortung der Melkanlagenanbieter.
+Die für dieses Projekt (`ATDA-ASR`) interessanten Milchmengendaten sind im ISM abgelegt. Damit diese Daten zum Informationssystem der ZO`r r6ob_abbrtable$add_abbrev(psAbbrev = "ZO", psMeaning = "Zuchtorganisation", pbOut = FALSE)` bei Qualitas übertragen werden können, müssen sie zuerst aus dem ISM exportiert werden. Das Resultat dieses Datenexports muss je nach verwendeter Übertragungsmethode (siehe Abschnitte 3.1.2 und 4) anders aussehen. Die speziellen Anforderungen der exportierten Daten je nach Übertragungsmethode werden in Abschnitt 4 noch genauer beschrieben. Gemäss den Vorstellungen der Melkanlagenanbieter bezüglich des Ablaufs des Datenaustauschs (mehr dazu in Abschnitt 4) liegt dieser Teil des Projekts `ATDA-ASR` voll in der Verantwortung der Melkanlagenanbieter.
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
@@ -444,7 +409,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Der Import der transferierten Daten in ARGUS ist eine Aufgabe, welche aufgrund der Formatdefinition der transferierten Daten in ARGUS auf der Datenbank realisiert werden kann. Die aktuelle Version von ARGUS hat schon existierende Funktionalitäten, welche für den Import von anderen Daten verwendet werden. Beispiele dafür sind der Import von Daten ab der TVD von Identitas oder die automatisierte Übertragung von Besamungsdaten zwischen KB-Organisationen und Qualitas.
+Der Import der transferierten Daten in ARGUS ist eine Aufgabe, welche aufgrund der Formatdefinition der transferierten Daten in ARGUS auf der Datenbank realisiert werden kann. Die aktuelle Version von ARGUS hat schon existierende Funktionalitäten, welche für den Import von anderen Daten verwendet werden. Beispiele dafür sind der Import von Daten ab der TVD`r r6ob_abbrtable$add_abbrev(psAbbrev = "TVD", psMeaning = "Tierverkehrsdatenbank", pbOut = FALSE)` von Identitas oder die automatisierte Übertragung von Besamungsdaten zwischen KB-Organisationen und Qualitas.
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
@@ -455,7 +420,12 @@ objSecEnum$displayNumSection()
 ```
 Das folgende Schema gibt einen Überblick über den geplanten Ablauf des ATDA. Der Datenfluss läuft gemäss der Reihenfolge der Nummern im Schema ab. Vor der Milchkontrolle erhält der Kontrolleur das Material für die Kontrolle (Schritt 1). Im Schritt 2 führt der Kontrolleur die Milchkontrolle zu einem bestimmten Datum (entspricht dem Stichdatum für die Datenübertragung der Milchmengendaten) auf einem Betrieb durch. Bei der Milchkontrolle werden durch den Milchkontrolleur keine Milchmengendaten mehr erhoben. Stattdessen werden auf den vorgedruckten Formularen für den kontrollierten Betrieb die Mutationen (Zugänge und Abgänge) von Kühen sowie die Änderungen der Laktationsstati (trocken gestellt oder gekalbt) von Kühen erfasst. Das ausgefüllte Formular wird der ZO zugestellt, wo sie zur Überprüfung der Datenkonsistenz mit den übertragenen Milchmengendaten verarbeitet werden. Die Milchproben werden an das Milchlabor gesendet (Schritt 3). Im Schritt 4 liefert das Milchlabor die Analyseergebnisse an Qualitas von wo sie dann dem Betrieb zurückgemeldet werden (Schritt 5), entweder schriftlich per Post, oder via online Zugang zum Informationssystem der ZO (ARGUS).
 
-![Ablauf Datentransfer](Diagramm_Milchdatenfluss_ATDA.pdf)
+
+```{r Diagramm_Milchdatenfluss_ATDA}
+rmddochelper::insertOdgAsPdf(psOdgFileStem = "Diagramm_Milchdatenfluss_ATDA", 
+                             psOdgDir = "odg/ATDA-ProjectPlan")
+```
+
 
 Das Eintreffen der Milchanalyseergebnisse bei Qualitas für den kontrollierten Betrieb ist der Auslöser für den ATDA zwischen ARGUS und dem ISM des kontrollierten Betriebs (Schritt 6). Das Datum der Milchkontrolle wird als Stichdatum für den ATDA verwendet. 
 
@@ -467,7 +437,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Für dieses Projekt `ATDA-ASR` sind vorerst drei Arten des Datentransfers vorstellbar. Nach dem Treffen mit den Herstellern der Melkanlagen ist klar, dass für die Melkanlagenanbieter nur eine Cloud-basierte Datenübertragung (Variante 3) in Frage kommt. Die Details zur Umsetzung einer solchen Datenübertragung sind noch unklar. Da  CRV-Holland zusammen mit den Anbietern Lelly, DeLaval und Fullwood schon ein Service zum automatischen Tierdatenaustausch betreibt, haben wir mit Bert van't Land von CRV Kontakt aufgenommen. Die Informationen zu diesem Projekt sind in den Abschnitten 1.3.2 und 5 beschrieben. 
+Für dieses Projekt `ATDA-ASR` sind vorerst drei Arten des Datentransfers vorstellbar. Nach dem Treffen mit den Herstellern der Melkanlagen ist klar, dass für die Melkanlagenanbieter nur eine Cloud-basierte Datenübertragung (Variante 3) in Frage kommt. Die Details zur Umsetzung einer solchen Datenübertragung sind noch unklar. Da  CRV-Holland zusammen mit den Anbietern Lelly, DeLaval und Fullwood schon ein Service zum automatischen Tierdatenaustausch betreibt, haben wir mit Bert van't Land von CRV und Johan Vloet von VSM Kontakt aufgenommen. Die Informationen zum Datenaustauschprojekt von CRV und VSM in Holland sind in den Abschnitten 1.3.2 und 5 beschrieben. 
 
 Der Vollständigkeit halber und zu Dokumentationszwecken werden hier trotzdem noch alle drei Varianten des Datenaustauschs beschrieben im Wissen, dass die ersten beiden Varianten höchstwahrscheinlich nicht umgesetzt werden können.
 
@@ -484,7 +454,12 @@ objSecEnum$displayNumSection()
 ```
 Diese Version entspricht im Wesentlichen der Umsetzung der im Projekt `ICAR-ADE` definierten Datentypen und Schnittstellen in einem eigenständigen Webservice. Dieser Webservice wird von Qualitas zur Verfügung gestellt und läuft auf einem Server von Qualitas. Die Datenübertragung wird von einem Client-Programm auf dem ISM gestartet. Dieses Programm kontaktiert den Webservice, welcher als Antwort die Definition der zu übertragenden Datenrecords zurückgibt. Aufgrund der Definition der Datenrecords werden die entsprechenden Daten als sogenannter Datenstrom mit einem definierten Format an Qualitas gesendet. Da die Datenübertragung vom Client-Programm des ISM initiiert wird, muss auf dem ISM das entsprechende Client-Programm, welches den Datenaustausch mit dem Webservice bei Qualitas initiiert, installiert sein. Das folgende Schaubild stellt den Datenaustausch per Webservice schematisch dar.
 
-![ATDA Webservice](Schaubild_ATDA_Webservice.pdf)
+
+```{r Schaubild_ATDA_Webservice}
+rmddochelper::insertOdgAsPdf(psOdgFileStem = "Schaubild_ATDA_Webservice", 
+                             psOdgDir = "odg/ATDA-ProjectPlan")
+```
+
 
 Gemäss den Rückmeldungen der Melkanlagenanbieter ist eine Installation eines Client-Programms auf den ISM nicht praktikabel. Diese Systeme sind nicht homogen, z. Bsp. betreffend der verwendeten Version des Betriebssystems oder betreffend installierten Softwareprogrammen. Diese Einschätzung wird auch durch die ersten Resultat der Befragung der Melkanlagenanbieter bestätigt. Des Weiteren sind die ISM-System nicht immer stabil und teilweise schlecht gewartet. 
 
@@ -498,7 +473,7 @@ objSecEnum$displayNumSection()
 ```
 Aufgrund unserer ersten bilateralen Abklärungen mit den Anbietern von Robotermelkanlagen, verfügen die Techniker der Anbieterfirmen der Melkanlagen über einen Zugang von einem Remote-Standort auf das ISM. Dieser Zugang von extern auf das ISM wird mittels sogenannter Fernwartungssoftware ermöglicht. In der Regel erlauben diese Fernwartungsprogramme auch den Austausch von Dateien zwischen den beiden Systemen, welche miteinander in Verbindung stehen. 
 
-Damit der Datentransfer mithilfe einer Ferwartungssoftware ohne manuelle Intervention umgesetzt werden kann, muss die Steuerung der Fernwartungssoftware von einem Programm aus möglich sein. Dies wird über ein von den Anbietern der Fernwartungssoftware zur Verfügung gestellte Schnittstelle - dem sogenannten API - realisiert. Das API besteht aus einer Spezifikation der Funktionalitäten der Fernwartungssoftware, welche von einem externen Programm verwendet werden können. 
+Damit der Datentransfer mithilfe einer Ferwartungssoftware ohne manuelle Intervention umgesetzt werden kann, muss die Steuerung der Fernwartungssoftware von einem Programm aus möglich sein. Dies wird über ein von den Anbietern der Fernwartungssoftware zur Verfügung gestellte Schnittstelle - dem sogenannten API`r r6ob_abbrtable$add_abbrev(psAbbrev = "API", psMeaning = "Application Programming Interface", pbOut = FALSE)` - realisiert. Das API besteht aus einer Spezifikation der Funktionalitäten der Fernwartungssoftware, welche von einem externen Programm verwendet werden können. 
 Die Umsetzung dieser Lösung für den Datentransfer wäre sehr viel einfacher, wenn alle Hersteller die gleiche Fernwartungssoftware verwenden würden. Eine Abklärung diesbezüglich hat allerdings ergeben, dass verschiedene Fernwartungssoftwareprodukte zum Einsatz kommen. 
 
 \pagebreak
@@ -526,9 +501,13 @@ Die Anzahl an verschiedenen Fernwartungsprogrammen erschwert uns die Verwendung 
 
 Die einzige Möglichkeit, wie diese Art des Datentransfers für uns noch praktikabel wäre, ist, dass uns die Anbieter erlauben würden, eine einheitliche Ferwartungslösung neben den bestehenden Programmen zu installieren. Das folgende Schaubild gibt einen Überblick über die Datenaustausch per Fernwartungssoftware. 
 
-\begin{center}
-\includegraphics[width=0.9\textwidth]{Schaubild_ATDA_Fernwartung}
-\end{center}
+
+```{r Schaubild_ATDA_Fernwartung}
+rmddochelper::insertOdgAsPdf(psOdgFileStem = "Schaubild_ATDA_Fernwartung", 
+                             psOdgDir = "odg/ATDA-ProjectPlan",
+                             pnPaperWidthScale = 0.9)
+```
+
 
 Die oben beschriebene negative Einschätzung dieser Variante wurde durch die Rückmeldungen der Melkanlagenanbieter bestätigt. Abgesehen von der grossen Anzahl an eingesetzten Ferwartungslösungen, können Anbieter aufgrund von Verträgen auch das eingesetzte Fernwartungssystem wechseln, was für uns zu einem nochmals grösseren Arbeitsaufwand führen würde. 
 
@@ -566,9 +545,12 @@ objSecEnum$displayNumSection()
 ```
 Die Benutzung von öffentlichen Cloud-Anbietern ist aus Gründen des Datenschutzes nicht ganz einfach. Ab einer gewissen Datenmenge sind die meisten Cloud-Dienste kostenpflichtig. Deshalb wurde von den Melkanlagenherstellern vorgeschlagen selber eine zentrale Datenaustausch-Infrastruktur zu erstellen. Die Anforderungen an ein solches Speichersystem bestehen darin, dass dieses System für die im Projekt beteiligten Betriebe und für das Datenbanksystem von Qualitas AG zugänglich sein muss. Die zentrale Funktionaliät des Speichersystems besteht in einer Art Datendrehscheibe, wobei die Betriebe die Milchmengendaten an das Speichersystem senden können und relevante Tierdaten vom System beziehen können. Das Informationssystem von Qualitas AG soll die Milchmengendaten beim Speichersystem abholen können und die für die Betriebe relevante Tierdaten an das System senden  können.
 
-\begin{center}
-\includegraphics[width=0.75\textwidth]{Schaubild_ATDA_Cloud}
-\end{center}
+
+```{r Schaubild_ATDA_Cloud}
+rmddochelper::insertOdgAsPdf(psOdgFileStem = "Schaubild_ATDA_Cloud", 
+                             psOdgDir = "odg/ATDA-ProjectPlan",
+                             pnPaperWidthScale = 0.75)
+```
 
 
 \vspace{1ex}
@@ -586,9 +568,9 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Anlässlich des Treffens mit den Melkanlagenanbietern am 18.3.2016 erfuhren wir, dass CRV Holland mit den Firmen DeLaval, Lelly und Fullwood bereits ein Service eines automatischen Tierdatenaustauschs betreibt. Zur Vermeidung von Doppelspurigkeiten und zur Minimierung des Aufwandes in diesem Projekt für die Melkanlagenanbieter und für uns, haben wir Kontakt zu Bert van 't Land (BvL) von CRV Holland aufgenommen (Telefonkonferenz am 19.05.2016, siehe dazu Abschnitt 1.3.2). Zusammenfassend werden im Datenaustauschprojekt in Holland von rund 3000 Betrieben mit Robotermelkanlagen täglich mehr als 1 Mio Milchmengenrecords von den Betrieben auf die zentrale Datenbank übertragen. Unter Berücksichtigung eines Datenoverheads, entspricht dies einer Datenmenge von rund 100MB pro Tag. Die Milchmengen jedes Gemelks werden in der zentralen Datenbank abgelegt. Nach der Ablage eines Milchmengenrecords wird ein Tagesdurchschnitt der Milchmengen über die vorangegangenen 24 Stunden berechnet. Die Tagesdurchschnitte werden auf eine Laktationsmilchmenge hochgerechnet.
+Anlässlich des Treffens mit den Melkanlagenanbietern am 18.3.2016 erfuhren wir, dass CRV Holland mit den Firmen DeLaval, Lelly und Fullwood bereits ein Service eines automatischen Tierdatenaustauschs betreibt. Zur Vermeidung von Doppelspurigkeiten und zur Minimierung des Aufwandes in diesem Projekt für die Melkanlagenanbieter und für uns, haben wir Kontakt zu `r r6ob_abbrtable$add_abbrev(psAbbrev = "BvL", psMeaning = "Bert van t Land")` von CRV Holland aufgenommen (Telefonkonferenz am 19.05.2016, siehe dazu Abschnitt 1.3.2). Zusammenfassend werden im Datenaustauschprojekt in Holland von rund 3000 Betrieben mit Robotermelkanlagen täglich mehr als 1 Mio Milchmengenrecords von den Betrieben auf die zentrale Datenbank übertragen. Unter Berücksichtigung eines Datenoverheads, entspricht dies einer Datenmenge von rund 100MB pro Tag. Die Milchmengen jedes Gemelks werden in der zentralen Datenbank abgelegt. Nach der Ablage eines Milchmengenrecords wird ein Tagesdurchschnitt der Milchmengen über die vorangegangenen 24 Stunden berechnet. Die Tagesdurchschnitte werden auf eine Laktationsmilchmenge hochgerechnet.
 
-Das Betreiben der zentralen Datenbank sowie die Programmierung von ISM-spezifischen PlugIns wurde von CRV zu CSM - einer externen Informatikfirma - ausgelagert. Die PlugIns werden auf den ISM jedes Betriebs installiert. Dort steuern sie die Übertragung der Daten von den Betrieben zur zentralen Datenbank. 
+Das Betreiben der zentralen Datenbank sowie die Programmierung von ISM-spezifischen PlugIns wurde von CRV zu VSM - einer externen Informatikfirma - ausgelagert. Die PlugIns werden auf den ISM jedes Betriebs installiert. Dort steuern sie die Übertragung der Daten von den Betrieben zur zentralen Datenbank. 
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
@@ -596,9 +578,9 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Bei der Beschreibung des Datenexports in diesem Dokument (Abschnitt 3.1.1) liegt die Verantwortung des Datenexports bei den Melkanlagenanbietern. Im Gegensatz dazu, wird im Datenübertragungs-Projekt von CRV-Holland der Datenexport und die Übertragung von einem durch CSM geschriebenes On-Farm-PlugIn übernommen. Das PlugIn, welches die Datenübertragung steuert, muss spezifisch für jeden Anbieter der ISMs angepasst sein. Das heisst es braucht für jeden ISM-Anbieter ein anderes PlugIn. Diese Anforderung der spezifischen PlugIns würde sich auch für unser Projekt `ATDA-ASR` ergeben, da die in der Schweiz eingesetzten ISMs unterschiedliche Datenmanagementtechnologien verwenden. Die Tatsache, dass unterschiedliche ISM-Anbieter unterschiedliche Technologien einsetzen, wird durch die Ergebnisse unserer Befragung der Melkanlagenanbieter bestätigt. 
+Bei der Beschreibung des Datenexports in diesem Dokument (Abschnitt 3.1.1) liegt die Verantwortung des Datenexports bei den Melkanlagenanbietern. Im Gegensatz dazu, wird im Datenübertragungs-Projekt von CRV-Holland der Datenexport und die Übertragung von einem durch VSM geschriebenes On-Farm-PlugIn übernommen. Das PlugIn, welches die Datenübertragung steuert, muss spezifisch für jeden Anbieter der ISMs angepasst sein. Das heisst es braucht für jeden ISM-Anbieter ein anderes PlugIn. Diese Anforderung der spezifischen PlugIns würde sich auch für unser Projekt `ATDA-ASR` ergeben, da die in der Schweiz eingesetzten ISMs unterschiedliche Datenmanagementtechnologien verwenden. Die Tatsache, dass unterschiedliche ISM-Anbieter unterschiedliche Technologien einsetzen, wird durch die Ergebnisse unserer Befragung der Melkanlagenanbieter bestätigt. 
 
-BvL hat sich bereit erklärt, die Ansprechsperson für Fragen betreffend des holländischen Datenaustauschprojekts zu sein. Er klärt bei CRV und CSM ab, ob und in welchem Umfang eine Zusammenarbeit zwischen diesem Projekt `ATDA-ASR` und CRV-Holland möglich ist. Für uns ist es wichtig die Frage zu klären, ob die OnFarm-PlugIns der verschiedenen Anbieter, welche in Holland eingesetzt werden auch auf den Betrieben in der Schweiz eingesetzt werden können. BvL ist der Meinung, dass diese nicht ohne Anpassungen in der Schweiz verwendet werden können. 
+BvL hat sich bereit erklärt, die Ansprechsperson für Fragen betreffend des holländischen Datenaustauschprojekts zu sein. Er klärt bei CRV und VSM ab, ob und in welchem Umfang eine Zusammenarbeit zwischen diesem Projekt `ATDA-ASR` und CRV-Holland möglich ist. Für uns ist es wichtig die Frage zu klären, ob die OnFarm-PlugIns der verschiedenen Anbieter, welche in Holland eingesetzt werden auch auf den Betrieben in der Schweiz eingesetzt werden können. BvL ist der Meinung, dass diese nicht ohne Anpassungen in der Schweiz verwendet werden können. 
 
 Falls die PlugIns aus dem Projekt von CRV in Holland für uns nicht verfügbar sind, müssen wir die Funktionalität des Datenexports aus dem ISM selber umgesetzen. Für eine eigene Umsetzung zuerst die von den verschiedenen Melkanlagen zur Verfügung gestellten Informationen analysiert werden. Die Beschreibung der Daten der verschiedenen Anbieter sind in separaten Dokumenten abgelegt.
 
@@ -661,7 +643,23 @@ Durch die technische Weiterentwicklung bei den Milchanlagen und anderen Stallein
 \newpage
 
 \blandscape
-\includegraphics[width=1.5\textwidth]{ProjektAblaufplanQ3.pdf}
+```{r ProjektAblaufplanQ4}
+rmddochelper::insertOdgAsPdf(psOdgFileStem = "ProjektAblaufplanQ4", 
+                             psOdgDir = "odg/ATDA-ProjectPlan",
+                             pnPaperWidthScale = 1.5)
+```
 \elandscape
 
 
+
+<!-- END of document:  Below this must not be anything, except the stuff --
+  -- concerning the table of abbreviations                               --> 
+```{r WriteTableOfAbbreviations, results='hide'}
+if (!r6ob_abbrtable$is_empty_abbr())
+  r6ob_abbrtable$writeToTsvFile()
+```
+\pagebreak
+
+```{r AbrTableToDocument}
+r6ob_abbrtable$include_abbr_table(psAbbrTitle = "# Abkürzungen")
+```

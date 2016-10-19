@@ -1,23 +1,27 @@
-Version	Datum	Wer	Status	Projekt
+Version	Date	Author	Status	Project
 0.0.900	11.01.2016	PvR	Erstellung	ATDA-ASR
 0.0.902	18.01.2016	PvR	Projektziele und Ablauf des Datentransfers	ATDA-ASR
 0.0.903	19.01.2016	PvR	Projektauftraggeber von BvchShb zu ASR gewechselt	ATDA-ASR
-0.0.904	19.01.2016	PvR	Beschreibung der Projektkomponenten und des Projektablaufs	ATDA-ASR
-0.0.905	20.01.2016	PvR	Varianten der Datenübertragung Plan des Projektablaufs	ATDA-ASR
-0.0.906	21.01.2016	PvR	Ergänzung des Abschnitts Erklärung Plan des Projektablaufs	ATDA-ASR
+0.0.904	19.01.2016	PvR	Beschreibung der Projektkomponenten und Projektablauf	ATDA-ASR
+0.0.905	20.01.2016	PvR	Varianten der Datenübertragung	ATDA-ASR
+0.0.906	21.01.2016	PvR	Ergänzung in Erklärung Plan des Projektablaufs	ATDA-ASR
 0.0.907	25.01.2016	PvR	Ergänzung des Projektablaufplans	ATDA-ASR
-0.0.908	27.01.2016	PvR	Feedback nach AG ZT DL Sitzung. Dokumenttyp zu Projektplan geändert	ATDA-ASR
-0.0.909	27.01.2016	PvR	Abschnitt zu Cloud-Lösung hinzugefügt	ATDA-ASR
-0.0.910	01.02.2016	PvR	Cloud-Anbieter Microsoft und Apple hinzugefügt	ATDA-ASR
-0.0.911	02.02.2016	PvR	Berücksichtigung Projektplan_ATDA_20151209 im Projektplan	ATDA-ASR
-0.0.912	03.02.2016	PvR	Ergänzung der Begründung der Projektziele. Abkürzungstabelle ergänzt	ATDA-ASR
-0.0.913	03.02.2016	SG	Korrekturen und Ergänzungen	ATDA-ASR
-0.0.914	04.02.2016	PvR	Formatierung Projektplan, Präzisierung Datenübertragung per Webservice	ATDA-ASR
-0.0.915	08.02.2016	SG	Schaubilder für drei Arten der Datenübertragung	ATDA-ASR
-0.0.916	10.02.2016	PvR	Titel von Schaubilder entfernt	ATDA-ASR
+0.0.908	27.01.2016	PvR	Feedback nach AG ZT DL Sitzung	ATDA-ASR
+0.0.909	27.01.2016	PvR	Änderung Dokumenttyp Projektplan	ATDA-ASR
+0.0.910	27.01.2016	PvR	Abschnitt zu Cloud-Lösung hinzugefügt	ATDA-ASR
+0.0.911	01.02.2016	PvR	Cloud-Anbieter Microsoft und Apple hinzugefügt	ATDA-ASR
+0.0.912	02.02.2016	PvR	Berücksichtigung Projektplan_ATDA_20151209	ATDA-ASR
+0.0.913	03.02.2016	PvR	Ergänzung Begründung der Projektziele	ATDA-ASR
+0.0.914	03.02.2016	PvR	Ergänzungen in Abkürzungstabelle	ATDA-ASR
+0.0.915	03.02.2016	SG	Korrekturen und Ergänzungen	ATDA-ASR
+0.0.916	04.02.2016	PvR	Formatierung Projektplan	ATDA-ASR
+0.0.917	04.02.2016	PvR	Präzisierung Datenübertragung per Webservice	ATDA-ASR
+0.0.918	08.02.2016	SG	Schaubilder für drei Arten der Datenübertragung	ATDA-ASR
+0.0.919	10.02.2016	PvR	Titel von Schaubilder entfernt	ATDA-ASR
 0.1.001	13.04.2016	PvR	Anpassungen nach Meeting mit Melkmaschinen Hersteller	ATDA-ASR
 0.1.002	24.05.2016	PvR	Anpassungen nach Gespräch mit Bert v. Land	ATDA-ASR
 0.1.003	25.05.2016	PvR	Schaubild für DE Projekt von CRV NL	ATDA-ASR
 0.1.004	25.05.2016	PvR	Anpassungen des Projektplans	ATDA-ASR
 0.1.005	2016-06-16	pvr	Ergänzungen aufgrund der Antwort von BvL	ATDA-ASR
 0.1.006	2016-06-30	peter	Abgrenzung von `ATDA-ASR` zu möglichen Folgeprojekten	ATDA-ASR
+0.1.007	2016-10-18	pvr	Ergänzung aufgrund Infos von JV	ATDA-ASR
