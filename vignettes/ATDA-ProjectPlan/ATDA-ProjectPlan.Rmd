@@ -479,8 +479,6 @@ Aufgrund unserer ersten bilateralen Abklärungen mit den Anbietern von Roboterme
 Damit der Datentransfer mithilfe einer Ferwartungssoftware ohne manuelle Intervention umgesetzt werden kann, muss die Steuerung der Fernwartungssoftware von einem Programm aus möglich sein. Dies wird über ein von den Anbietern der Fernwartungssoftware zur Verfügung gestellte Schnittstelle - dem sogenannten API`r r6ob_abbrtable$add_abbrev(psAbbrev = "API", psMeaning = "Application Programming Interface", pbOut = FALSE)` - realisiert. Das API besteht aus einer Spezifikation der Funktionalitäten der Fernwartungssoftware, welche von einem externen Programm verwendet werden können. 
 Die Umsetzung dieser Lösung für den Datentransfer wäre sehr viel einfacher, wenn alle Hersteller die gleiche Fernwartungssoftware verwenden würden. Eine Abklärung diesbezüglich hat allerdings ergeben, dass verschiedene Fernwartungssoftwareprodukte zum Einsatz kommen. 
 
-\pagebreak
-
 Die folgende Tabelle gibt eine Übersicht über die verwendeten Fernwartungsprogramme
 
 +-----------+-----------------------------------+--------------------------------------+
@@ -563,17 +561,16 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die Tabelle am Ende dieses Dokuments zeigt einen ungefähren Plan, wie sich die bis zu aktuellen Zeitpunkt bekannten Themen auf die Wochen 20 bis 40 von 2016 aufteilen lassen. __Wichtig__ ist die Tatsache, dass dieser Projektplan nicht abschliessend ist und somit das Projekt in Woche 40 von 2016 nicht abgeschlossen sein wird. 
+Die Tabelle am Ende dieses Dokuments zeigt einen ungefähren Projektplan. Die Planung wird immer für ein Quartal gemacht. Somit zeigt der aktuelle Plan jeweils, wie sich die bis zu aktuellen Zeitpunkt bekannten Themen auf das aktuelle Quartal aufteilen lassen. __Wichtig__ ist die Tatsache, dass dieser Projektplan nicht abschliessend ist und somit das Projekt nicht am Ende des aktuellen Plans abgeschlossen sein wird. 
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
-"## Austausch mit CRV Holland")
+"## Zusammenarbeit mit CRV/VSM Holland")
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Anlässlich des Treffens mit den Melkanlagenanbietern am 18.3.2016 erfuhren wir, dass CRV Holland mit den Firmen DeLaval, Lelly und Fullwood bereits ein Service eines automatischen Tierdatenaustauschs betreibt. Zur Vermeidung von Doppelspurigkeiten und zur Minimierung des Aufwandes in diesem Projekt für die Melkanlagenanbieter und für uns, haben wir Kontakt zu `r r6ob_abbrtable$add_abbrev(psAbbrev = "BvL", psMeaning = "Bert van t Land")` von CRV Holland aufgenommen (Telefonkonferenz am 19.05.2016, siehe dazu Abschnitt 1.3.2). Zusammenfassend werden im Datenaustauschprojekt in Holland von rund 3000 Betrieben mit Robotermelkanlagen täglich mehr als 1 Mio Milchmengenrecords von den Betrieben auf die zentrale Datenbank übertragen. Unter Berücksichtigung eines Datenoverheads, entspricht dies einer Datenmenge von rund 100MB pro Tag. Die Milchmengen jedes Gemelks werden in der zentralen Datenbank abgelegt. Nach der Ablage eines Milchmengenrecords wird ein Tagesdurchschnitt der Milchmengen über die vorangegangenen 24 Stunden berechnet. Die Tagesdurchschnitte werden auf eine Laktationsmilchmenge hochgerechnet.
+Anlässlich des Treffens mit den Melkanlagenanbietern am 18.3.2016 erfuhren wir, dass CRV Holland mit den Firmen DeLaval, Lelly und Fullwood bereits ein Service eines automatischen Tierdatenaustauschs betreibt. Zur Vermeidung von Doppelspurigkeiten und zur Minimierung des Aufwandes in diesem Projekt für die Melkanlagenanbieter und für uns, haben wir Kontakt zu `r r6ob_abbrtable$add_abbrev(psAbbrev = "BvL", psMeaning = "Bert van t Land")` von CRV Holland aufgenommen (Telefonkonferenz am 19.05.2016, siehe dazu Abschnitt 1.3.2). Aufgrund des Austauschs mit BvL kontaktierten wir JV von VSM, die den Datenaustausch in Holland für CRV betreiben. Das Ziel des Kontakts mit JV ist die Verwendung der On-Farm PlugIns, welche die Daten aus dem ISM auf den Betrieben exportieren und diese an die zentrale Datenbank übermitteln. Gemäss einer ersten Aussage von JV ist es für VSM kein Problem die On-Farm PlugIns zur Verfügung zu stellen und die zentrale Datenbank, welche alle übermittelten Daten sammelt, zu betreiben.
 
-Das Betreiben der zentralen Datenbank sowie die Programmierung von ISM-spezifischen PlugIns wurde von CRV zu VSM - einer externen Informatikfirma - ausgelagert. Die PlugIns werden auf den ISM jedes Betriebs installiert. Dort steuern sie die Übertragung der Daten von den Betrieben zur zentralen Datenbank. 
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
@@ -581,7 +578,11 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Bei der Beschreibung des Datenexports in diesem Dokument (Abschnitt 3.1.1) liegt die Verantwortung des Datenexports bei den Melkanlagenanbietern. Im Gegensatz dazu, wird im Datenübertragungs-Projekt von CRV-Holland der Datenexport und die Übertragung von einem durch VSM geschriebenes On-Farm-PlugIn übernommen. Das PlugIn, welches die Datenübertragung steuert, muss spezifisch für jeden Anbieter der ISMs angepasst sein. Das heisst es braucht für jeden ISM-Anbieter ein anderes PlugIn. Diese Anforderung der spezifischen PlugIns würde sich auch für unser Projekt `ATDA-ASR` ergeben, da die in der Schweiz eingesetzten ISMs unterschiedliche Datenmanagementtechnologien verwenden. Die Tatsache, dass unterschiedliche ISM-Anbieter unterschiedliche Technologien einsetzen, wird durch die Ergebnisse unserer Befragung der Melkanlagenanbieter bestätigt. 
+Beim Datenübertragungsservice von CRV in Holland werden die Daten von den on-farm Plugins aus den ISM auf den Betrieben exportiert und an die zentrale Datenbank bei VSM transferiert. Da in der Schweiz die gleichen Anbieter von Melkanlagen und somit von ISM wie in Holland aktiv sind, wäre die Verwendung der on-farm Plugins aus Holland für dieses Projekt von grossem Nutzen. Nach einer gewissen Anpassung der on-farm Plugins durch VSM, sollte es möglich sein diese auf den Betrieben in der Schweiz zu installieren. Analog zur Datenübertragung in Holland würden die für die Schweiz modifizierten Plugins die Daten aus den ISM auf den Betrieben exportieren und an die zentrale Datenbank bei VSM übermitteln. Neben der zentralen Datenbank betreibt VSM einen Webservice, der es erlaubt ab ARGUS gezielt Milchleistungsdaten abzufragen. Für diese Abfragen braucht es in ARGUS einen Client, welcher den Datentransfer initiiert. Das folgende Schaubild stellt den geplanten Datentransfer graphisch dar.
+
+
+
+Bei der Beschreibung des Datenexports in diesem Dokument (Abschnitt 3.1.1) liegt die Verantwortung des Datenexports bei den Melkanlagenanbietern. Im Gegensatz dazu, wird im Datenübertragungs-Projekt von CRV-Holland der Datenexport und die Übertragung vom On-Farm-PlugIn übernommen. Das PlugIn, welches die Datenübertragung steuert, ist spezifisch angepasst für jeden Melkanlagennbieterer. Das heisst es braucht für jeden Anbieter ein separates PlugIn. Diese Anforderung der spezifischen PlugIns würde sich auch für unser Projekt `ATDA-ASR` ergeben, da die in der Schweiz eingesetzten ISMs unterschiedliche Datenmanagementtechnologien verwenden. Die Tatsache, dass unterschiedliche ISM-Anbieter unterschiedliche Technologien einsetzen, wird durch die Ergebnisse unserer Befragung der Melkanlagenanbieter bestätigt. 
 
 BvL hat sich bereit erklärt, die Ansprechsperson für Fragen betreffend des holländischen Datenaustauschprojekts zu sein. Er klärt bei CRV und VSM ab, ob und in welchem Umfang eine Zusammenarbeit zwischen diesem Projekt `ATDA-ASR` und CRV-Holland möglich ist. Für uns ist es wichtig die Frage zu klären, ob die OnFarm-PlugIns der verschiedenen Anbieter, welche in Holland eingesetzt werden auch auf den Betrieben in der Schweiz eingesetzt werden können. BvL ist der Meinung, dass diese nicht ohne Anpassungen in der Schweiz verwendet werden können. 
 
