@@ -201,6 +201,10 @@ r6objDocStat$set_current_status(psVersion = "0.1.007",
                                 psStatus = "Ergänzung aufgrund Infos von JV",  
                                 psDate = "2016-10-18", 
                                 psProject = "ATDA-ASR")
+r6objDocStat$set_current_status(psVersion = "0.1.008",
+                                psStatus = "Anpassungen Kooperation VSM",  
+                                psDate = "2016-11-21", 
+                                psProject = "ATDA-ASR")
 r6objDocStat$include_doc_stat(psTitle = "# Dokumentenstatus")
 ```
 
@@ -210,8 +214,7 @@ r6objDocStat$include_doc_stat(psTitle = "# Dokumentenstatus")
 # Erklärung
 Dieses Dokument enthält einen Planungsentwurf für das Projekt zum `r r6ob_abbrtable$add_abbrev(psAbbrev = "ATDA", psMeaning = "Automatisierter Tierdatenaustausch", pbOut = TRUE, psShowText = "automatisierten Tierdatenaustausch")`, welches von der `r r6ob_abbrtable$add_abbrev(psAbbrev = "AG ZT DL", psMeaning = "Arbeitsgruppe zuchttechnische Dienstleistungen")` der `r r6ob_abbrtable$add_abbrev(psAbbrev = "ASR", psMeaning = "Arbeitsgemeinschaft Schweizerischer Rinderzüchter")` in Auftrag gegeben wurde.
 
-Die Umsetzung dieses Projektes hängt sehr stark von den technischen Gegebenheiten der Anbieter von Melkanlagen ab. Deshalb ist der Projektplan in gewissen Abschnitten noch nicht sehr konkret gefasst. Dies ist eine bewusste Entscheidung, welche die Offenheit und die Flexibilität unsererseits demonstrieren soll. Das erste Informationstreffen mit den Anbietern von Melkanlagen fand am 18. März 2016 statt. Diese Treffen hat uns erste Informationen zum möglichen Rahmen dieses Projekts aus Sicht der Melkanlagenanbieter geliefert. Am 19.05.2016 informierten wir uns bei Bert van't Land von CRV`r r6ob_abbrtable$add_abbrev(psAbbrev = "CRV", psMeaning = "Cooperative Cattle Improvement", pbOut = FALSE)` über die aktuelle Situation des automatisierten Datenaustauschs in Holland. Er verwies uns an Johan Vloet von VSM. Er beschrieb uns am 17.10.2016 die Funktionalitäten der Software von VSM, welche beim Datenaustausch in Holland und mittlerweile auch anderen Ländern zum Einsatz kommt.
-
+Die Umsetzung dieses Projektes hängt sehr stark von den technischen Gegebenheiten der Anbieter von Melkanlagen ab. Deshalb ist der Projektplan in gewissen Abschnitten noch nicht sehr konkret gefasst. Dies ist eine bewusste Entscheidung, welche die Offenheit und die Flexibilität unsererseits demonstrieren soll. Das erste Informationstreffen mit den Anbietern von Melkanlagen fand am 18. März 2016 statt. Diese Treffen hat uns erste Informationen zum möglichen Rahmen dieses Projekts aus Sicht der Melkanlagenanbieter geliefert. Am 19.05.2016 informierten wir uns bei Bert van't Land von CRV`r r6ob_abbrtable$add_abbrev(psAbbrev = "CRV", psMeaning = "Cooperative Cattle Improvement", pbOut = FALSE)` über die aktuelle Situation des automatisierten Datenaustauschs in Holland. Er verwies uns an `r r6ob_abbrtable$add_abbrev(psAbbrev = "JV", psMeaning = "Johan Vloet")` von VSM. Er beschrieb uns am 17.10.2016 die Funktionalitäten der Software von VSM, welche beim Datenaustausch in Holland und mittlerweile auch anderen Ländern zum Einsatz kommt. Die Softwareprogramme von VSM setzen den Datenexport ab den Melksystemen und den Transfer der exportierten Daten zu einer zentralen Datenbank um. Gemäss JV besteht die Möglichkeit, dass die Lösung aus Holland auch in der Schweiz umgesetzt werden kann.
 
 
 \vspace{1ex}
@@ -317,7 +320,7 @@ rmddochelper::insertOdgAsPdf(psOdgFileStem = "Schaubild_DE_CRV_NL", psOdgDir = "
 ```
 
 
-VSM (Skype-Call vom 17.10.2016 mit `r r6ob_abbrtable$add_abbrev(psAbbrev = "JV", psMeaning = "Johan Vloet")` hat für den nationalen Datenaustausch in Holland ein System entwickelt, welches bereits im Jahr 2009 gestartet wurde und somit nicht auf dem ICAR-Standard basiert. Gemäss JV überträgt ihre Version mehr Informationen vom ISM zur zentralen Datenbank bei VSM im Vergleich zum ICAR-Standard. 
+VSM (Skype-Call vom 17.10.2016 mit JV) hat für den nationalen Datenaustausch in Holland ein System entwickelt, welches bereits im Jahr 2009 gestartet wurde und somit nicht auf dem ICAR-Standard basiert. Gemäss JV überträgt ihre Version mehr Informationen vom ISM zur zentralen Datenbank bei VSM im Vergleich zum ICAR-Standard. 
 
 Aufgrund der Bestrebungen zur Vereinheitlichung der Datenübertragung durch ICAR hat VSM auch den ICAR-Standard schon umgesetzt. Diese Implementation wird aber von den Melkmaschinenanbietern noch nicht produktiv verwendet. Laut JV ist nicht klar, wann und ob die Implementation aufgrund des ICAR-Standards produktiv eingesetzt werden wird.
 
@@ -328,7 +331,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-`NDX` steht für Nordic Data Exchange`r r6ob_abbrtable$add_abbrev(psAbbrev = "NDX", psMeaning = "Nordic Data Exchange", pbOut = FALSE)`. Dies soll ein Projekt sein, welches den Datenaustausch in den skandinavischen Ländern automatisiert. Von Seiten der Hersteller sind Lely und DeLaval beteiligt. 
+`NDX` steht für Nordic Data Exchange`r r6ob_abbrtable$add_abbrev(psAbbrev = "NDX", psMeaning = "Nordic Data Exchange", pbOut = FALSE)`. NDX ist ein Projekt, welches den Datenaustausch in den skandinavischen Ländern automatisiert. Von Seiten der Hersteller sind Lely und DeLaval beteiligt. 
 
 
 \vspace{1ex}
@@ -391,7 +394,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die für dieses Projekt (`ATDA-ASR`) interessanten Milchmengendaten sind im ISM abgelegt. Damit diese Daten zum Informationssystem der ZO`r r6ob_abbrtable$add_abbrev(psAbbrev = "ZO", psMeaning = "Zuchtorganisation", pbOut = FALSE)` bei Qualitas übertragen werden können, müssen sie zuerst aus dem ISM exportiert werden. Das Resultat dieses Datenexports muss je nach verwendeter Übertragungsmethode (siehe Abschnitte 3.1.2 und 4) anders aussehen. Die speziellen Anforderungen der exportierten Daten je nach Übertragungsmethode werden in Abschnitt 4 noch genauer beschrieben. Gemäss den Vorstellungen der Melkanlagenanbieter bezüglich des Ablaufs des Datenaustauschs (mehr dazu in Abschnitt 4) liegt dieser Teil des Projekts `ATDA-ASR` voll in der Verantwortung der Melkanlagenanbieter.
+Die für dieses Projekt (`ATDA-ASR`) interessanten Milchmengendaten sind im ISM abgelegt. Damit diese Daten zum Informationssystem der ZO`r r6ob_abbrtable$add_abbrev(psAbbrev = "ZO", psMeaning = "Zuchtorganisation", pbOut = FALSE)` bei Qualitas übertragen werden können, müssen sie zuerst aus dem ISM exportiert werden. Das Resultat dieses Datenexports muss je nach verwendeter Übertragungsmethode (siehe Abschnitte 3.1.2 und 4) anders aussehen. Die speziellen Anforderungen der exportierten Daten je nach Übertragungsmethode werden in Abschnitt 4 noch genauer beschrieben. Gemäss den Vorstellungen der Melkanlagenanbieter bezüglich des Ablaufs des Datenaustauschs (mehr dazu in Abschnitt 4) liegt dieser Teil des Projekts `ATDA-ASR` voll in der Verantwortung der Melkanlagenanbieter. Bei einer allfälligen Zusammenarbeit mit CRV/VSM und einer daraus resultierenden Übernahme der Lösung aus Holland, würde dieser Teil von den PlugIns von VSM übernommen werden.
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
@@ -400,7 +403,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Der Datentransfer beinhaltet die Übertragung der exportierten Daten vom ISM zu ARGUS. Für die Übertragung von Daten zwischen zwei Informationssystemen gibt es schon existierenden Lösungen. Zum aktuellen Zeitpunkt sind für dieses Projekt `ATDA-ASR` grundsätzlich drei verschiedene Arten der Datenübertragung denkbar. Diese werden in einem späteren Abschnitt (siehe Abschnitt 4) noch genauer beschrieben.
+Der Datentransfer beinhaltet die Übertragung der exportierten Daten vom ISM zu ARGUS. Für die Übertragung von Daten zwischen zwei Informationssystemen gibt es schon existierende Lösungen. Zum aktuellen Zeitpunkt sind für dieses Projekt `ATDA-ASR` grundsätzlich drei verschiedene Arten der Datenübertragung denkbar. Diese werden in einem späteren Abschnitt (siehe Abschnitt 4) noch genauer beschrieben.
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
@@ -644,8 +647,7 @@ Durch die technische Weiterentwicklung bei den Milchanlagen und anderen Stallein
 
 \blandscape
 ```{r ProjektAblaufplanQ4}
-rmddochelper::insertOdgAsPdf(psOdgFileStem = "ProjektAblaufplanQ4", 
-                             psOdgDir = "odg/ATDA-ProjectPlan",
+rmddochelper::insertOdsAsPdf(psOdsFileStem = "ProjektAblaufplanQ4", 
                              pnPaperWidthScale = 1.5)
 ```
 \elandscape
