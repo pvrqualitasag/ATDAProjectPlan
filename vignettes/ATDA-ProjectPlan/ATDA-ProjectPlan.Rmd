@@ -205,6 +205,10 @@ r6objDocStat$set_current_status(psVersion = "0.1.008",
                                 psStatus = "Anpassungen Kooperation VSM",  
                                 psDate = "2016-11-21", 
                                 psProject = "ATDA-ASR")
+r6objDocStat$set_current_status(psVersion = "0.1.009",
+                                psStatus = "Projektplan Q1/2017",  
+                                psDate = "2016-11-23", 
+                                psProject = "ATDA-ASR")
 r6objDocStat$include_doc_stat(psTitle = "# Dokumentenstatus")
 ```
 
@@ -230,7 +234,9 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Die Standardprozedur für den Transfer von Milchleistungsdaten von Betrieben, welche sich bei der `r r6ob_abbrtable$add_abbrev(psAbbrev = "MLP", psMeaning = "Milchleistungsprüfung")` der Zuchtverbände (BVCH`r r6ob_abbrtable$add_abbrev(psAbbrev = "BVCH", psMeaning = "Braunvieh Schweiz", pbOut = FALSE)` und SHB`r r6ob_abbrtable$add_abbrev(psAbbrev = "SHB", psMeaning = "Swissherdbook", pbOut = FALSE)`) beteiligen, sieht so aus, dass ein Milchkontrolleur alle 31 bis 37 Tage Milchproben zieht und Milchwägungen vornimmt. Die Milchmengen werden während der Kontrolle auf dem Betrieb manuell auf vorgedruckte Formulare (Begleitscheine) eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS`r r6ob_abbrtable$add_abbrev(psAbbrev = "ARGUS", psMeaning = "Informationssystem für brunaNet, redonline+, etc ", pbOut = FALSE)`) von Qualitas eingelesen. Das nachfolgende Schaubild stellt den Datenfluss anlässlich einer Milchkontrolle auf einem Betrieb schematisch dar. Der Datenfluss verläuft gemäss der Reihenfolge der Nummern. Die Bedeutung der einzelnen Nummern wird später noch erklärt werden.
+Die Standardprozedur für den Transfer von Milchleistungsdaten von Betrieben, welche sich bei der `r r6ob_abbrtable$add_abbrev(psAbbrev = "MLP", psMeaning = "Milchleistungsprüfung")` der Zuchtverbände (BVCH`r r6ob_abbrtable$add_abbrev(psAbbrev = "BVCH", psMeaning = "Braunvieh Schweiz", pbOut = FALSE)` und SHB`r r6ob_abbrtable$add_abbrev(psAbbrev = "SHB", psMeaning = "Swissherdbook", pbOut = FALSE)`) beteiligen, sieht so aus, dass ein Milchkontrolleur alle 31 bis 37 Tage Milchproben zieht und Milchwägungen vornimmt. Die Milchmengen werden während der Kontrolle auf dem Betrieb manuell auf vorgedruckte Formulare (Begleitscheine) eingetragen. Die ausgefüllten Formulare werden dann an die Zuchtorganisationen geschickt und dort per Scanner in das Informationssystem (ARGUS`r r6ob_abbrtable$add_abbrev(psAbbrev = "ARGUS", psMeaning = "Informationssystem für brunaNet, redonline+, etc ", pbOut = FALSE)`) von Qualitas eingelesen. 
+
+Das nachfolgende Schaubild stellt den Datenfluss anlässlich einer Milchkontrolle auf einem Betrieb schematisch dar. Der Datenfluss verläuft gemäss der Reihenfolge der Nummern. Monatlich besucht ein Kontrolleur die ihm zugewiesenen Betriebe. Während des Besuchs werden die Milchmengen der laktierenden Kühe gemessen und auf dem Begleitschein festgehalten. Zwecks Bestimmung der Milchinhaltsstoffe zieht der Kontrolleur Milchproben und schickt diese an das Milchlabor. Die ausgefüllten Begleitscheine werden an die ZO geschickt. Dort werden diese eingescannt und die Daten werden in ARGUS abgelegt. Die erfassten Daten werden online oder per Postversand an die Betriebe zurückgemeldet. 
 
 
 ```{r Diagramm_Milchdatenfluss}
@@ -569,7 +575,7 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
-Anlässlich des Treffens mit den Melkanlagenanbietern am 18.3.2016 erfuhren wir, dass CRV Holland mit den Firmen DeLaval, Lelly und Fullwood bereits ein Service eines automatischen Tierdatenaustauschs betreibt. Zur Vermeidung von Doppelspurigkeiten und zur Minimierung des Aufwandes in diesem Projekt für die Melkanlagenanbieter und für uns, haben wir Kontakt zu `r r6ob_abbrtable$add_abbrev(psAbbrev = "BvL", psMeaning = "Bert van t Land")` von CRV Holland aufgenommen (Telefonkonferenz am 19.05.2016, siehe dazu Abschnitt 1.3.2). Aufgrund des Austauschs mit BvL kontaktierten wir JV von VSM, die den Datenaustausch in Holland für CRV betreiben. Das Ziel des Kontakts mit JV ist die Verwendung der On-Farm PlugIns, welche die Daten aus dem ISM auf den Betrieben exportieren und diese an die zentrale Datenbank übermitteln. Gemäss einer ersten Aussage von JV ist es für VSM kein Problem die On-Farm PlugIns zur Verfügung zu stellen und die zentrale Datenbank, welche alle übermittelten Daten sammelt, zu betreiben.
+Anlässlich des Treffens mit den Melkanlagenanbietern am 18.3.2016 erfuhren wir, dass CRV Holland mit den Firmen DeLaval, Lelly und Fullwood bereits ein Service eines automatischen Tierdatenaustauschs betreibt. Zur Vermeidung von Doppelspurigkeiten und zur Minimierung des Aufwandes in diesem Projekt für die Melkanlagenanbieter und für uns, hatten wir Kontakt zu `r r6ob_abbrtable$add_abbrev(psAbbrev = "BvL", psMeaning = "Bert van t Land")` von CRV Holland aufgenommen (Telefonkonferenz am 19.05.2016, siehe dazu Abschnitt 1.3.2). Aufgrund des Austauschs mit BvL kontaktierten wir JV von VSM, die den Datenaustausch in Holland für CRV betreiben. Das Ziel des Kontakts mit JV ist die Verwendung der On-Farm PlugIns, welche die Daten aus dem ISM auf den Betrieben exportieren und diese an die zentrale Datenbank übermitteln. Gemäss einer ersten Aussage von JV ist es für VSM kein Problem die On-Farm PlugIns zur Verfügung zu stellen und die zentrale Datenbank, welche alle übermittelten Daten sammelt, zu betreiben.
 
 
 ```{r echo=FALSE,results='asis'}
@@ -580,13 +586,10 @@ objSecEnum$displayNumSection()
 ```
 Beim Datenübertragungsservice von CRV in Holland werden die Daten von den on-farm Plugins aus den ISM auf den Betrieben exportiert und an die zentrale Datenbank bei VSM transferiert. Da in der Schweiz die gleichen Anbieter von Melkanlagen und somit von ISM wie in Holland aktiv sind, wäre die Verwendung der on-farm Plugins aus Holland für dieses Projekt von grossem Nutzen. Nach einer gewissen Anpassung der on-farm Plugins durch VSM, sollte es möglich sein diese auf den Betrieben in der Schweiz zu installieren. Analog zur Datenübertragung in Holland würden die für die Schweiz modifizierten Plugins die Daten aus den ISM auf den Betrieben exportieren und an die zentrale Datenbank bei VSM übermitteln. Neben der zentralen Datenbank betreibt VSM einen Webservice, der es erlaubt ab ARGUS gezielt Milchleistungsdaten abzufragen. Für diese Abfragen braucht es in ARGUS einen Client, welcher den Datentransfer initiiert. Das folgende Schaubild stellt den geplanten Datentransfer graphisch dar.
 
+```{r UmsetzungAtdaVsm}
+rmddochelper::insertOdgAsPdf(psOdgFileStem = "UmsetzungAtdaVsm")
+```
 
-
-Bei der Beschreibung des Datenexports in diesem Dokument (Abschnitt 3.1.1) liegt die Verantwortung des Datenexports bei den Melkanlagenanbietern. Im Gegensatz dazu, wird im Datenübertragungs-Projekt von CRV-Holland der Datenexport und die Übertragung vom On-Farm-PlugIn übernommen. Das PlugIn, welches die Datenübertragung steuert, ist spezifisch angepasst für jeden Melkanlagennbieterer. Das heisst es braucht für jeden Anbieter ein separates PlugIn. Diese Anforderung der spezifischen PlugIns würde sich auch für unser Projekt `ATDA-ASR` ergeben, da die in der Schweiz eingesetzten ISMs unterschiedliche Datenmanagementtechnologien verwenden. Die Tatsache, dass unterschiedliche ISM-Anbieter unterschiedliche Technologien einsetzen, wird durch die Ergebnisse unserer Befragung der Melkanlagenanbieter bestätigt. 
-
-BvL hat sich bereit erklärt, die Ansprechsperson für Fragen betreffend des holländischen Datenaustauschprojekts zu sein. Er klärt bei CRV und VSM ab, ob und in welchem Umfang eine Zusammenarbeit zwischen diesem Projekt `ATDA-ASR` und CRV-Holland möglich ist. Für uns ist es wichtig die Frage zu klären, ob die OnFarm-PlugIns der verschiedenen Anbieter, welche in Holland eingesetzt werden auch auf den Betrieben in der Schweiz eingesetzt werden können. BvL ist der Meinung, dass diese nicht ohne Anpassungen in der Schweiz verwendet werden können. 
-
-Falls die PlugIns aus dem Projekt von CRV in Holland für uns nicht verfügbar sind, müssen wir die Funktionalität des Datenexports aus dem ISM selber umgesetzen. Für eine eigene Umsetzung zuerst die von den verschiedenen Melkanlagen zur Verfügung gestellten Informationen analysiert werden. Die Beschreibung der Daten der verschiedenen Anbieter sind in separaten Dokumenten abgelegt.
 
 ```{r echo=FALSE,results='asis'}
 objSecEnum$setUnNumSection(psUnNumSection = 
@@ -594,10 +597,10 @@ objSecEnum$setUnNumSection(psUnNumSection =
 objSecEnum$parseUnNumSection()
 objSecEnum$displayNumSection()
 ```
+Im weiteren Vorgehen beschäftigen wir uns in erster Linie mit dem Aufbau der Zusammenarbeit mit CRV und VSM. In einem ersten Schritt richten wir eine Testumgebung für den Datenaustausch zwischen der zentralen Datenbank bei VSM und ARGUS ein. JV hat uns zugesagt, dass wir von einem ihrer Testbetriebe Daten beziehen können. Dazu muss VSM einen Webservice zur Verfügung stellen, welcher es erlaubt, Daten von der zentralen Datenbank abzuholen. Wir bauen einen Client der die Testdaten vom Webservice bei VSM abholt und diese in ARGUS importiert. Aufgrund der Ergebnisse dieser Testübertragung kann über allfällige Rahmenbedingungen für den Betrieb des automatisierten Tierdatenaustauschs entschieden werden.
 
-Weiterhin konzentrieren wir uns auf weitere Abklärungen mit den Melkroboteranbieter und auf mögliche Umsetzungen für ein cloud-basiertes Speichersystem.
+In einem weiteren Schritt kann nach erfolgter Anpassung der PlugIns von VSM ein Testbetrieb in der Schweiz ausgewählt werden. Auf diesem Testbetrieb wird das an die Schweiz angepasste PlugIn installiert und die Daten werden an die zentrale Datenbank bei VSM übermittelt. Sobald die ersten Daten des schweizer Testbetriebs bei VSM sind, können diese über den im ersten Schritt erstellten Webservice von ARGUS abgefragt werden. 
 
-Abgesehen von der Datenübertragung gibt es auch noch offene Fragen betreffend des Exports von Daten vom ISM, welche dann zu ARGUS übertragen werden können. Je nach Grösse der Datenmenge bestehen auch gewisse Abhängigkeiten zwischen dem Datenexport auf der Seite des ISM und der Art der Datenübertragung. Die aufgezeigten Möglichkeiten der Datenübertragung haben nicht alle die gleichen Kapazitäten betreffend der zu übertragenen Datenmengen. Ein Ziel der geplanten Testsysteme für die Datenübertragung ist die Abklärung solcher Kapazitätsfragen.
 
 \vspace{1ex}
 ```{r echo=FALSE,results='asis'}
@@ -644,12 +647,11 @@ objSecEnum$displayNumSection()
 ```
 Durch die technische Weiterentwicklung bei den Milchanlagen und anderen Stalleinrichtungen werden immer grössere Mengen an Daten gesammelt. Diese Daten beschränken sich nicht nur auf Leistungsdaten, sondern beschreiben auch das Verhalten, die Futteraufnahme und den Gesundheitsstatus der Tiere. Diese Daten können auch für die züchterische Bearbeitung interessant sein. Dies bedingt aber, dass diese Daten zentral gesammelt und verarbeitet werden. Dies erfordert eine automatisierte Übertragung von den Betrieben in eine zentrale Datenbank. Die automatisierte Übertragung von weiteren Datentypen von Betrieben in eine zentrale Datenbank wird in einem möglichen Folgeprojekt umgesetzt werden. 
 
-\newpage
 
 \blandscape
 ```{r ProjektAblaufplanQ4}
-rmddochelper::insertOdsAsPdf(psOdsFileStem = "ProjektAblaufplanQ4", 
-                             pnPaperWidthScale = 1.5)
+rmddochelper::insertOdsAsPdf(psOdsFileStem = "ProjektAblaufplan2017Q1", 
+                             pnPaperWidthScale = 1.15)
 ```
 \elandscape
 
